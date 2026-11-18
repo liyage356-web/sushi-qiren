@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 80">
+  <title>侧栏分隔纹样 UI 占位图</title>
+  <path d="M20 42 H330 M470 42 H780" fill="none" stroke="#8d7963" stroke-width="3" opacity=".5"/>
+  <path d="M350 42 L385 16 L400 42 L385 68Z M415 42 L450 16 L465 42 L450 68Z" fill="none" stroke="#8d4f3f" stroke-width="3" opacity=".62"/>
+  <circle cx="400" cy="42" r="8" fill="#b38a54" opacity=".58"/>
+</svg>

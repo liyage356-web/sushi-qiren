@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190">
+  <title>左龙头零件占位图</title>
+  <path d="M45 128 C54 79 100 50 152 63 L181 36 L190 72 C245 69 286 100 302 145 C261 132 228 135 198 160 C151 185 80 174 45 151 C29 140 30 132 45 128Z" fill="#b58c4f" stroke="#59442d" stroke-width="7"/>
+  <circle cx="210" cy="104" r="8" fill="#211b16"/>
+  <path d="M248 137 C271 151 287 165 296 181" fill="none" stroke="#59442d" stroke-width="6"/>
+  <text x="160" y="183" text-anchor="middle" fill="#6e563b" font-size="24" font-family="serif">左龙头占位</text>
+</svg>

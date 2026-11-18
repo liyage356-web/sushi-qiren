@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 560">
+  <title>右桶柜占位图</title>
+  <ellipse cx="220" cy="126" rx="168" ry="64" fill="#c9a366" stroke="#5e4b35" stroke-width="7"/>
+  <path d="M52 126 C58 264 86 420 120 480 C164 520 276 520 320 480 C354 420 382 264 388 126Z" fill="#4b4035" stroke="#493a2c" stroke-width="9"/>
+  <path d="M71 300 C152 322 288 322 369 300 M83 409 C158 431 282 431 357 409" fill="none" stroke="#b58a4e" stroke-width="11"/>
+  <text x="220" y="370" text-anchor="middle" fill="#cda767" font-size="45" font-family="serif">右桶柜</text>
+  <text x="220" y="450" text-anchor="middle" fill="#a98b57" font-size="30" font-family="serif" letter-spacing="6">素材占位</text>
+</svg>

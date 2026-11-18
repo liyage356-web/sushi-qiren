@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">刘二爷后院背景占位图</title>
+  <desc id="desc">暖米白、灰褐和淡赭石构成的后院水墨背景临时占位。</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1eadb"/>
+      <stop offset=".55" stop-color="#e1d5c1"/>
+      <stop offset="1" stop-color="#c7b79f"/>
+    </linearGradient>
+    <radialGradient id="wash" cx=".52" cy=".35" r=".7">
+      <stop offset="0" stop-color="#fffaf0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#a9977e" stop-opacity=".12"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#paper)"/>
+  <rect width="1920" height="1080" fill="url(#wash)"/>
+  <path d="M0 735 C270 690 430 740 630 706 S1010 674 1220 716 S1610 754 1920 700 V1080 H0Z" fill="#9e8c73" opacity=".18"/>
+  <path d="M0 806 C310 760 540 824 810 781 S1330 752 1920 812" fill="none" stroke="#6e6353" stroke-width="4" opacity=".22"/>
+  <path d="M110 160 C280 80 430 90 560 175 C620 216 646 284 617 352 C470 374 272 350 98 286Z" fill="#76806c" opacity=".28" filter="url(#soft)"/>
+  <path d="M1250 110 C1450 55 1635 95 1760 205 C1810 255 1830 327 1795 392 C1580 430 1378 390 1218 304Z" fill="#8c8a73" opacity=".2" filter="url(#soft)"/>
+  <path d="M1510 0 V610 M1550 0 V610 M1590 0 V610" stroke="#776957" stroke-width="16" opacity=".18"/>
+  <path d="M0 530 C260 490 545 512 760 545" fill="none" stroke="#8c7b64" stroke-width="8" opacity=".24"/>
+  <rect x="132" y="447" width="600" height="24" rx="10" fill="#7d6b55" opacity=".26"/>
+  <text x="960" y="986" text-anchor="middle" fill="#6c5c49" font-size="42" font-family="serif" letter-spacing="12" opacity=".56">刘二爷后院背景占位图</text>
+</svg>

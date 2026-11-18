@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <title>金珠零件占位图</title>
+  <circle cx="120" cy="106" r="68" fill="#d4ad59" stroke="#65502f" stroke-width="8"/>
+  <path d="M81 79 C94 60 124 55 148 67" fill="none" stroke="#fff0b7" stroke-width="10" stroke-linecap="round" opacity=".72"/>
+  <text x="120" y="219" text-anchor="middle" fill="#6d5738" font-size="29" font-family="serif" letter-spacing="5">金珠占位</text>
+</svg>

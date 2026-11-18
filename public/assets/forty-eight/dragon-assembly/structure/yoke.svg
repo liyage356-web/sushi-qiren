@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 190">
+  <title>扁担与提梁结构占位图</title>
+  <path d="M48 94 C272 55 424 48 600 48 C776 48 928 55 1152 94" fill="none" stroke="#685341" stroke-width="20" stroke-linecap="round"/>
+  <path d="M76 102 C302 66 438 59 600 59 C762 59 898 66 1124 102" fill="none" stroke="#b28f62" stroke-width="5" opacity=".66"/>
+  <path d="M200 70 C236 98 245 133 238 174 M1000 70 C964 98 955 133 962 174" fill="none" stroke="#695845" stroke-width="7"/>
+  <text x="600" y="154" text-anchor="middle" fill="#765f49" font-size="34" font-family="serif" letter-spacing="10">扁担结构占位</text>
+</svg>

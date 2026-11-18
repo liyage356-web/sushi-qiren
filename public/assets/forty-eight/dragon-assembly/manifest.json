@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "coordinateSystem": {
+    "width": 1920,
+    "height": 1080
+  },
+  "assets": {
+    "background": {
+      "courtyard": "background/courtyard-background.png",
+      "fallback": "background/courtyard-background.svg",
+      "status": "provided"
+    },
+    "structure": {
+      "yoke": "structure/yoke.png",
+      "bucketLeft": "structure/bucket-left.png",
+      "bucketRight": "structure/bucket-right.png",
+      "status": "provided"
+    },
+    "parts": {
+      "dragonLeft": "parts/dragon-left.png",
+      "dragonRight": "parts/dragon-right.png",
+      "goldBead": "parts/gold-bead.png",
+      "pompomLeft": "parts/pompom-left.png",
+      "pompomRight": "parts/pompom-right.png",
+      "lacquerSign": "parts/lacquer-sign.png",
+      "chainLeft": "parts/chain-left.png",
+      "chainRight": "parts/chain-right.png",
+      "status": "provided"
+    },
+    "ui": {
+      "stepSeal": "ui/step-seal.png",
+      "panelDivider": "ui/panel-divider.png",
+      "status": "provided"
+    },
+    "audio": {
+      "assemblyStep": "audio/assembly-step.mp3",
+      "completion": "audio/assembly-complete.mp3",
+      "status": "missing"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <title>左红绒球零件占位图</title>
+  <path d="M100 12 C106 55 108 86 100 112 M91 100 C75 80 66 63 61 42 M109 100 C125 80 134 63 139 42" fill="none" stroke="#5c4632" stroke-width="5"/>
+  <circle cx="100" cy="145" r="58" fill="#a64a3b" stroke="#652c26" stroke-width="7"/>
+  <path d="M61 129 C77 143 91 157 99 181 M138 128 C122 143 109 158 101 182" fill="none" stroke="#7b322a" stroke-width="6"/>
+  <text x="100" y="242" text-anchor="middle" fill="#6c5140" font-size="25" font-family="serif">左绒球占位</text>
+</svg>

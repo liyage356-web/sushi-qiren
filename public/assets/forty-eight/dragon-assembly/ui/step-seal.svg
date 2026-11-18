@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <title>步骤印章 UI 占位图</title>
+  <path d="M26 14 H154 L166 26 V154 L154 166 H26 L14 154 V26Z" fill="#eee4d1" stroke="#8f4d3c" stroke-width="5"/>
+  <path d="M37 27 H143 L153 37 V143 L143 153 H37 L27 143 V37Z" fill="none" stroke="#8f4d3c" stroke-width="2" opacity=".6"/>
+  <text x="90" y="112" text-anchor="middle" fill="#7f3c31" font-size="72" font-family="serif">壹</text>
+</svg>
