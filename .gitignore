@@ -1,0 +1,32 @@
+# Local tooling
+/.tools/
+
+# Generated QA reports, screenshots, and development archives
+/.qa-edge-feeding/
+/$null
+/backups/
+/output/
+/web/.qa-*
+
+# Source workspaces that are not part of the published reading experience
+/figma-home-left-plugin/
+/狗不理/
+/assets/
+
+# Screenshots and analysis captures kept at the repository root
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.gif
+/*.mp4
+/*.webm
+/*.mov
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+*.tmp
+__pycache__/
+*.py[cod]
+

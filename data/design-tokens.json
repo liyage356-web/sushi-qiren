@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "project": "俗世奇人·市井说书台",
+    "version": "0.1.0",
+    "scope": "digital reading experience",
+    "sourceState": "design_translation",
+    "date": "2026-10-22"
+  },
+  "color": {
+    "ink": {
+      "value": "#171714",
+      "visualRef": "V001",
+      "role": "primary text"
+    },
+    "paper": {
+      "value": "#E7DCC7",
+      "visualRef": "V002",
+      "role": "primary reading surface"
+    },
+    "paperLight": {
+      "value": "#F2EDE2",
+      "visualRef": "V003",
+      "role": "high-contrast reading surface"
+    },
+    "indigo": {
+      "value": "#344D5C",
+      "visualRef": "V004",
+      "role": "navigation and cool scenes"
+    },
+    "brick": {
+      "value": "#777069",
+      "visualRef": "V005",
+      "role": "secondary text and rules"
+    },
+    "vermilion": {
+      "value": "#A6402C",
+      "visualRef": "V006",
+      "role": "small accents and seals"
+    },
+    "copper": {
+      "value": "#9A6A3A",
+      "visualRef": "V007",
+      "role": "audio and old metal details"
+    },
+    "smokeBlue": {
+      "value": "#91A2A0",
+      "visualRef": "V008",
+      "role": "distance and atmosphere"
+    },
+    "vinegarBrown": {
+      "value": "#5D3B2A",
+      "visualRef": "V009",
+      "role": "deep wood and shadow"
+    },
+    "lamp": {
+      "value": "#D0A65A",
+      "visualRef": "V010",
+      "role": "small warm focus"
+    },
+    "beanGreen": {
+      "value": "#6D7664",
+      "visualRef": "V011",
+      "role": "optional secondary world color"
+    },
+    "night": {
+      "value": "#26323A",
+      "visualRef": "V012",
+      "role": "night scene background"
+    }
+  },
+  "typography": {
+    "display": {
+      "fontFamily": "\"Source Han Serif SC\", \"Noto Serif SC\", serif",
+      "weight": 700,
+      "sizeDesktop": "56px",
+      "sizeMobile": "38px",
+      "lineHeight": 1.1,
+      "visualRef": "V020"
+    },
+    "body": {
+      "fontFamily": "\"Source Han Serif SC\", \"Noto Serif SC\", serif",
+      "weight": 400,
+      "sizeDesktop": "19px",
+      "sizeMobile": "18px",
+      "lineHeight": 1.9,
+      "measureDesktop": "30em",
+      "visualRef": "V021"
+    },
+    "annotation": {
+      "fontFamily": "\"LXGW WenKai\", \"KaiTi\", serif",
+      "weight": 400,
+      "size": "15px",
+      "lineHeight": 1.65,
+      "visualRef": "V022"
+    },
+    "label": {
+      "fontFamily": "\"Source Han Sans SC\", \"Noto Sans CJK SC\", sans-serif",
+      "weight": 500,
+      "size": "13px",
+      "lineHeight": 1.4,
+      "visualRef": "V023"
+    }
+  },
+  "layout": {
+    "desktop": {
+      "maxContentWidth": "1440px",
+      "readingWidth": "720px",
+      "stageRatio": "7:5",
+      "pagePadding": "56px",
+      "gap": "32px"
+    },
+    "mobile": {
+      "pagePadding": "20px",
+      "readingWidth": "100%",
+      "touchTarget": "44px"
+    },
+    "radius": {
+      "default": "0px",
+      "max": "4px"
+    },
+    "borders": {
+      "hairline": "1px",
+      "visualRef": "V025"
+    }
+  },
+  "motion": {
+    "fast": {
+      "duration": "180ms",
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)"
+    },
+    "medium": {
+      "duration": "360ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)"
+    },
+    "quiet": {
+      "duration": "560ms",
+      "easing": "ease-out"
+    },
+    "reduceMotion": "disable transforms, ambient drift and autoplay"
+  },
+  "sound": {
+    "defaultEnabled": false,
+    "maxConcurrentSources": 3,
+    "narration": "explicit opt-in only",
+    "socialCues": "quiet and non-competitive",
+    "visualRef": "V054"
+  },
+  "accessibility": {
+    "contrastTarget": "WCAG AA",
+    "focusVisible": true,
+    "touchTarget": "44px",
+    "captions": true,
+    "nativeSelectableText": true,
+    "reducedMotion": true,
+    "visualRef": "V063"
+  }
+}
+

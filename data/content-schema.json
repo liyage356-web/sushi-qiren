@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/sushi-qiren-story.json",
+  "title": "Story experience record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "sourceState",
+    "canonicalText",
+    "anchors",
+    "experience",
+    "visualTheme",
+    "audioTheme",
+    "accessibility"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^S[0-9]{2,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceState": {
+      "type": "string",
+      "enum": [
+        "canonical",
+        "editorial_note",
+        "design_translation",
+        "generated_draft"
+      ]
+    },
+    "edition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "publisher": {
+          "type": "string"
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "rightsStatus": {
+          "type": "string",
+          "enum": [
+            "cleared",
+            "pending",
+            "internal_prototype_only"
+          ]
+        }
+      }
+    },
+    "canonicalText": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "text"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "id": {
+            "type": "string"
+          },
+          "anchorIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "anchors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "themes",
+        "spaces",
+        "objects",
+        "beats",
+        "emotions"
+      ],
+      "properties": {
+        "themes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/refItem"
+          }
+        },
+        "spaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/refItem"
+          }
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/refItem"
+          }
+        },
+        "beats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/refItem"
+          }
+        },
+        "emotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/refItem"
+          }
+        }
+      }
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primaryInteraction",
+        "secondaryInteraction",
+        "emotionalExit",
+        "reversalTreatment"
+      ],
+      "properties": {
+        "primaryInteraction": {
+          "$ref": "#/$defs/interaction"
+        },
+        "secondaryInteraction": {
+          "$ref": "#/$defs/interaction"
+        },
+        "emotionalExit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "allowedStamps",
+            "canSkip",
+            "privateByDefault"
+          ],
+          "properties": {
+            "allowedStamps": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "服气",
+                  "哏儿",
+                  "心酸",
+                  "膈应",
+                  "唏嘘",
+                  "暖",
+                  "醒"
+                ]
+              }
+            },
+            "canSkip": {
+              "const": true
+            },
+            "privateByDefault": {
+              "const": true
+            }
+          }
+        },
+        "reversalTreatment": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "visualTheme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "colorRefs",
+        "materialRefs",
+        "imageDirection",
+        "forbidden"
+      ],
+      "properties": {
+        "colorRefs": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "^V[0-9]{3}$"
+          }
+        },
+        "materialRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^V[0-9]{3}$"
+          }
+        },
+        "imageDirection": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forbidden": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "audioTheme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultEnabled",
+        "primarySound",
+        "secondarySound",
+        "captionPolicy"
+      ],
+      "properties": {
+        "defaultEnabled": {
+          "const": false
+        },
+        "primarySound": {
+          "type": "string"
+        },
+        "secondarySound": {
+          "type": "string"
+        },
+        "captionPolicy": {
+          "type": "string"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nativeText",
+        "keyboardComplete",
+        "reducedMotion",
+        "staticFallback",
+        "silentComplete"
+      ],
+      "properties": {
+        "nativeText": {
+          "const": true
+        },
+        "keyboardComplete": {
+          "const": true
+        },
+        "reducedMotion": {
+          "const": true
+        },
+        "staticFallback": {
+          "const": true
+        },
+        "silentComplete": {
+          "const": true
+        }
+      }
+    },
+    "editorialNotes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic",
+          "status",
+          "note"
+        ],
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "needs_verification",
+              "design_assumption"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "refItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "lexiconRef"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lexiconRef": {
+          "type": "string",
+          "pattern": "^L[0-9]{3}$"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "input",
+        "purpose",
+        "skippable",
+        "nonCompetitive"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "click",
+              "tap",
+              "long_press",
+              "drag",
+              "scroll",
+              "keyboard",
+              "optional_audio"
+            ]
+          }
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skippable": {
+          "const": true
+        },
+        "nonCompetitive": {
+          "const": true
+        }
+      }
+    }
+  }
+}
