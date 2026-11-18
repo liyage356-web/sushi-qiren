@@ -1,0 +1,1561 @@
+/* 档案交互动画：Figma 暂不可访问时的独立占位实现。 */
+
+.archive-modal.archive-experience {
+  --archive-paper: #d7bd86;
+  --archive-paper-light: #ead8ad;
+  --archive-ink: #27231c;
+  --archive-red: #8d3829;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  place-items: stretch;
+}
+
+.archive-modal.archive-experience[hidden] {
+  display: none;
+}
+
+.archive-experience .archive-backdrop {
+  inset: 0;
+  background:
+    radial-gradient(circle at 48% 44%, rgba(196, 163, 105, 0.14), transparent 34%),
+    linear-gradient(90deg, rgba(18, 21, 18, 0.66), rgba(18, 21, 18, 0.82)),
+    rgba(21, 23, 20, 0.78);
+  opacity: 0;
+  backdrop-filter: blur(5px) saturate(0.72);
+}
+
+.archive-experience .archive-dialog {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  padding: 0;
+  isolation: isolate;
+}
+
+.archive-experience .archive-stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  perspective: 1800px;
+  perspective-origin: 50% 47%;
+}
+
+.archive-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1120px;
+  height: 680px;
+  overflow: visible;
+  transform: translate(-50%, -50%) scale(var(--archive-scale, 1));
+  transform-origin: center;
+  isolation: isolate;
+  transform-style: flat;
+}
+
+.archive-object {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  transform-origin: 50% 50%;
+  transform-style: flat;
+  will-change: transform, opacity;
+}
+
+.archive-folder-shell {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(29vw, 43vh, 430px);
+  aspect-ratio: 1656 / 2276;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.archive-bag-back {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: min(29vw, 43vh, 430px);
+  aspect-ratio: 1656 / 2276;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  isolation: isolate;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.archive-folder-back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(58, 41, 22, 0.6);
+  border-radius: 2px;
+  background:
+    linear-gradient(102deg, rgba(255, 249, 220, 0.18), transparent 30%),
+    radial-gradient(circle at 86% 88%, rgba(102, 71, 31, 0.12), transparent 34%),
+    url("paper-fibers.png"),
+    var(--archive-paper);
+  background-size: auto, auto, 260px 260px, auto;
+  box-shadow:
+    0 30px 58px rgba(9, 10, 8, 0.5),
+    0 7px 15px rgba(27, 20, 12, 0.3),
+    inset 0 0 52px rgba(86, 58, 25, 0.14);
+}
+
+.archive-folder-back::before {
+  position: absolute;
+  inset: 2.4%;
+  border: 1px solid rgba(83, 59, 29, 0.2);
+  content: "";
+}
+
+.archive-folder-back::after {
+  position: absolute;
+  right: 4%;
+  bottom: 3%;
+  width: 26%;
+  height: 1px;
+  content: "";
+  background: rgba(84, 58, 27, 0.35);
+  box-shadow:
+    0 -8px 0 rgba(84, 58, 27, 0.11),
+    0 -16px 0 rgba(84, 58, 27, 0.08);
+}
+
+.archive-top-flap {
+  position: absolute;
+  z-index: 1;
+  top: 3.2%;
+  right: 5%;
+  left: 5%;
+  height: 20%;
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(105deg, rgba(255, 249, 223, 0.28), transparent 46%),
+    #d7bd87;
+  box-shadow:
+    0 8px 10px -9px rgba(53, 36, 17, 0.78),
+    inset 0 -1px rgba(82, 57, 28, 0.25);
+  transform-origin: top center;
+}
+
+.archive-top-flap::after {
+  position: absolute;
+  right: 33%;
+  bottom: 14%;
+  left: 33%;
+  height: 1px;
+  content: "";
+  background: rgba(79, 55, 26, 0.2);
+}
+
+.archive-folder-interior-copy {
+  position: absolute;
+  z-index: 2;
+  top: 28%;
+  left: 8%;
+  display: flex;
+  height: 52%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(55, 43, 28, 0.46);
+  font-family: "Ma Shan Zheng", var(--kai);
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+}
+
+.archive-folder-interior-copy::after {
+  width: 1px;
+  height: 34%;
+  content: "";
+  background: rgba(77, 55, 28, 0.24);
+}
+
+.archive-cover {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(56, 39, 20, 0.62);
+  border-radius: 2px;
+  background: var(--archive-paper);
+  box-shadow:
+    0 20px 40px rgba(12, 11, 8, 0.24),
+    inset -8px 0 13px -12px rgba(48, 33, 16, 0.8);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.archive-cover > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.archive-rope-patch {
+  position: absolute;
+  z-index: 2;
+  top: 5.4%;
+  left: 37.6%;
+  width: 24.8%;
+  height: 30%;
+  border-radius: 46% 52% 44% 48%;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255, 247, 213, 0.18), transparent 34%),
+    radial-gradient(circle at 76% 70%, rgba(91, 61, 27, 0.06), transparent 45%),
+    url("paper-fibers.png"),
+    #d6b97d;
+  background-size: auto, auto, 210px 210px, auto;
+  box-shadow:
+    inset 0 0 18px rgba(111, 76, 33, 0.12),
+    0 0 0 1px rgba(109, 76, 36, 0.05);
+  pointer-events: none;
+}
+
+.archive-cover::after {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  content: "";
+  background: linear-gradient(90deg, rgba(53, 36, 18, 0.18), transparent);
+  pointer-events: none;
+}
+
+.archive-thread-button {
+  position: absolute;
+  z-index: 12;
+  top: 6%;
+  left: 38.5%;
+  width: 23%;
+  height: 31%;
+  padding: 0;
+  border: 0;
+  border-radius: 24%;
+  background: transparent;
+  cursor: pointer;
+  transform-origin: 50% 44%;
+}
+
+.archive-thread-button:disabled {
+  cursor: default;
+}
+
+.archive-thread-button::before {
+  position: absolute;
+  inset: 2%;
+  border: 1px solid rgba(255, 239, 197, 0.78);
+  border-radius: 45%;
+  content: "";
+  opacity: 0;
+  box-shadow:
+    0 0 0 7px rgba(255, 239, 205, 0.08),
+    0 0 22px rgba(255, 229, 177, 0.28);
+  transition: opacity 160ms ease;
+}
+
+.archive-thread-button:hover::before,
+.archive-thread-button:focus-visible::before {
+  opacity: 1;
+}
+
+.archive-thread-button:focus-visible {
+  outline: 2px solid #f6dfad;
+  outline-offset: 3px;
+}
+
+.archive-cord {
+  position: absolute;
+  top: 5%;
+  width: 46%;
+  height: 82%;
+  pointer-events: none;
+  transform-origin: 50% 43%;
+  filter: drop-shadow(0 2px 1px rgba(38, 24, 12, 0.4));
+}
+
+.archive-cord svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.archive-cord path {
+  fill: none;
+  stroke: #51351e;
+  stroke-width: 3.3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.archive-cord-left {
+  left: 4%;
+}
+
+.archive-cord-right {
+  right: 4%;
+  transform: scaleX(-1);
+}
+
+.archive-knot {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 25%;
+  aspect-ratio: 1;
+  border: 2px solid #3f2b1c;
+  border-radius: 48% 54% 46% 52%;
+  background:
+    radial-gradient(circle at 46% 38%, #8c6541 0 8%, #3d2b1d 12% 29%, #785134 34% 43%, #35261a 49% 100%);
+  box-shadow:
+    inset 2px 2px 2px rgba(255, 238, 199, 0.2),
+    inset -2px -2px 3px rgba(35, 23, 14, 0.42),
+    0 3px 5px rgba(44, 28, 14, 0.3);
+  transform: translate(-50%, -50%) rotate(8deg);
+}
+
+.archive-knot::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(218, 183, 112, 0.7);
+  border-radius: 50%;
+  content: "";
+  background: #3a291b;
+  transform: translate(-50%, -50%);
+}
+
+.archive-open-button {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transform-origin: center;
+}
+
+.archive-open-button[hidden] {
+  display: none;
+}
+
+.archive-open-button:focus-visible {
+  outline: 2px solid #f4d89e;
+  outline-offset: 6px;
+}
+
+.archive-paper-stack {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  width: min(42vw, 520px);
+  aspect-ratio: 1.04;
+  visibility: hidden;
+  transform-style: flat;
+  will-change: transform;
+}
+
+.paper-sheet-back,
+.paper-sheet-mid,
+.archive-paper-sheet {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(70, 49, 25, 0.38);
+  border-radius: 1px;
+}
+
+.paper-sheet-back {
+  background:
+    url("paper-fibers.png"),
+    #bda36e;
+  background-size: 260px 260px, auto;
+  box-shadow: 11px 15px 24px rgba(16, 13, 9, 0.26);
+}
+
+.paper-sheet-mid {
+  background:
+    url("paper-fibers.png"),
+    #cdb47d;
+  background-size: 260px 260px, auto;
+  box-shadow: 6px 9px 18px rgba(16, 13, 9, 0.2);
+}
+
+.archive-paper-sheet {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 7% 7.8% 6.3%;
+  color: var(--archive-ink);
+  background:
+    linear-gradient(106deg, rgba(255, 255, 255, 0.3), transparent 34%),
+    radial-gradient(circle at 78% 76%, rgba(117, 81, 36, 0.07), transparent 34%),
+    url("paper-fibers.png"),
+    var(--archive-paper-light);
+  background-size: auto, auto, 260px 260px, auto;
+  box-shadow:
+    0 24px 42px rgba(20, 15, 9, 0.26),
+    inset 0 0 44px rgba(108, 72, 30, 0.08);
+  cursor: default;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  text-align: left;
+}
+
+.archive-paper-sheet::before {
+  position: absolute;
+  inset: 2.6%;
+  border: 1px solid rgba(82, 58, 30, 0.14);
+  content: "";
+  pointer-events: none;
+}
+
+.archive-paper-sheet::after {
+  position: absolute;
+  top: 3%;
+  bottom: 3%;
+  left: 0;
+  width: 10px;
+  content: "";
+  background: linear-gradient(90deg, rgba(67, 45, 22, 0.16), transparent);
+}
+
+.archive-paper-sheet:enabled {
+  cursor: pointer;
+}
+
+.archive-paper-sheet:enabled:hover,
+.archive-paper-sheet:enabled:focus-visible {
+  background:
+    linear-gradient(106deg, rgba(255, 255, 255, 0.38), transparent 36%),
+    radial-gradient(circle at 78% 76%, rgba(117, 81, 36, 0.07), transparent 34%),
+    url("paper-fibers.png"),
+    #efe0b8;
+  background-size: auto, auto, 260px 260px, auto;
+}
+
+.archive-paper-sheet:focus-visible {
+  outline: 2px solid var(--archive-red);
+  outline-offset: 4px;
+}
+
+.archive-paper-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2.6%;
+  border-bottom: 1px solid rgba(75, 52, 25, 0.48);
+  color: #5c4933;
+  font-size: clamp(0.52rem, 0.75vw, 0.68rem);
+  letter-spacing: 0.16em;
+}
+
+.archive-paper-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7%;
+  align-items: end;
+  padding: 5.6% 0 4.2%;
+}
+
+.archive-paper-title {
+  display: block;
+  padding: 0;
+  border: 0;
+  font-family: "Ma Shan Zheng", var(--kai);
+  font-size: clamp(2rem, 4.3vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+}
+
+.archive-paper-title small {
+  display: block;
+  margin-top: 7%;
+  color: #654f35;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 0.26em;
+  letter-spacing: 0.17em;
+}
+
+.archive-paper-seal {
+  display: grid;
+  width: clamp(58px, 7.4vw, 88px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid rgba(141, 56, 41, 0.78);
+  color: var(--archive-red);
+  font-family: var(--kai);
+  font-size: clamp(0.72rem, 1.2vw, 1rem);
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-align: center;
+  transform: rotate(-4deg);
+}
+
+.archive-paper-lead {
+  display: block;
+  color: #4f4537;
+  font-size: clamp(0.64rem, 0.95vw, 0.82rem);
+  letter-spacing: 0.045em;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+.archive-paper-names {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 1px;
+  margin: 4.5% 0;
+  border-top: 1px solid rgba(73, 51, 25, 0.3);
+  border-bottom: 1px solid rgba(73, 51, 25, 0.3);
+}
+
+.archive-paper-names span {
+  position: relative;
+  padding: 10% 7% 8%;
+  font-family: var(--kai);
+  font-size: clamp(0.75rem, 1.18vw, 1.02rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  writing-mode: horizontal-tb;
+}
+
+.archive-paper-names span + span {
+  border-left: 1px solid rgba(73, 51, 25, 0.16);
+}
+
+.archive-paper-names span::before {
+  content: none;
+}
+
+.archive-paper-names small {
+  display: block;
+  margin-bottom: 13%;
+  color: var(--archive-red);
+  font-family: Georgia, serif;
+  font-size: 0.54em;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.archive-paper-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 2.7%;
+  border-top: 1px solid rgba(73, 51, 25, 0.32);
+  color: #6a573e;
+  font-size: clamp(0.5rem, 0.68vw, 0.62rem);
+  letter-spacing: 0.12em;
+}
+
+.archive-paper-enter {
+  color: var(--archive-red);
+  opacity: 0.25;
+}
+
+.archive-experience[data-archive-state="COMPLETE"] .archive-paper-enter {
+  opacity: 1;
+}
+
+.archive-hint {
+  position: absolute;
+  right: 0;
+  bottom: clamp(18px, 3.3vh, 36px);
+  left: 0;
+  z-index: 20;
+  margin: 0;
+  color: rgba(247, 239, 218, 0.88);
+  font-family: var(--kai);
+  font-size: clamp(0.72rem, 1.05vw, 0.9rem);
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-shadow: 0 2px 9px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+
+.archive-toolbar {
+  position: absolute;
+  z-index: 30;
+  top: clamp(18px, 3.2vh, 34px);
+  right: clamp(18px, 3.2vw, 42px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.archive-replay-button,
+.archive-experience .archive-close {
+  position: static;
+  display: grid;
+  min-width: 42px;
+  height: 42px;
+  place-items: center;
+  padding: 0 14px;
+  border: 1px solid rgba(240, 226, 195, 0.44);
+  border-radius: 2px;
+  color: rgba(250, 242, 224, 0.9);
+  background: rgba(36, 34, 28, 0.58);
+  box-shadow: none;
+  cursor: pointer;
+  font-family: var(--kai);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.archive-experience .archive-close {
+  width: 42px;
+  min-width: 42px;
+  padding: 0;
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+}
+
+.archive-replay-button:hover,
+.archive-replay-button:focus-visible,
+.archive-experience .archive-close:hover,
+.archive-experience .archive-close:focus-visible {
+  color: #fff8eb;
+  background: rgba(130, 55, 41, 0.82);
+  transform: none;
+}
+
+.archive-replay-button:focus-visible,
+.archive-experience .archive-close:focus-visible {
+  outline: 2px solid #f1ce8f;
+  outline-offset: 3px;
+}
+
+.archive-experience[data-archive-state="ENTERING"] .archive-thread-button,
+.archive-experience[data-archive-state="UNTYING"] .archive-thread-button,
+.archive-experience[data-archive-state="ROTATING"] .archive-open-button,
+.archive-experience[data-archive-state="PAPER_SLIDING"] .archive-open-button,
+.archive-experience[data-archive-state="COMPLETE"] .archive-open-button {
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .archive-modal.archive-experience {
+    padding: 0;
+  }
+
+  .archive-experience .archive-dialog {
+    width: 100vw;
+    height: 100svh;
+  }
+
+  .archive-canvas {
+    width: 680px;
+    height: 860px;
+  }
+
+  .archive-folder-shell {
+    width: min(78vw, 300px);
+  }
+
+  .archive-bag-back {
+    width: min(78vw, 300px);
+  }
+
+  .archive-paper-stack {
+    width: min(118vw, 450px);
+    aspect-ratio: 0.9;
+  }
+
+  .archive-paper-sheet {
+    padding: 8% 8.5% 7%;
+  }
+
+  .archive-paper-title {
+    font-size: clamp(2.3rem, 10vw, 3.2rem);
+  }
+
+  .archive-paper-lead {
+    font-size: 0.78rem;
+  }
+
+  .archive-paper-names span {
+    padding: 12% 3% 10%;
+    font-size: 0.82rem;
+  }
+
+  .archive-toolbar {
+    top: 14px;
+    right: 14px;
+  }
+
+  .archive-hint {
+    bottom: 16px;
+    padding: 0 18px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .archive-toolbar {
+    top: 10px;
+    right: 12px;
+  }
+
+  .archive-hint {
+    bottom: 8px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-experience *,
+  .archive-experience *::before,
+  .archive-experience *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Figma 分层资源 ---------- */
+
+.archive-experience .archive-folder-back,
+.archive-experience .archive-cover {
+  display: none;
+}
+
+.archive-experience .archive-folder-shell {
+  filter: drop-shadow(0 30px 42px rgba(12, 11, 8, 0.34));
+}
+
+.archive-bag-body,
+.archive-flap-closed,
+.archive-flap-open,
+.archive-tie-fastener,
+.archive-tie-cord {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.archive-bag-body {
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.archive-flap-closed {
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  isolation: isolate;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.archive-flap-closed .archive-flap-closed-paper,
+.archive-flap-open img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.archive-flap-open {
+  z-index: 2;
+  bottom: calc(100% - 0.7%);
+  left: 0;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 1px rgba(74, 52, 30, 0.1));
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.archive-tie-fastener {
+  width: 12.077%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.archive-tie-fastener-upper {
+  z-index: 2;
+  top: 34%;
+  left: 43.66%;
+}
+
+.archive-tie-fastener-lower {
+  z-index: 4;
+  top: 22.276%;
+  left: 43.60%;
+}
+
+.archive-tie-cord {
+  z-index: 5;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 1px 0.7px rgba(47, 31, 17, 0.18));
+  will-change: opacity;
+}
+
+.archive-tie-cord g {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.archive-tie-cord-shadow {
+  stroke: rgba(36, 23, 12, 0.48);
+  stroke-width: 7.4;
+}
+
+.archive-tie-cord-main {
+  stroke: #6d4a2e;
+  stroke-width: 4.8;
+}
+
+.archive-tie-cord-highlight {
+  stroke: rgba(184, 132, 78, 0.72);
+  stroke-width: 1.25;
+}
+
+.archive-open-thread {
+  position: absolute;
+  z-index: 3;
+  bottom: 100%;
+  left: 38%;
+  width: 68%;
+  height: 30%;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 1px rgba(47, 31, 17, 0.22));
+}
+
+.archive-open-thread path {
+  fill: none;
+  stroke: #6d4a2e;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.archive-fastener {
+  position: absolute;
+  z-index: 4;
+  top: 36.9%;
+  left: 47.35%;
+  width: 5.3%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(36, 29, 21, 0.6);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 48% 43%, #bd9c67 0 8%, #6b5232 12% 23%, #31291f 28% 66%, #171612 70%);
+  box-shadow:
+    inset 1px 1px 1px rgba(255, 235, 198, 0.25),
+    0 3px 5px rgba(42, 28, 15, 0.34);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.archive-experience .archive-thread-button {
+  z-index: 12;
+  top: 21.6%;
+  left: 44.1%;
+  width: 12%;
+  height: 10%;
+  border-radius: 50%;
+}
+
+.archive-thread-focus {
+  position: absolute;
+  inset: -12%;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.archive-thread-button:hover .archive-thread-focus,
+.archive-thread-button:focus-visible .archive-thread-focus {
+  border-color: rgba(255, 239, 197, 0.66);
+  background: rgba(255, 239, 205, 0.05);
+  box-shadow: 0 0 0 5px rgba(255, 239, 205, 0.05);
+}
+
+.archive-thread-button::before,
+.archive-thread-button::after {
+  content: none;
+}
+
+.archive-experience .archive-open-button {
+  z-index: 10;
+  top: -22%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.archive-experience .archive-paper-stack {
+  z-index: 1;
+}
+
+/* ---------- Figma 五页人物档案 ---------- */
+
+.archive-paper-window {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  overflow: visible;
+  clip-path: none;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.archive-paper-window .archive-paper-sheet:enabled {
+  pointer-events: auto;
+}
+
+.archive-experience .archive-folder-shell {
+  z-index: 20;
+  isolation: isolate;
+}
+
+.archive-canvas.archive-paper-reading .archive-paper-window {
+  z-index: 30;
+  clip-path: none !important;
+}
+
+.archive-canvas.archive-paper-extracting
+  .archive-paper-stack
+  .archive-page-sheet {
+  box-shadow: none;
+}
+
+.archive-mouth-shadow {
+  position: absolute;
+  z-index: 7;
+  top: -4.25%;
+  right: 4.5%;
+  left: 4.5%;
+  height: 4.25%;
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 24, 11, 0.5) 0%,
+    rgba(48, 28, 13, 0.3) 24%,
+    rgba(48, 28, 13, 0.12) 58%,
+    rgba(48, 28, 13, 0) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(48, 28, 13, 0.32);
+  filter: blur(0.9px);
+  pointer-events: none;
+  transform-origin: top center;
+  will-change: opacity, transform;
+}
+
+.archive-mouth-shadow::after {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  left: -1px;
+  height: 1px;
+  content: "";
+  background: rgba(64, 39, 18, 0.34);
+  box-shadow: 0 2px 4px rgba(51, 31, 13, 0.2);
+}
+
+.archive-experience .archive-paper-stack {
+  width: min(62vw, 750px);
+  aspect-ratio: 1210 / 810;
+  isolation: isolate;
+}
+
+.archive-page-sheet {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #e8deca;
+  box-shadow:
+    0 2px 5px rgba(24, 17, 10, 0.16),
+    0 1px 1px rgba(24, 17, 10, 0.12);
+  transform-origin: 50% 50%;
+}
+
+.archive-page-sheet::before,
+.archive-page-sheet::after {
+  content: none;
+}
+
+.archive-page-sheet > :not(.archive-page-image) {
+  display: none !important;
+}
+
+.archive-page-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+  background: #e8deca;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.archive-page-sheet:enabled:hover,
+.archive-page-sheet:enabled:focus-visible {
+  background: #e8deca;
+  box-shadow:
+    0 4px 9px rgba(24, 17, 10, 0.2),
+    0 1px 2px rgba(24, 17, 10, 0.14);
+}
+
+.archive-page-sheet:focus-visible {
+  outline: 2px solid var(--archive-red);
+  outline-offset: 7px;
+}
+
+@media (max-width: 760px) {
+  .archive-experience .archive-paper-stack {
+    width: min(164vw, 640px);
+    aspect-ratio: 1210 / 810;
+  }
+}
+
+/* ---------- 五页人物档案 ---------- */
+
+.archive-experience .archive-paper-stack {
+  width: min(66vw, 900px);
+  aspect-ratio: 1210 / 810;
+}
+
+.archive-experience .paper-sheet-back,
+.archive-experience .paper-sheet-mid {
+  display: none;
+}
+
+.archive-experience .archive-paper-current {
+  box-shadow:
+    0 8px 18px rgba(24, 17, 10, 0.18),
+    0 2px 4px rgba(24, 17, 10, 0.12);
+}
+
+.archive-canvas.archive-paper-settled .archive-paper-stack {
+  will-change: auto;
+  filter: none;
+}
+
+.archive-horizontal-asset {
+  position: absolute;
+  z-index: 20;
+  display: block;
+  overflow: visible;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.archive-horizontal-asset img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+  filter: none;
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.archive-canvas.archive-horizontal-final .archive-horizontal-asset {
+  opacity: 1;
+  visibility: visible;
+}
+
+.archive-canvas.archive-horizontal-final > .archive-object > #archiveFolder,
+.archive-canvas.archive-horizontal-final > .archive-object > #archiveBagBack {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.archive-contact-shadow {
+  position: absolute;
+  z-index: 2;
+  width: 18px;
+  min-height: 1px;
+  border-radius: 50%;
+  opacity: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(37, 22, 10, 0.32) 0%,
+      rgba(44, 27, 12, 0.2) 28%,
+      rgba(55, 35, 18, 0.08) 68%,
+      rgba(55, 35, 18, 0) 100%
+    );
+  box-shadow:
+    inset 2px 0 2px rgba(42, 24, 10, 0.16),
+    2px 0 6px rgba(34, 20, 9, 0.08);
+  filter: blur(0.7px);
+  transform-origin: 0 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.archive-experience .archive-paper-sheet {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  padding: 3.4% 4.4% 3.1%;
+  isolation: isolate;
+}
+
+.archive-experience .archive-paper-sheet:disabled {
+  color: var(--archive-ink);
+  opacity: 1;
+}
+
+.archive-paper-sheet::after {
+  z-index: 2;
+}
+
+.archive-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: #5d4b35;
+  font-size: clamp(0.46rem, 0.7vw, 0.62rem);
+  letter-spacing: 0.13em;
+}
+
+.archive-card-label {
+  padding: 0.36em 0.72em;
+  color: #f8f1df;
+  background: #35322b;
+  font-family: var(--kai);
+  font-size: 1.35em;
+  letter-spacing: 0.12em;
+}
+
+.archive-summary-title {
+  position: relative;
+  z-index: 3;
+  display: block;
+  margin: 1.6% 0 1.1%;
+  font-family: "Ma Shan Zheng", var(--kai);
+  font-size: clamp(1.55rem, 2.8vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.archive-summary-title small {
+  display: block;
+  margin-top: 1.5%;
+  color: #79684e;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 0.28em;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+}
+
+.archive-summary-layout {
+  position: relative;
+  display: grid;
+  min-height: 0;
+  grid-template-columns: 0.9fr 0.62fr 1.22fr;
+  gap: 3.2%;
+  align-items: stretch;
+}
+
+.archive-summary-table {
+  display: grid;
+  min-height: 0;
+  grid-template-rows: repeat(4, 1fr);
+  border: 1px solid rgba(66, 46, 25, 0.45);
+}
+
+.archive-summary-table > span {
+  display: grid;
+  grid-template-columns: 28% 1fr;
+  align-items: center;
+  padding: 4% 7%;
+  border-bottom: 1px solid rgba(66, 46, 25, 0.3);
+  font-size: clamp(0.48rem, 0.72vw, 0.64rem);
+  line-height: 1.45;
+}
+
+.archive-summary-table > span:last-child {
+  border-bottom: 0;
+}
+
+.archive-summary-table b {
+  color: #6f5c44;
+  font-family: var(--kai);
+  font-weight: 500;
+  writing-mode: vertical-rl;
+}
+
+.archive-summary-table em {
+  font-style: normal;
+}
+
+.archive-summary-mark {
+  display: flex;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  border-top: 1px solid rgba(66, 46, 25, 0.34);
+  border-bottom: 1px solid rgba(66, 46, 25, 0.34);
+  font-family: "Ma Shan Zheng", var(--kai);
+  font-size: clamp(2.3rem, 5.2vw, 4.6rem);
+  line-height: 1;
+}
+
+.archive-summary-mark small {
+  position: absolute;
+  bottom: 3%;
+  left: 33%;
+  color: #806d52;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(0.42rem, 0.58vw, 0.55rem);
+  letter-spacing: 0.17em;
+  white-space: nowrap;
+}
+
+.archive-summary-portraits {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 6%;
+  padding: 1% 0;
+}
+
+.archive-summary-portraits img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid rgba(248, 241, 222, 0.82);
+  filter: sepia(0.66) saturate(0.4) contrast(1.04);
+  box-shadow: 0 3px 8px rgba(45, 33, 20, 0.2);
+}
+
+.archive-paper-footer {
+  position: relative;
+  z-index: 3;
+}
+
+.archive-experience .archive-character-card {
+  grid-template-columns: minmax(0, 58%) minmax(0, 42%);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.archive-character-card .archive-card-topline {
+  grid-column: 1 / -1;
+}
+
+.archive-card-copy {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  padding-top: 4%;
+}
+
+.archive-card-title {
+  display: block;
+  font-family: "Ma Shan Zheng", var(--kai);
+  font-size: clamp(2.15rem, 4vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+}
+
+.archive-card-subtitle {
+  display: block;
+  margin-top: 2.8%;
+  padding-bottom: 2.5%;
+  border-bottom: 1px solid rgba(62, 46, 29, 0.4);
+  font-size: clamp(0.52rem, 0.82vw, 0.74rem);
+  line-height: 1.55;
+}
+
+.archive-card-tags {
+  align-self: flex-start;
+  margin-top: 3.3%;
+  padding: 0.35em 0.7em;
+  border: 1px solid rgba(157, 69, 49, 0.22);
+  color: #984432;
+  background: rgba(249, 235, 204, 0.66);
+  font-size: clamp(0.45rem, 0.66vw, 0.58rem);
+  letter-spacing: 0.1em;
+}
+
+.archive-story {
+  display: block;
+  margin-top: 4%;
+  padding: 3.8% 4.6%;
+  border-left: 2px solid #a24b36;
+  background: rgba(255, 251, 239, 0.48);
+  font-size: clamp(0.5rem, 0.74vw, 0.66rem);
+  line-height: 1.72;
+  text-align: justify;
+}
+
+.archive-story b,
+.archive-quote b {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #8f3a2b;
+  font-family: var(--kai);
+  font-size: 1.05em;
+  letter-spacing: 0.08em;
+}
+
+.archive-quote {
+  display: block;
+  margin-top: auto;
+  padding-top: 3%;
+  color: #4e4234;
+  font-family: var(--kai);
+  font-size: clamp(0.56rem, 0.84vw, 0.74rem);
+  line-height: 1.55;
+}
+
+.archive-card-art {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-row: 2;
+  grid-column: 2;
+  place-items: end center;
+  overflow: hidden;
+}
+
+.archive-card-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  filter: drop-shadow(0 7px 10px rgba(42, 31, 21, 0.18));
+}
+
+.archive-card-art-dog img {
+  transform: scale(1.12) translateY(2%);
+}
+
+.archive-card-art-heitou img {
+  transform: scale(1.18) translateX(-2%);
+}
+
+.archive-card-art-clay img {
+  transform: scale(1.1) translateY(3%);
+}
+
+.archive-card-art-yu img {
+  transform: scale(1.03) translateY(3%);
+}
+
+.archive-card-art small {
+  position: absolute;
+  right: 1%;
+  bottom: 5%;
+  padding: 0.4em 0.35em;
+  color: #4e4031;
+  background: rgba(245, 237, 218, 0.82);
+  font-family: var(--kai);
+  font-size: clamp(0.46rem, 0.64vw, 0.58rem);
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+}
+
+.archive-card-seal {
+  position: absolute;
+  z-index: 5;
+  top: 13%;
+  left: 49%;
+  display: grid;
+  width: clamp(38px, 5vw, 60px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid rgba(151, 59, 43, 0.72);
+  color: #933d2e;
+  font-family: var(--kai);
+  font-size: clamp(0.52rem, 0.76vw, 0.68rem);
+  line-height: 1.25;
+  text-align: center;
+  transform: rotate(-4deg);
+}
+
+.archive-card-action {
+  z-index: 5;
+  align-self: end;
+  justify-self: end;
+  grid-row: 3;
+  grid-column: 2;
+  padding: 0.46em 0.9em;
+  color: #f8f0df;
+  background: #a8422d;
+  font-family: var(--kai);
+  font-size: clamp(0.44rem, 0.65vw, 0.58rem);
+  letter-spacing: 0.12em;
+}
+
+.archive-card-action-final {
+  background: #853624;
+}
+
+@media (max-width: 760px) {
+  .archive-experience .archive-paper-stack {
+    width: min(184vw, 780px);
+    aspect-ratio: 3 / 2;
+  }
+
+  .archive-paper-window {
+    clip-path: none;
+  }
+
+  .archive-mouth-shadow {
+    right: 4.5%;
+    left: 4.5%;
+    height: 4.25%;
+  }
+
+  .archive-experience .archive-paper-sheet {
+    padding: 4.6% 4.8% 4.2%;
+  }
+
+  .archive-card-topline {
+    font-size: 0.48rem;
+  }
+
+  .archive-card-label {
+    font-size: 1.2em;
+  }
+
+  .archive-summary-title {
+    font-size: 1.65rem;
+  }
+
+  .archive-summary-layout {
+    grid-template-columns: 1fr 0.6fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3%;
+  }
+
+  .archive-summary-table {
+    grid-row: 1 / -1;
+  }
+
+  .archive-summary-mark {
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 2.45rem;
+  }
+
+  .archive-summary-mark small {
+    display: none;
+  }
+
+  .archive-summary-portraits {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .archive-experience .archive-character-card {
+    grid-template-columns: minmax(0, 54%) minmax(0, 46%);
+  }
+
+  .archive-card-title {
+    font-size: 2.25rem;
+  }
+
+  .archive-card-subtitle {
+    font-size: 0.62rem;
+  }
+
+  .archive-card-tags {
+    font-size: 0.5rem;
+  }
+
+  .archive-story {
+    font-size: 0.56rem;
+    line-height: 1.62;
+  }
+
+  .archive-quote {
+    font-size: 0.56rem;
+  }
+
+  .archive-card-seal {
+    top: 16%;
+    left: 48%;
+    width: 38px;
+    font-size: 0.52rem;
+  }
+}
