@@ -1,0 +1,2140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="《俗世奇人·四十八样》七章交互阅读：原文、药糖图鉴、二龙戏珠挑担、走八字、天津六句词与篇末余韵。"
+    />
+    <meta name="theme-color" content="#5f665b" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='7' fill='%23953f2e'/%3E%3Cpath d='M18 19h28v26H18zM24 13v12M40 13v12' fill='none' stroke='%23f3ead7' stroke-width='3'/%3E%3C/svg%3E"
+    />
+    <title>四十八样 · 七章交互阅读</title>
+    <script>
+      if (window.location.hash.startsWith("#sishi/")) {
+        document.documentElement.classList.add("sishi-direct-load");
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../ni-ren-zhang-experience.css" />
+    <link rel="stylesheet" href="chapter-shell.css" />
+    <link rel="stylesheet" href="../reading-note.css" />
+    <link rel="stylesheet" href="walk8-stage.css" />
+    <link rel="stylesheet" href="dragon-assembly.css" />
+    <link rel="stylesheet" href="../reading-navigation.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">跳到主要内容</a>
+
+    <header class="topbar">
+      <a class="back-link" href="../index.html#street" aria-label="返回天津老街">
+        <span aria-hidden="true">←</span>
+        回到老街
+      </a>
+
+      <a class="wordmark" href="index.html" aria-label="四十八样首页">
+        <span>俗世奇人 · 津门手艺人</span>
+        <strong>四十八样</strong>
+      </a>
+
+      <nav class="utility-nav" aria-label="阅读与显示设置">
+        <button
+          class="utility-button"
+          id="soundToggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="开启街巷环境声"
+        >
+          街声 · 关
+        </button>
+        <button
+          class="utility-button"
+          id="motionToggle"
+          type="button"
+          aria-pressed="true"
+          aria-label="关闭页面动画"
+        >
+          动画 · 开
+        </button>
+        <button class="utility-button utility-button--reading" id="readingEntry" type="button">
+          阅读原文
+        </button>
+        <button class="utility-button" id="chapterSkipButton" type="button">
+          跳过互动
+        </button>
+        <button class="utility-button" id="chapterRestartButton" type="button">
+          重新体验
+        </button>
+      </nav>
+    </header>
+
+    <nav
+      id="sishiChapterNav"
+      class="sishi-chapter-nav"
+      aria-label="《四十八样》七章导航"
+      hidden
+    >
+      <button type="button" data-sishi-page="chapter1">
+        <span>01</span><strong>卖糖人</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter2">
+        <span>02</span><strong>二爷指点</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter3">
+        <span>03</span><strong>二龙戏珠</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter4">
+        <span>04</span><strong>走八字</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter5">
+        <span>05</span><strong>再创新</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter6">
+        <span>06</span><strong>六句词</strong>
+      </button>
+      <button type="button" data-sishi-page="chapter7">
+        <span>笺</span><strong>读后</strong>
+      </button>
+    </nav>
+
+    <p
+      id="sishiLiveStatus"
+      class="sishi-live-status"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+    <main id="mainContent">
+      <section class="opening" aria-labelledby="pageTitle">
+        <div class="opening-copy">
+          <p class="eyebrow">第一折 · 街口初见</p>
+          <h1 id="pageTitle">
+            一担四十八样
+            <span>挑出天津卫的绝活与智慧</span>
+          </h1>
+          <p class="opening-lead">
+            晨雾未散，海河边的街市先醒了。俞六守着一副挑担，糖香有了，名气还在路上。
+          </p>
+          <div class="opening-actions">
+            <button class="primary-button" id="enterSceneButton" type="button">
+              入街看看
+              <span aria-hidden="true">↓</span>
+            </button>
+            <button class="text-button" id="readingShortcut" type="button">
+              直接读原著
+            </button>
+          </div>
+        </div>
+
+        <aside class="opening-seal" aria-label="本阶段提示">
+          <span class="opening-seal__chapter">卷首</span>
+          <strong>识人<br />看街<br />知手艺</strong>
+          <span class="opening-seal__stamp" aria-hidden="true">津</span>
+        </aside>
+      </section>
+
+      <section
+        class="scene-section"
+        id="streetScene"
+        aria-labelledby="sceneTitle"
+        hidden
+        inert
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">场景一 · 天津老街</p>
+            <h2 id="sceneTitle">轻触画中朱印，翻开街口札记</h2>
+          </div>
+          <p class="section-note">
+            在画面上横向拖动或移动鼠标，可看见轻微前后景层次；轻触朱印即可翻看札记。
+          </p>
+        </div>
+
+        <div class="scene-frame">
+          <div class="scene-canvas" id="sceneCanvas">
+            <div class="scene-backdrop media-shell" data-media-shell>
+              <img
+                data-fallback="assets/tianjin-street.jpg"
+                src="assets/tianjin-street.jpg"
+                alt="清末民初天津卫老街，临河铺面与行人沿长街展开"
+                width="3840"
+                height="1642"
+                fetchpriority="high"
+              />
+              <span class="image-fallback" aria-hidden="true">天津老街图 · 待补</span>
+            </div>
+
+            <div class="street-wash" aria-hidden="true"></div>
+            <div class="morning-mist morning-mist--one" aria-hidden="true"></div>
+            <div class="morning-mist morning-mist--two" aria-hidden="true"></div>
+            <div class="paper-vignette" aria-hidden="true"></div>
+
+            <div class="scene-title" aria-hidden="true">
+              <span>四</span><span>十</span><span>八</span><span>样</span>
+            </div>
+
+            <div class="yu-liu-layer" id="yuLiuLayer">
+              <div class="media-shell yu-liu-portrait" data-media-shell>
+                <img
+                  data-fallback="assets/yu-liu-cutout.png"
+                  src="assets/yu-liu-cutout.png"
+                  alt="俞六挑着药糖担子走在天津老街的插画"
+                  width="1132"
+                  height="1366"
+                />
+                <span class="image-fallback" aria-hidden="true">俞六插画 · 待补</span>
+              </div>
+            </div>
+
+            <button
+              class="scene-seal scene-seal--person"
+              type="button"
+              data-scene-key="person"
+              aria-controls="sceneDetail"
+              aria-expanded="false"
+            >
+              <span class="scene-seal__glyph" aria-hidden="true">人</span>
+              <span class="scene-seal__label">俞六</span>
+            </button>
+
+            <button
+              class="scene-seal scene-seal--craft"
+              type="button"
+              data-scene-key="craft"
+              aria-controls="sceneDetail"
+              aria-expanded="false"
+            >
+              <span class="scene-seal__glyph" aria-hidden="true">器</span>
+              <span class="scene-seal__label">糖盒与铜勺</span>
+            </button>
+
+            <button
+              class="scene-seal scene-seal--street"
+              type="button"
+              data-scene-key="street"
+              aria-controls="sceneDetail"
+              aria-expanded="false"
+            >
+              <span class="scene-seal__glyph" aria-hidden="true">街</span>
+              <span class="scene-seal__label">津门街市</span>
+            </button>
+
+            <p class="scene-caption">
+              <span>清末民初</span>
+              海河沿岸的天津老街
+            </p>
+            <p class="scene-help">
+              <span class="scene-help__mark" aria-hidden="true">印</span>
+              点朱印，辨人、看器、识街
+            </p>
+          </div>
+        </div>
+
+        <div class="phase-rail" aria-label="互动开发进度">
+          <span class="is-complete">一 · 街口初见</span>
+          <span class="is-complete">二 · 识糖成担</span>
+          <span class="is-complete">三 · 走八字</span>
+          <span class="is-complete">四 · 绝活创新</span>
+          <span class="phase-rail__current" aria-current="step">五 · 天津六句词</span>
+          <span>六 · 尾声与读后笺 · 待开放</span>
+        </div>
+
+        <nav class="phase-jump phase-jump--six" aria-label="互动快捷入口">
+          <a href="#candyCabinet">
+            <span>先识</span>
+            <strong>十二样药糖</strong>
+            <small>掀柜 · 辨色 · 集图鉴</small>
+          </a>
+          <a href="#assemblyBackyard">
+            <span>再装</span>
+            <strong>二龙戏珠</strong>
+            <small>五步 · 成担 · 听铃摆</small>
+          </a>
+          <a href="#walkFigureEight">
+            <span>再走</span>
+            <strong>八字绝活</strong>
+            <small>俯看 · 绕桶 · 换手</small>
+          </a>
+          <a href="#innovationStage">
+            <span>再想</span>
+            <strong>绝活创新</strong>
+            <small>被仿 · 改招 · 添人情</small>
+          </a>
+          <a href="#wordsStage">
+            <span>再念</span>
+            <strong>天津六句词</strong>
+            <small>逐句 · 前行 · 听街坊</small>
+          </a>
+          <button id="phaseTwoReading" type="button">
+            <span>可跳过</span>
+            <strong>直接读原著</strong>
+            <small>互动不设过关门槛</small>
+          </button>
+        </nav>
+      </section>
+
+      <section
+        class="discovery-section reveal"
+        aria-labelledby="discoveryTitle"
+        hidden
+        inert
+      >
+        <article class="scene-detail" id="sceneDetail" aria-live="polite">
+          <div class="detail-copy">
+            <p class="detail-kicker" id="detailKicker">人物小记</p>
+            <h2 id="discoveryTitle">
+              <span id="detailTitle">俞六</span>
+              <small id="detailSubtitle">先把糖做讲究，再把路走出来</small>
+            </h2>
+            <p class="detail-body" id="detailBody">
+              俞六做得出四十八种颜色、味道各异的药糖，却不善吆喝。挑担里的每只糖盒、每把铜勺，都先替他把“讲究”两个字说了出来。
+            </p>
+            <ul class="detail-tags" id="detailTags" aria-label="人物关键词">
+              <li>耐心</li>
+              <li>琢磨</li>
+              <li>手艺人</li>
+            </ul>
+            <p class="source-note" id="detailSource">
+              依据《四十八样》设计方案中的人物线与道具描述整理，不作为原著引文。
+            </p>
+          </div>
+
+          <div class="detail-media media-shell" data-media-shell>
+            <img
+              id="detailImage"
+              data-fallback="assets/yu-liu.jpg"
+              src="assets/yu-liu.jpg"
+              alt="俞六人物插画"
+            />
+            <span class="image-fallback" aria-hidden="true">人物图 · 待补</span>
+            <span class="detail-media__number" id="detailNumber" aria-hidden="true">01</span>
+          </div>
+        </article>
+
+        <article class="narrative-card">
+          <p class="eyebrow">街口未响的吆喝</p>
+          <h2>糖香出了巷，名气还没进门</h2>
+          <p>
+            俞六不是没本事。四十八样药糖摆得齐整，颜色、味道各有讲究；难的是，他守在家门口，
+            不会吆喝，也就不容易让街坊停下来。
+          </p>
+          <blockquote>
+            “一担四十八样，挑出天津卫的绝活与智慧。”
+            <cite>项目主题语</cite>
+          </blockquote>
+          <button class="secondary-button" id="continueButton" type="button">
+            顺街再看
+            <span aria-hidden="true">→</span>
+          </button>
+        </article>
+      </section>
+
+      <section class="manuscript-section reveal" id="manuscripts" aria-labelledby="manuscriptTitle">
+        <div class="section-heading section-heading--compact">
+          <div>
+            <p class="eyebrow">本阶段图录</p>
+            <h2 id="manuscriptTitle">人物与器物的纸上底稿</h2>
+          </div>
+          <p class="section-note">
+            四张素材用于统一人物、街坊与器物造型；双桶挑担已按图样拆成五步，移入下方向读者开放。
+          </p>
+        </div>
+
+        <div class="manuscript-grid">
+          <button
+            class="manuscript-card"
+            type="button"
+            data-gallery-image="assets/street-storyboard.jpg"
+            data-gallery-title="人物动作参考"
+            data-gallery-caption="用于后续“走八字”人物姿态切换的构图参考。本阶段仅展示，不开放动作互动。"
+            data-gallery-alt="俞六站立、挑担、取糖和绕行的人物动作集合插画"
+          >
+            <span class="manuscript-card__image media-shell" data-media-shell>
+              <img
+                src="assets/street-storyboard.jpg"
+                data-fallback="assets/street-storyboard.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <span class="image-fallback" aria-hidden="true">动作手稿 · 待补</span>
+            </span>
+            <span class="manuscript-card__copy">
+              <span class="manuscript-card__index">手稿一</span>
+              <strong>人物动作</strong>
+              <small>站、挑、取、绕</small>
+            </span>
+            <span class="manuscript-card__arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="manuscript-card"
+            type="button"
+            data-gallery-image="assets/candy-cabinet.jpg"
+            data-gallery-title="双桶药糖柜"
+            data-gallery-caption="双桶挑担的结构底稿。网页已据此开放双桶、龙头、金珠、红绒球与金漆招牌的分步装配。"
+            data-gallery-alt="双桶药糖柜、龙头、金珠、红绒球和二十四格糖盒图解"
+          >
+            <span class="manuscript-card__image media-shell" data-media-shell>
+              <img
+                src="assets/candy-cabinet.jpg"
+                data-fallback="assets/candy-cabinet.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <span class="image-fallback" aria-hidden="true">挑担图样 · 待补</span>
+            </span>
+            <span class="manuscript-card__copy">
+              <span class="manuscript-card__index">手稿二</span>
+              <strong>双桶挑担</strong>
+              <small>结构参考</small>
+            </span>
+            <span class="manuscript-card__arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="manuscript-card"
+            type="button"
+            data-gallery-image="assets/candy-tools.jpg"
+            data-gallery-title="糖盒、铜勺与纸兜"
+            data-gallery-caption="取糖售卖所需的基础器物。糖品图鉴已从下方十二样试看柜起头，后续可补足四十八格。"
+            data-gallery-alt="药糖盒、铜勺和纸兜的水墨器物插画"
+          >
+            <span class="manuscript-card__image media-shell" data-media-shell>
+              <img
+                src="assets/candy-tools.jpg"
+                data-fallback="assets/candy-tools.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <span class="image-fallback" aria-hidden="true">器物手稿 · 待补</span>
+            </span>
+            <span class="manuscript-card__copy">
+              <span class="manuscript-card__index">手稿三</span>
+              <strong>糖盒器物</strong>
+              <small>盒、勺、兜</small>
+            </span>
+            <span class="manuscript-card__arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="manuscript-card"
+            type="button"
+            data-gallery-image="assets/crowd.jpg"
+            data-gallery-title="围看绝活的街坊"
+            data-gallery-caption="用于“走八字”完成后的围观与喝彩画面。本阶段仅作人物群像参考。"
+            data-gallery-alt="天津老街坊围看表演、欢笑喝彩的水墨群像"
+          >
+            <span class="manuscript-card__image media-shell" data-media-shell>
+              <img
+                src="assets/crowd.jpg"
+                data-fallback="assets/crowd.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <span class="image-fallback" aria-hidden="true">街坊群像 · 待补</span>
+            </span>
+            <span class="manuscript-card__copy">
+              <span class="manuscript-card__index">手稿四</span>
+              <strong>围观街坊</strong>
+              <small>群像参考</small>
+            </span>
+            <span class="manuscript-card__arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="candy-section reveal" id="candyCabinet" aria-labelledby="candyTitle">
+        <div class="section-heading section-heading--ink">
+          <div>
+            <p class="eyebrow">第一章 · 药糖图鉴</p>
+            <h2 id="candyTitle">掀开玻璃盖，先认十二样糖</h2>
+          </div>
+          <p class="section-note">
+            四十八样先从十二格看起。点一只糖盒，库房会替你记下它；十二样识全，再看双桶如何成担。
+          </p>
+        </div>
+
+        <div class="cabinet-experience">
+          <div class="cabinet-shell" id="cabinetShell">
+            <div class="cabinet-heading">
+              <span>俞家药糖</span>
+              <strong>四十八样 · 试看十二格</strong>
+              <span>第一柜</span>
+            </div>
+
+            <div class="cabinet-lid" aria-hidden="true">
+              <span>药糖</span>
+            </div>
+
+            <div class="cabinet-glass" aria-hidden="true"></div>
+
+            <div
+              class="candy-grid"
+              id="candyGrid"
+              aria-label="可翻阅的代表性药糖，共十二盒"
+            ></div>
+
+            <div class="cabinet-media-fallback" aria-hidden="true">
+              <span>糖品图样未能载入</span>
+              <small>名称与说明仍可正常阅读</small>
+            </div>
+
+            <div class="cabinet-inscription" aria-hidden="true">
+              <span>二十四格一圈</span>
+              <strong>四十八样</strong>
+              <span>一色一味 · 双桶成担</span>
+            </div>
+
+            <div class="cabinet-counter">
+              <span>已识糖品</span>
+              <strong><span id="candyProgress">0</span> / 12</strong>
+              <i aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <article class="candy-detail-panel" id="candyDetail" aria-live="polite">
+            <div class="candy-preview">
+              <div class="candy-preview-art" id="candyPreview">
+                <img
+                  id="candyPreviewImage"
+                  src="assets/candy-12/02-丹桂糖.png"
+                  alt="丹桂糖植物与糖块插画"
+                />
+              </div>
+              <span class="candy-preview-fallback" aria-hidden="true">糖品图样 · 待补</span>
+              <span class="candy-preview-seal" id="candyIndex">第一盒</span>
+              <p>纸包药糖</p>
+            </div>
+
+            <div class="candy-copy">
+              <p class="candy-kicker">本柜所见</p>
+              <h3 id="candyName">丹桂糖</h3>
+              <p class="candy-motto" id="candyMotto">金桂入糖，甜里透香</p>
+              <p class="candy-description" id="candyDescription">
+                桂花细，糖体温。丹桂糖不靠浓甜压人，嚼开了才有花香浮上来，是柜里很讲火候的一味。
+              </p>
+              <ul class="candy-notes" id="candyNotes" aria-label="糖品特征">
+                <li>桂花香</li>
+                <li>温甜</li>
+                <li>细润</li>
+              </ul>
+              <p class="candy-disclaimer">
+                糖品说明依据素材图录与民间食养说法整理，不是医疗建议，也不补写原著情节。
+              </p>
+              <div class="candy-collection">
+                <div class="candy-collection__copy">
+                  <span id="candyCollectionLabel">头一回开柜，先尝一盒</span>
+                  <small>总目四十八样，本柜试看十二格</small>
+                </div>
+                <div
+                  class="candy-dots"
+                  id="candyDots"
+                  role="progressbar"
+                  aria-label="十二样药糖识别进度"
+                  aria-valuemin="0"
+                  aria-valuemax="12"
+                  aria-valuenow="0"
+                ></div>
+              </div>
+              <button class="text-link-button" id="candyToAssembly" type="button">
+                十二样看罢，去学绝活
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="assembly-section reveal"
+        id="assemblyBackyard"
+        aria-labelledby="assemblyTitle"
+      >
+        <div class="section-heading section-heading--ink">
+          <div>
+            <p class="eyebrow">第三章 · 挑担装配</p>
+            <h2 id="assemblyTitle">刘二爷后院，装一担二龙戏珠</h2>
+          </div>
+          <p class="section-note">
+            把两个桶柜放上地面基准线，其余零件可自由摆放、随时调整；自动装配仍可作为参考。
+          </p>
+        </div>
+
+        <div
+          class="assembly-experience dragon-assembly"
+          id="dragonAssembly"
+          data-assembly-step="0"
+        >
+          <div
+            class="dragon-assembly__background"
+            data-component="BackgroundLayer"
+            aria-hidden="true"
+          >
+            <img
+              data-assembly-asset="background.courtyard"
+              alt=""
+              draggable="false"
+            />
+            <span class="dragon-assembly__background-wash"></span>
+          </div>
+
+          <header class="dragon-assembly__header">
+            <p>《四十八样》· 交互二</p>
+            <h2>二龙戏珠</h2>
+            <span>亲手组装俞六的独门挑担</span>
+          </header>
+
+          <button
+            class="dragon-assembly__return"
+            id="dragonAssemblyReturn"
+            type="button"
+          >
+            返回故事
+          </button>
+
+          <div class="assembly-workbench">
+            <div class="workbench-note">
+              <span>刘二爷后院 · 木作试装</span>
+              <small id="dragonAssemblyStepLabel">当前步骤：先摆双桶</small>
+            </div>
+
+            <div
+              class="assembly-stage"
+              id="assemblyStage"
+              data-assembly-step="0"
+              role="img"
+              aria-label="尚未开始组装的空院落，所有挑担零件都还放在右侧"
+            >
+              <div
+                class="dragon-assembly__coordinate"
+                data-component="AssemblyCanvas"
+                aria-hidden="true"
+              >
+                <div
+                  class="dragon-assembly__baseline"
+                  id="dragonAssemblyBaseline"
+                  aria-hidden="true"
+                >
+                  <span>药桶落地基准</span>
+                </div>
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--yoke"
+                  data-assembly-asset="structure.yoke"
+                  data-assembly-layer="2"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--chain-left"
+                  data-assembly-asset="parts.chainLeft"
+                  data-assembly-layer="1"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--chain-right"
+                  data-assembly-asset="parts.chainRight"
+                  data-assembly-layer="1"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--bucket-left"
+                  data-assembly-asset="structure.bucketLeft"
+                  data-assembly-layer="1"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--bucket-right"
+                  data-assembly-asset="structure.bucketRight"
+                  data-assembly-layer="1"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--dragon-left"
+                  data-assembly-asset="parts.dragonLeft"
+                  data-assembly-layer="2"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--dragon-right"
+                  data-assembly-asset="parts.dragonRight"
+                  data-assembly-layer="2"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--bead"
+                  data-assembly-asset="parts.goldBead"
+                  data-assembly-layer="3"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--pompom-left"
+                  data-assembly-asset="parts.pompomLeft"
+                  data-assembly-layer="4"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--pompom-right"
+                  data-assembly-asset="parts.pompomRight"
+                  data-assembly-layer="4"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--sign"
+                  data-assembly-asset="parts.lacquerSign"
+                  data-assembly-layer="5"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="dragon-assembly__layer dragon-assembly__layer--sign-right"
+                  data-assembly-asset="parts.lacquerSign"
+                  data-assembly-layer="5"
+                  alt=""
+                  draggable="false"
+                />
+                <span
+                  class="dragon-assembly__asset-fallback"
+                  aria-hidden="true"
+                  hidden
+                >
+                  素材载入失败 · 显示名称占位
+                </span>
+              </div>
+              <svg
+                class="carry-illustration"
+                viewBox="0 0 1000 620"
+                aria-hidden="true"
+              >
+                <g class="carry-yoke">
+                  <path
+                    class="carry-stroke carry-stroke--heavy"
+                    d="M110 176 C212 143 365 141 500 141 C635 141 788 143 890 176"
+                  />
+                  <path
+                    class="carry-stroke carry-stroke--fine"
+                    d="M132 188 C238 159 376 157 500 157 C624 157 762 159 868 188"
+                  />
+                  <path class="carry-rope" d="M232 164 C235 206 222 242 210 269" />
+                  <path class="carry-rope" d="M768 164 C765 206 778 242 790 269" />
+                  <circle class="carry-pin" cx="232" cy="165" r="8" />
+                  <circle class="carry-pin" cx="768" cy="165" r="8" />
+                  <path class="carry-light" d="M151 174 C265 151 388 148 500 148" />
+                </g>
+
+                <g class="carry-piece carry-buckets">
+                  <g class="carry-bucket carry-bucket--left">
+                    <path
+                      class="carry-bucket-body"
+                      d="M134 311 C135 354 144 445 156 486 C196 514 345 514 384 486 C396 445 405 354 406 311"
+                    />
+                    <ellipse class="carry-bucket-rim" cx="270" cy="311" rx="136" ry="38" />
+                    <ellipse class="carry-bucket-top" cx="270" cy="305" rx="118" ry="28" />
+                    <path class="carry-bucket-band" d="M140 394 C193 408 347 408 400 394" />
+                    <path class="carry-bucket-band" d="M150 463 C199 476 341 476 390 463" />
+                    <path class="carry-bucket-grain" d="M181 350 L189 458" />
+                    <path class="carry-bucket-grain" d="M233 347 L237 481" />
+                    <path class="carry-bucket-grain" d="M307 347 L303 481" />
+                    <path class="carry-bucket-grain" d="M359 350 L351 458" />
+                    <g class="carry-candy-cells">
+                      <path d="M188 282 L202 281 L208 301 L193 302 Z" />
+                      <path d="M216 278 L230 277 L235 298 L221 299 Z" />
+                      <path d="M245 276 L259 275 L264 296 L250 297 Z" />
+                      <path d="M274 275 L288 275 L292 296 L279 297 Z" />
+                      <path d="M303 276 L317 277 L322 298 L308 297 Z" />
+                      <path d="M332 278 L346 279 L352 299 L338 299 Z" />
+                    </g>
+                    <path class="carry-bucket-shade" d="M348 331 C360 370 363 424 355 467" />
+                  </g>
+
+                  <g class="carry-bucket carry-bucket--right">
+                    <path
+                      class="carry-bucket-body"
+                      d="M594 311 C595 354 604 445 616 486 C656 514 805 514 844 486 C856 445 865 354 866 311"
+                    />
+                    <ellipse class="carry-bucket-rim" cx="730" cy="311" rx="136" ry="38" />
+                    <ellipse class="carry-bucket-top" cx="730" cy="305" rx="118" ry="28" />
+                    <path class="carry-bucket-band" d="M600 394 C653 408 807 408 860 394" />
+                    <path class="carry-bucket-band" d="M610 463 C659 476 801 476 850 463" />
+                    <path class="carry-bucket-grain" d="M641 350 L649 458" />
+                    <path class="carry-bucket-grain" d="M693 347 L697 481" />
+                    <path class="carry-bucket-grain" d="M767 347 L763 481" />
+                    <path class="carry-bucket-grain" d="M819 350 L811 458" />
+                    <g class="carry-candy-cells">
+                      <path d="M648 282 L662 281 L668 301 L653 302 Z" />
+                      <path d="M676 278 L690 277 L695 298 L681 299 Z" />
+                      <path d="M705 276 L719 275 L724 296 L710 297 Z" />
+                      <path d="M734 275 L748 275 L752 296 L739 297 Z" />
+                      <path d="M763 276 L777 277 L782 298 L768 297 Z" />
+                      <path d="M792 278 L806 279 L812 299 L798 299 Z" />
+                    </g>
+                    <path class="carry-bucket-shade" d="M808 331 C820 370 823 424 815 467" />
+                  </g>
+                </g>
+
+                <g class="carry-piece carry-dragons">
+                  <g class="carry-dragon carry-dragon--left">
+                    <path
+                      class="carry-dragon-head"
+                      d="M317 151 C311 133 326 120 347 128 L365 119 L371 135 C390 140 404 151 414 170 C398 168 386 163 377 155 C374 176 351 191 326 188 C304 185 292 171 298 158 C302 150 308 147 317 151 Z"
+                    />
+                    <path class="carry-dragon-detail" d="M342 126 C333 108 312 105 300 113 C318 116 326 128 331 142" />
+                    <path class="carry-dragon-detail" d="M361 123 C366 107 382 101 392 108 C378 114 377 124 378 139" />
+                    <path class="carry-dragon-detail" d="M320 142 C303 138 289 143 282 153 C296 151 305 157 310 168" />
+                    <circle class="carry-dragon-eye" cx="351" cy="151" r="4.8" />
+                    <path class="carry-dragon-detail" d="M371 164 C385 163 398 169 409 179" />
+                    <path class="carry-dragon-detail" d="M378 174 C367 184 350 188 333 185" />
+                    <path class="carry-dragon-whisker" d="M382 174 C394 193 410 202 429 200" />
+                  </g>
+
+                  <g class="carry-dragon carry-dragon--right">
+                    <path
+                      class="carry-dragon-head"
+                      d="M683 151 C689 133 674 120 653 128 L635 119 L629 135 C610 140 596 151 586 170 C602 168 614 163 623 155 C626 176 649 191 674 188 C696 185 708 171 702 158 C698 150 692 147 683 151 Z"
+                    />
+                    <path class="carry-dragon-detail" d="M658 126 C667 108 688 105 700 113 C682 116 674 128 669 142" />
+                    <path class="carry-dragon-detail" d="M639 123 C634 107 618 101 608 108 C622 114 623 124 622 139" />
+                    <path class="carry-dragon-detail" d="M680 142 C697 138 711 143 718 153 C704 151 695 157 690 168" />
+                    <circle class="carry-dragon-eye" cx="649" cy="151" r="4.8" />
+                    <path class="carry-dragon-detail" d="M629 164 C615 163 602 169 591 179" />
+                    <path class="carry-dragon-detail" d="M622 174 C633 184 650 188 667 185" />
+                    <path class="carry-dragon-whisker" d="M618 174 C606 193 590 202 571 200" />
+                  </g>
+                </g>
+
+                <g class="carry-piece carry-bead">
+                  <path class="carry-bead-glow" d="M464 143 C473 120 527 120 536 143 C527 165 473 165 464 143 Z" />
+                  <circle class="carry-bead-orb" cx="500" cy="143" r="24" />
+                  <path class="carry-bead-light" d="M485 132 C491 123 500 121 509 124" />
+                </g>
+
+                <g class="carry-piece carry-balls">
+                  <path class="carry-ball-cord" d="M210 269 L210 231 L190 200" />
+                  <path class="carry-ball-cord" d="M790 269 L790 231 L810 200" />
+                  <g class="carry-ball carry-ball--left">
+                    <circle cx="185" cy="218" r="26" />
+                    <path d="M170 204 C180 211 190 221 198 234" />
+                    <path d="M198 204 C191 211 183 220 172 230" />
+                    <path d="M161 215 L153 207" />
+                    <path d="M210 219 L219 211" />
+                  </g>
+                  <g class="carry-ball carry-ball--right">
+                    <circle cx="815" cy="218" r="26" />
+                    <path d="M800 204 C810 211 820 221 828 234" />
+                    <path d="M828 204 C821 211 813 220 802 230" />
+                    <path d="M791 215 L783 207" />
+                    <path d="M840 219 L849 211" />
+                  </g>
+                </g>
+
+                <g class="carry-piece carry-sign">
+                  <text x="270" y="420">俞家药糖</text>
+                  <text class="carry-sign-main" x="270" y="457">四十八样</text>
+                  <text x="730" y="420">俞家药糖</text>
+                  <text class="carry-sign-main" x="730" y="457">四十八样</text>
+                </g>
+
+                <g class="carry-parts-tray">
+                  <path class="carry-tray-outline" d="M377 535 C446 519 554 519 623 535 L601 581 C537 596 463 596 399 581 Z" />
+                  <path class="carry-tray-line" d="M415 550 C470 541 530 541 585 550" />
+                  <text x="500" y="572">等 待 装 配</text>
+                </g>
+              </svg>
+
+              <div class="assembly-stage-stamp" aria-hidden="true">
+                <img
+                  class="dragon-assembly__step-seal"
+                  data-assembly-asset="ui.stepSeal"
+                  alt=""
+                  draggable="false"
+                />
+                <span id="assemblyStageNumber">未装</span>
+                <small>刘二爷监工</small>
+              </div>
+              <p class="assembly-stage-caption" id="assemblyStageCaption">
+                左侧只留院落背景，先把两个桶柜放稳在地面基准线上。
+              </p>
+            </div>
+          </div>
+
+          <aside
+            class="assembly-controls"
+            data-component="PartsPanel"
+            aria-labelledby="assemblyListTitle"
+          >
+            <div class="dragon-assembly__parts-heading">
+              <span>零件展示</span>
+              <small>拖动零件至左侧，自由组装挑担</small>
+            </div>
+            <p class="dragon-assembly__parts-tip">
+              桶柜沿基准线放置；其余零件自由摆放，随时调整。
+            </p>
+            <div
+              class="dragon-assembly__parts"
+              id="dragonAssemblyParts"
+              aria-label="二龙戏珠挑担零件"
+            ></div>
+            <img
+              class="dragon-assembly__divider"
+              data-assembly-asset="ui.panelDivider"
+              alt=""
+              aria-hidden="true"
+            />
+            <p class="assembly-kicker">五处零件 · 依次落位</p>
+            <h3 id="assemblyListTitle">一担担子，先讲平衡</h3>
+            <ol class="assembly-step-list" id="assemblyStepList">
+              <li>
+                <button type="button" data-assembly-step="1" aria-disabled="false">
+                  <span>壹</span>
+                  <strong>双桶落肩</strong>
+                  <small>两只桶柜底部落在同一条基准线</small>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-assembly-step="2" aria-disabled="true">
+                  <span>贰</span>
+                  <strong>横梁承肩</strong>
+                  <small>把扁担横梁自由放到两只桶柜上方</small>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-assembly-step="3" aria-disabled="true">
+                  <span>叁</span>
+                  <strong>龙头相向</strong>
+                  <small>两边龙头自由摆放，方向不限</small>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-assembly-step="4" aria-disabled="true">
+                  <span>肆</span>
+                  <strong>金珠与挂饰</strong>
+                  <small>金珠、弹簧和红绒球自由落位</small>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-assembly-step="5" aria-disabled="true">
+                  <span>伍</span>
+                  <strong>金漆落字</strong>
+                  <small>两块金漆字自由摆放</small>
+                </button>
+              </li>
+            </ol>
+
+            <div class="assembly-status" aria-live="polite">
+              <p class="assembly-status__kicker">当前一步</p>
+              <h4 id="assemblyStepTitle">先装两只桶柜</h4>
+              <p id="assemblyStepBody">
+                一左一右挂稳，桶身才不偏。点上面高亮的步骤，或者点画面中的下一处提示。
+              </p>
+            </div>
+
+            <button class="primary-button assembly-advance" id="assemblyAdvance" type="button">
+              装双桶
+              <span aria-hidden="true">→</span>
+            </button>
+
+            <div
+              class="assembly-complete dragon-assembly__completion"
+              id="assemblyComplete"
+              data-component="CompletionOverlay"
+              hidden
+            >
+              <p class="assembly-complete__kicker">第三章 · 一担已定</p>
+              <h4>四十八样，都在这担上了。</h4>
+              <blockquote>
+                “好赛从宫里挑出来的。”
+                <cite>冯骥才《四十八样》原文</cite>
+              </blockquote>
+              <p>红绒球渐渐止住。刘二爷的这句夸赞，正落在第三章的原文里。</p>
+              <div class="assembly-complete__actions">
+                <button
+                  class="primary-button assembly-complete__reading"
+                  id="assemblyContinueReading"
+                  type="button"
+                >
+                  继续阅读
+                  <span aria-hidden="true">→</span>
+                </button>
+                <button
+                  class="text-link-button assembly-complete__reset"
+                  id="assemblyCompleteReset"
+                  type="button"
+                >
+                  拆了重装
+                </button>
+                <a class="text-link-button assembly-to-walk" href="#walkFigureEight">
+                  接着去走八字
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="assembly-actions">
+              <button
+                class="text-link-button reference-button"
+                type="button"
+                data-gallery-image="assets/candy-cabinet.jpg"
+                data-gallery-title="双桶药糖柜制作图样"
+                data-gallery-caption="素材图样把双桶、龙头、金珠、红绒球、提梁与“二十四格一圈”的关系画在一起。网页互动将其简化为可分步点按的五次装配。"
+                data-gallery-alt="双桶药糖柜内部结构、提梁、龙头、金珠、红绒球、二十四格糖盒和俞六使用姿态的制作图解"
+              >
+                看制作图样
+              </button>
+              <button class="assembly-reset" id="assemblyReset" type="button">
+                拆了重装
+              </button>
+            </div>
+          </aside>
+
+          <div
+            class="dragon-assembly__progress"
+            data-component="ProgressIndicator"
+            aria-live="polite"
+          >
+            <div class="dragon-assembly__progress-copy">
+              <span>组装进度</span>
+              <strong id="dragonAssemblyProgressText">0 / 5</strong>
+            </div>
+            <div
+              class="dragon-assembly__progress-track"
+              id="dragonAssemblyProgressBar"
+              role="progressbar"
+              aria-label="二龙戏珠挑担组装进度"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              aria-valuenow="0"
+            >
+              <span></span>
+            </div>
+            <small>桶柜 → 横梁 → 龙头 → 金珠挂饰 → 金漆字</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="walk-section reveal" id="walkFigureEight" aria-labelledby="walkTitle">
+        <div class="section-heading section-heading--ink">
+          <div>
+            <p class="eyebrow">第四章 · 走八字</p>
+            <h2 id="walkTitle">两桶之间，走个八字</h2>
+          </div>
+          <p class="section-note">
+            从高处看俞六怎样绕着双桶取糖。顺着高亮按钮走完左右两圈，人物姿态、桶身和路线都会给出回应。
+          </p>
+        </div>
+
+        <div class="walk-experience">
+          <div class="walk-board">
+            <div class="walk-board-heading">
+              <div>
+                <span>俯看街口</span>
+                <small>左一圈 · 换手 · 右一圈</small>
+              </div>
+              <div class="walk-progress" aria-live="polite">
+                <span id="walkStepLabel">未起势</span>
+                <strong><span id="walkProgress">0</span> / 8</strong>
+              </div>
+            </div>
+
+            <div
+              class="walk-stage"
+              id="walkStage"
+              data-walk-step="0"
+              role="img"
+              aria-label="俯视街口，左右各有一只药糖桶柜，俞六站在八字路线中央，尚未起势"
+            >
+              <div class="walk-street-wash" aria-hidden="true"></div>
+
+              <svg
+                class="walk-route"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  class="walk-route__base"
+                  d="M50 48 C43 64 34 72 28 64 C21 55 20 40 28 31 C34 24 43 31 50 48 C57 31 66 24 72 31 C80 40 79 55 72 64 C66 72 57 64 50 48"
+                />
+                <path
+                  class="walk-route__traced"
+                  id="walkTracedRoute"
+                  pathLength="1"
+                  d="M50 48 C43 64 34 72 28 64 C21 55 20 40 28 31 C34 24 43 31 50 48 C57 31 66 24 72 31 C80 40 79 55 72 64 C66 72 57 64 50 48"
+                />
+              </svg>
+
+              <div class="walk-waypoint" data-walk-point="0" style="--point-x: 50%; --point-y: 48%">
+                <span>起</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="1" style="--point-x: 34%; --point-y: 70%">
+                <span>一</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="2" style="--point-x: 22%; --point-y: 52%">
+                <span>二</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="3" style="--point-x: 34%; --point-y: 28%">
+                <span>三</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="4" style="--point-x: 50%; --point-y: 48%">
+                <span>换</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="5" style="--point-x: 66%; --point-y: 70%">
+                <span>五</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="6" style="--point-x: 78%; --point-y: 52%">
+                <span>六</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="7" style="--point-x: 66%; --point-y: 28%">
+                <span>七</span>
+              </div>
+              <div class="walk-waypoint" data-walk-point="8" style="--point-x: 50%; --point-y: 48%">
+                <span>八</span>
+              </div>
+
+              <div class="walk-bucket walk-bucket--left" aria-hidden="true">
+                <span class="walk-bucket__ring"></span>
+                <span class="walk-bucket__lid"></span>
+                <span class="walk-bucket__dragon">龙</span>
+                <span class="walk-bucket__tag">俞家药糖</span>
+                <span class="walk-bucket__ball"></span>
+              </div>
+
+              <div class="walk-bucket walk-bucket--right" aria-hidden="true">
+                <span class="walk-bucket__ring"></span>
+                <span class="walk-bucket__lid"></span>
+                <span class="walk-bucket__dragon">龙</span>
+                <span class="walk-bucket__tag">四十八样</span>
+                <span class="walk-bucket__ball"></span>
+              </div>
+
+              <div class="walk-figure" id="walkFigure" aria-hidden="true">
+                <span class="walk-figure__shadow"></span>
+                <span class="walk-figure__body"></span>
+                <span class="walk-figure__pole"></span>
+                <span class="walk-figure__name">俞六</span>
+              </div>
+
+              <div class="walk-crowd" id="walkCrowd" aria-hidden="true">
+                <div class="walk-crowd__media media-shell" data-media-shell>
+                  <img
+                    src="assets/crowd.jpg"
+                    data-fallback="assets/crowd.jpg"
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span class="image-fallback">街坊群像 · 待补</span>
+                </div>
+                <div class="walk-crowd__cheer">
+                  <strong>好！</strong>
+                  <span>这才叫绝活！</span>
+                </div>
+              </div>
+
+              <p class="walk-stage-caption" id="walkStageCaption">
+                两手扶稳，先从左圈起势。
+              </p>
+            </div>
+
+            <div class="walk-route-legend" aria-hidden="true">
+              <span><i></i> 已走过</span>
+              <span><i></i> 下一步</span>
+              <span>朱印位置为动作节点</span>
+            </div>
+          </div>
+
+          <aside class="walk-controls" aria-labelledby="walkControlsTitle">
+            <div class="pose-preview">
+              <div
+                class="pose-media media-shell"
+                id="poseMedia"
+                data-pose-index="0"
+                data-media-shell
+              >
+                <img
+                  class="pose-sprite"
+                  id="poseSprite"
+                  src="assets/street-storyboard.jpg"
+                  data-fallback="assets/street-storyboard.jpg"
+                  alt="俞六守担而立的动作切片"
+                />
+                <span class="image-fallback">人物姿态 · 待补</span>
+                <span class="pose-preview__seal" id="poseNumber" aria-hidden="true">起</span>
+              </div>
+              <div class="pose-preview__copy">
+                <span id="poseStage">起势</span>
+                <strong id="poseName">守担而立</strong>
+                <small id="poseDescription">两脚站稳，先看左右两只桶柜。</small>
+              </div>
+            </div>
+
+            <p class="walk-kicker">三下动作 · 一条路线</p>
+            <h3 id="walkControlsTitle">左、右、换手</h3>
+            <p class="walk-instruction" id="walkInstruction" aria-live="polite">
+              点击高亮的“左绕”，让俞六沿左圈走出第一步。
+            </p>
+
+            <div class="walk-actions" aria-label="走八字操作">
+              <button type="button" data-walk-action="left" aria-describedby="walkActionHelp">
+                <span aria-hidden="true">↙</span>
+                <strong>左绕</strong>
+                <small>沿左圈取糖</small>
+              </button>
+              <button type="button" data-walk-action="right" aria-describedby="walkActionHelp">
+                <span aria-hidden="true">↘</span>
+                <strong>右绕</strong>
+                <small>沿右圈回身</small>
+              </button>
+              <button type="button" data-walk-action="switch" aria-describedby="walkActionHelp">
+                <span aria-hidden="true">↺</span>
+                <strong>换手</strong>
+                <small>在交叉处换劲</small>
+              </button>
+            </div>
+            <p class="walk-action-help" id="walkActionHelp">
+              每点一次只走一个节点；点错时不会跳步，只提示当前该做的动作。
+            </p>
+
+            <ol class="walk-sequence" aria-label="走八字八步进度">
+              <li data-walk-step-marker="1"><span>一</span><small>左绕</small></li>
+              <li data-walk-step-marker="2"><span>二</span><small>左绕</small></li>
+              <li data-walk-step-marker="3"><span>三</span><small>左绕</small></li>
+              <li data-walk-step-marker="4"><span>四</span><small>换手</small></li>
+              <li data-walk-step-marker="5"><span>五</span><small>右绕</small></li>
+              <li data-walk-step-marker="6"><span>六</span><small>右绕</small></li>
+              <li data-walk-step-marker="7"><span>七</span><small>右绕</small></li>
+              <li data-walk-step-marker="8"><span>八</span><small>换手</small></li>
+            </ol>
+
+            <div class="walk-status" aria-live="polite">
+              <p id="walkPhaseLabel">当前动作</p>
+              <h4 id="walkActionTitle">左绕起势</h4>
+              <p id="walkActionBody">从双桶正中向左探步，扁担随身体轻轻压低。</p>
+            </div>
+
+            <div class="walk-control-actions">
+              <button
+                class="walk8-entry-button"
+                id="walkReset"
+                type="button"
+                data-walk8-reset-open
+              >
+                体验走八字 →
+              </button>
+              <button
+                class="text-link-button"
+                type="button"
+                data-gallery-image="assets/street-storyboard.jpg"
+                data-gallery-title="俞六四姿态动作手稿"
+                data-gallery-caption="素材提供站立、挑担、探身取糖和绕桶行走四种姿态。网页按动作节点切换切片，不制作骨骼动画，也不改变原著情节。"
+                data-gallery-alt="俞六站立、挑担、取糖和绕行的人物动作集合插画"
+              >
+                看动作底稿
+              </button>
+            </div>
+          </aside>
+        </div>
+
+        <div class="walk-complete" id="walkComplete" hidden>
+          <span class="walk-complete__seal" aria-hidden="true">八</span>
+          <div>
+            <p class="eyebrow">第四章互动完成 · 街坊喝彩</p>
+            <blockquote>
+              “好！这才叫绝活！”
+              <cite>交互辅助反馈，非原著原话</cite>
+            </blockquote>
+            <p>
+              左圈取糖，交叉换手，右圈回身。桶柜、铜勺和脚步合成了一套旁人一眼能认出的把式。
+              接下来把天津六句词踩进这套步法，并逐句接上天津话录音。
+            </p>
+          </div>
+          <div class="walk-complete__actions">
+            <button class="secondary-button" id="walkReplay" type="button">再看一遍</button>
+            <a class="text-link-button" href="#innovationStage">
+              接着看绝活创新
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="innovation-section reveal"
+        id="innovationStage"
+        aria-labelledby="innovationTitle"
+      >
+        <div class="section-heading section-heading--ink">
+          <div>
+            <p class="eyebrow">第五章 · 绝活被模仿</p>
+            <h2 id="innovationTitle">模样学得去，心思要再长一层</h2>
+          </div>
+          <p class="section-note">
+            双桶和走八字被人在街口学了去。先看清局面，再听刘二爷点一句；
+            你的选择只决定先翻哪页，故事仍按俞六真正变法的顺序向前。
+          </p>
+        </div>
+
+        <div
+          class="innovation-experience"
+          id="innovationExperience"
+          data-innovation-step="0"
+        >
+          <div class="innovation-visual">
+            <div class="innovation-frame media-shell" data-media-shell>
+              <img
+                id="innovationSceneImage"
+                src="assets/innovation-candy-peddler.png"
+                alt="俞六在天津街市守着药糖摊，街坊围看糖柜"
+                width="1672"
+                height="941"
+                data-fallback="assets/innovation-candy-peddler.png"
+                fetchpriority="lazy"
+              />
+              <span class="image-fallback" aria-hidden="true">街口场景 · 待补</span>
+              <div class="innovation-frame__wash" aria-hidden="true"></div>
+
+              <div class="innovation-scene-mark">
+                <span id="innovationSceneDay">街口第 3 天</span>
+                <strong>学样的人多了</strong>
+              </div>
+
+              <div class="mimic-slips" aria-hidden="true">
+                <span>仿担</span>
+                <span>学步</span>
+              </div>
+
+              <p class="innovation-scene-caption" id="innovationSceneCaption">
+                双桶、龙头和八字路线，街口已经有人照着学。
+              </p>
+
+              <button
+                class="innovation-gallery"
+                id="innovationGallery"
+                type="button"
+                data-gallery-image="assets/imitation-market.webp"
+                data-gallery-title="街口药糖摊"
+                data-gallery-caption="场景导览画稿：用街口摊前的人情场面承接“绝活被仿”的情势，不对应逐字原文。"
+                data-gallery-alt="俞六在天津街市药糖摊后接待围观街坊，摊上摆满玻璃糖盒"
+              >
+                看场景画稿
+              </button>
+            </div>
+
+            <nav class="innovation-beats" aria-label="绝活创新的三个情节点">
+              <button
+                type="button"
+                data-innovation-step="0"
+                aria-current="step"
+              >
+                <span>01</span>
+                <strong>担子被仿</strong>
+                <small>形似之后，生意又窄了</small>
+              </button>
+              <button type="button" data-innovation-step="1">
+                <span>02</span>
+                <strong>三改出招</strong>
+                <small>绝活还得往里走</small>
+              </button>
+              <button type="button" data-innovation-step="2">
+                <span>03</span>
+                <strong>二爷点醒</strong>
+                <small>挑一页，再顺故事看全</small>
+              </button>
+            </nav>
+          </div>
+
+          <aside class="innovation-controls" aria-labelledby="innovationPanelTitle">
+            <p class="innovation-kicker" id="innovationPhase">当前情势 · 街口被仿</p>
+            <h3 id="innovationPanelTitle">别人也挑双桶，也会绕八字</h3>
+            <p class="innovation-body" id="innovationBody" aria-live="polite">
+              双桶、龙头和走法都能照着做。相似的担子一多，俞六原先靠“新鲜”聚来的人，
+              便又散回几家摊前。再靠原样可守不住。
+            </p>
+
+            <blockquote class="innovation-mentor-note" id="innovationMentorNote" hidden>
+              “模样能学，心里的琢磨学不走。”
+              <cite>刘二爷提醒 · 场景转述，非原著引文</cite>
+            </blockquote>
+
+            <button
+              class="primary-button innovation-next"
+              id="innovationNext"
+              type="button"
+            >
+              <span class="innovation-next__label" id="innovationNextLabel">
+                看俞六怎么变法
+              </span>
+              <span aria-hidden="true">→</span>
+            </button>
+
+            <div class="innovation-choice-panel" id="innovationChoicePanel" hidden>
+              <div class="innovation-choice-heading">
+                <span>先翻哪一页？</span>
+                <small>选哪页都不改变后面的顺序</small>
+              </div>
+
+              <div class="innovation-choices" aria-label="选择先看的创新方案">
+                <button type="button" data-innovation-choice="reward">
+                  <span aria-hidden="true">半</span>
+                  <strong>再饶半块</strong>
+                  <small>让甜头里多一分人情</small>
+                </button>
+                <button type="button" data-innovation-choice="routine">
+                  <span aria-hidden="true">八</span>
+                  <strong>步子再改</strong>
+                  <small>让取糖、换手连成一气</small>
+                </button>
+                <button type="button" data-innovation-choice="language">
+                  <span aria-hidden="true">话</span>
+                  <strong>脚步会说话</strong>
+                  <small>给把式添一层天津幽默</small>
+                </button>
+              </div>
+
+              <div
+                class="innovation-choice-copy"
+                id="innovationChoiceCopy"
+                aria-live="polite"
+                hidden
+              >
+                <span id="innovationChoiceLabel">先看这一页</span>
+                <strong id="innovationChoiceTitle"></strong>
+                <p id="innovationChoiceBody"></p>
+              </div>
+
+              <ol class="innovation-order" id="innovationOrder" aria-label="按故事顺序呈现的三项创新">
+                <li data-innovation-order="0">
+                  <span>一</span>
+                  <div>
+                    <strong>纸兜里多饶半块</strong>
+                    <p>甜头不必多，买卖里先多一分厚道，让人记得这一家。</p>
+                  </div>
+                </li>
+                <li data-innovation-order="1">
+                  <span>二</span>
+                  <div>
+                    <strong>把八字的活儿拧成一套</strong>
+                    <p>绕桶、取糖、换手不再各走各的，动作和脚步合成完整把式。</p>
+                  </div>
+                </li>
+                <li data-innovation-order="2">
+                  <span>三</span>
+                  <div>
+                    <strong>请刘二爷配上六句词</strong>
+                    <p>天津话踩着八字念出来，绝活不只靠眼睛看，还让人会心一笑。</p>
+                  </div>
+                </li>
+              </ol>
+
+              <button
+                class="primary-button innovation-order-button"
+                id="innovationOrderButton"
+                type="button"
+              >
+                <span id="innovationOrderButtonLabel">照故事顺序看三招</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <p class="innovation-choice-note">
+                六句词在这里交代来由；第六章可逐句播放天津话录音并配合人物迈步。
+              </p>
+            </div>
+
+            <div class="innovation-control-foot">
+              <button class="innovation-reset" id="innovationReset" type="button">
+                重回被仿那天
+              </button>
+              <span>原文入口始终保留</span>
+            </div>
+          </aside>
+        </div>
+
+        <article
+          class="innovation-resolution"
+          id="innovationResolution"
+          aria-labelledby="innovationResolutionTitle"
+          hidden
+        >
+          <div class="innovation-resolution__media media-shell" data-media-shell>
+            <img
+              src="assets/signature-carry.webp"
+              data-fallback="assets/signature-carry.png"
+              alt="刘二爷与俞六在院中看着装饰龙头、金珠和红绒球的双桶药糖挑担"
+              width="1671"
+              height="941"
+              loading="lazy"
+            />
+            <span class="image-fallback" aria-hidden="true">成担画稿 · 待补</span>
+          </div>
+
+          <div class="innovation-resolution__copy">
+            <p class="eyebrow">三改收束 · 仍是原著方向</p>
+            <h3 id="innovationResolutionTitle">一担四十八样，装了三层心思</h3>
+            <p>
+              糖要做得全，担子要做得巧，买卖里还要有人情；再把天津话踩进步子里，
+              旁人即便学去外形，也学不走俞六一层一层琢磨出来的门道。
+            </p>
+            <ul class="innovation-result-list" aria-label="俞六再次创新的三项内容">
+              <li><span>一</span>赠半块</li>
+              <li><span>二</span>改八字</li>
+              <li><span>三</span>配六句</li>
+            </ul>
+            <div class="innovation-resolution__actions">
+              <button class="secondary-button" id="innovationReplay" type="button">
+                重看三招顺序
+              </button>
+              <a class="words-enter" href="#wordsStage">
+                接着念六句词
+                <span aria-hidden="true">→</span>
+              </a>
+              <button class="text-link-button" id="innovationReading" type="button">
+                打开原文阅读说明
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p class="innovation-pending-note">
+              第六章已接入天津话逐句语音；篇末已接入结尾原文与读后感悟，
+              八天送糖图鉴仍待接入。
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section
+        class="words-section reveal"
+        id="wordsStage"
+        aria-labelledby="wordsTitle"
+      >
+        <div class="section-heading section-heading--ink">
+          <div>
+            <p class="eyebrow">第六章 · 天津六句词</p>
+            <h2 id="wordsTitle">一句一顿步，把天津话念进八字里</h2>
+          </div>
+          <p class="section-note">
+            点击已经解锁的词句播放天津话录音；每句播放完成后才开放下一句。
+            录音缺失时只保留文字阅读，不播放合成语音。
+          </p>
+        </div>
+
+        <div class="words-experience">
+          <div class="words-visual">
+            <div
+              class="words-stage"
+              id="wordStage"
+              data-word-step="0"
+              role="group"
+              aria-label="俞六边走边念六句词，尚未起声"
+            >
+              <img
+                class="words-crowd"
+                data-word-image
+                data-word-fallback="wordCrowdFallback"
+                src="assets/crowd.jpg"
+                alt="天津老街坊聚在街沿，笑着围观俞六的挑担把式"
+                width="1600"
+                height="1600"
+                loading="lazy"
+              />
+              <span
+                class="word-image-fallback word-image-fallback--crowd"
+                id="wordCrowdFallback"
+                hidden
+              >
+                街坊群像 · 待补
+              </span>
+              <div class="words-mist" aria-hidden="true"></div>
+              <div class="words-ground" aria-hidden="true"></div>
+
+              <div class="words-stage-heading">
+                <span id="wordStageBeat">起势 · 未开口</span>
+                <strong>六句一声，街口立名</strong>
+              </div>
+
+              <div class="words-path" aria-hidden="true">
+                <span data-word-path-step="1">一</span>
+                <span data-word-path-step="2">二</span>
+                <span data-word-path-step="3">三</span>
+                <span data-word-path-step="4">四</span>
+                <span data-word-path-step="5">五</span>
+                <span data-word-path-step="6">六</span>
+              </div>
+
+              <div class="word-walker" id="wordWalker">
+                <span class="word-walker__halo" aria-hidden="true"></span>
+                <div class="word-walker__bob">
+                  <img
+                    data-word-image
+                    data-word-fallback="wordWalkerFallback"
+                    src="assets/yu-liu-cutout.png"
+                    alt="俞六挑着双桶药糖担，踩着词句的节拍向前"
+                    width="1132"
+                    height="1366"
+                  />
+                  <span
+                    class="word-walker__pompom word-walker__pompom--left"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="word-walker__pompom word-walker__pompom--right"
+                    aria-hidden="true"
+                  ></span>
+                </div>
+                <span
+                  class="word-image-fallback word-image-fallback--walker"
+                  id="wordWalkerFallback"
+                  hidden
+                >
+                  人物图 · 待补
+                </span>
+              </div>
+
+              <div class="word-applause" id="wordApplause" hidden>
+                <span aria-hidden="true">好！</span>
+                <p>
+                  六句词踩进八字的步子里，街坊先笑，随后齐声叫好。
+                  <small>交互辅助反馈，非原著原话</small>
+                </p>
+              </div>
+
+              <p class="words-stage-caption" id="wordStageCaption" aria-live="polite">
+                俞六站稳担子，先等第一句起声。
+              </p>
+            </div>
+
+            <div class="words-source">
+              <span>六句词来源</span>
+              <p>
+                按本轮《四十八样》附件中的六句词录入。此处只做逐句阅读与动作联动，
+                不改写后续故事。
+              </p>
+              <button
+                class="text-link-button"
+                type="button"
+                data-gallery-image="assets/innovation-talk.webp"
+                data-gallery-title="老少街谈药糖摊"
+                data-gallery-caption="刘二爷与俞六议药糖、论把式的场景画稿，用于承接六句词由来的叙事节点。"
+                data-gallery-alt="刘二爷与俞六隔着一整排药糖盒交谈"
+              >
+                看词句由来画稿
+              </button>
+            </div>
+          </div>
+
+          <aside class="words-panel" aria-labelledby="wordsPanelTitle">
+            <div class="words-voice">
+              <div>
+                <span>天津方言配音</span>
+                <small id="dialectNotice">点击已解锁词句播放，不会自动发声</small>
+              </div>
+              <button
+                class="words-voice-switch"
+                id="dialectToggle"
+                type="button"
+                role="switch"
+                aria-checked="true"
+                aria-describedby="dialectNotice"
+              >
+                <span aria-hidden="true"></span>
+                语音开启
+              </button>
+            </div>
+
+            <p class="words-kicker" id="wordsPhase">第一句 · 未起声</p>
+            <h3 id="wordsPanelTitle">天津药糖家家好</h3>
+            <p class="words-summary" id="wordCurrentLine" aria-live="polite">
+              点击第一句播放天津话录音，俞六会随声音沿街向前一步。
+            </p>
+
+            <ol class="word-lines" id="wordLines" aria-label="天津六句词">
+              <li data-word-line="0" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="0"
+                >
+                  <span>第一句</span>
+                  <p>天津药糖家家好</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+              <li data-word-line="1" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="1"
+                >
+                  <span>第二句</span>
+                  <p>四十八样数第一</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+              <li data-word-line="2" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="2"
+                >
+                  <span>第三句</span>
+                  <p>一色一味块块香</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+              <li data-word-line="3" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="3"
+                >
+                  <span>第四句</span>
+                  <p>再饶半块随您意</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+              <li data-word-line="4" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="4"
+                >
+                  <span>第五句</span>
+                  <p>俞家能耐不传女</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+              <li data-word-line="5" aria-hidden="true">
+                <button
+                  class="word-line-button"
+                  type="button"
+                  data-word-line-play="5"
+                >
+                  <span>第六句</span>
+                  <p>谁我儿子谁学艺</p>
+                  <small class="word-line-state" aria-hidden="true"></small>
+                </button>
+              </li>
+            </ol>
+
+            <div
+              class="word-progress"
+              id="wordProgress"
+              role="progressbar"
+              aria-label="六句词阅读进度"
+              aria-valuemin="0"
+              aria-valuemax="6"
+              aria-valuenow="0"
+            >
+              <span aria-hidden="true"><i id="wordProgressFill"></i></span>
+              <strong id="wordProgressLabel">已念 0 / 6</strong>
+            </div>
+
+            <div class="word-audio-controls" aria-label="天津话语音控制">
+              <p id="wordAudioStatus" role="status" aria-live="polite">
+                点击第一句开始；音频不会自动播放。
+              </p>
+              <div class="word-audio-buttons">
+                <button id="wordPause" type="button" disabled>暂停</button>
+                <button id="wordAudioReplay" type="button" disabled>重听</button>
+                <button
+                  id="wordMute"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  静音
+                </button>
+              </div>
+              <label class="word-volume" for="wordVolume">
+                <span>音量</span>
+                <input
+                  id="wordVolume"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.9"
+                />
+              </label>
+            </div>
+
+            <div class="word-controls">
+              <button class="secondary-button" id="wordBack" type="button" disabled>
+                上一句
+              </button>
+              <button class="primary-button" id="wordNext" type="button">
+                <span id="wordNextLabel">播放第一句</span>
+                <span aria-hidden="true">▶</span>
+              </button>
+            </div>
+            <button class="word-replay" id="wordReplay" type="button">
+              从头重念六句
+            </button>
+          </aside>
+        </div>
+
+        <article class="word-complete" id="wordComplete" hidden>
+          <span class="word-complete__seal" aria-hidden="true">陆</span>
+          <div>
+            <p class="eyebrow">第六章互动完成 · 六句落定</p>
+            <h3>六句词已念完</h3>
+            <p>
+              街坊先笑，随后齐声叫好。六句词把俞六的担子、步子与天津人的幽默
+              连成一体，故事仍沿原著方向向前。
+            </p>
+          </div>
+          <div class="word-complete__actions">
+            <button class="primary-button" id="wordContinueStory" type="button">
+              继续故事
+              <span aria-hidden="true">→</span>
+            </button>
+            <button class="secondary-button" id="wordReplayComplete" type="button">
+              重念六句
+            </button>
+            <button class="text-link-button" id="wordsReading" type="button">
+              保留原著阅读入口
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+
+        <p class="words-next-stage">
+          读后可继续进入第七章，阅读故事余韵并留下感悟；八天送糖图鉴仍保留待接入入口。
+        </p>
+      </section>
+
+      <section class="stage-end reveal" aria-labelledby="stageEndTitle">
+        <div class="stage-end__stamp" aria-hidden="true">伍</div>
+        <div>
+          <p class="eyebrow">尾声 · 已接入七章阅读框架</p>
+          <h2 id="stageEndTitle">六句落定，街口听见俞六的名字</h2>
+          <p>
+            天津六句词已接入逐句方言录音、人物步伐与街坊反馈。
+            故事结尾沿用现有原文阅读，八天送糖图鉴仍保留待接入入口。
+          </p>
+        </div>
+        <div class="stage-end__actions">
+          <button class="secondary-button" id="restartButton" type="button">从头再体验</button>
+          <button class="primary-button" id="readingEntryBottom" type="button">
+            保留原著入口
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>《俗世奇人·四十八样》数字交互书 · 七章阅读</p>
+      <a href="../index.html#street">返回《俗世奇人》天津老街</a>
+    </footer>
+
+    <dialog class="media-dialog" id="mediaDialog" aria-labelledby="dialogTitle">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="关闭图稿">
+        ×
+      </button>
+      <figure>
+        <div class="media-shell dialog-media" data-media-shell>
+          <img id="dialogImage" src="assets/street-storyboard.jpg" alt="" />
+          <span class="image-fallback" aria-hidden="true">图稿 · 待补</span>
+        </div>
+        <figcaption>
+          <p class="eyebrow">素材图录</p>
+          <h2 id="dialogTitle"></h2>
+          <p id="dialogCaption"></p>
+        </figcaption>
+      </figure>
+    </dialog>
+
+    <dialog class="reading-dialog" id="readingDialog" aria-labelledby="readingTitle">
+      <button class="dialog-close" id="readingClose" type="button" aria-label="关闭原著阅读说明">
+        ×
+      </button>
+      <p class="eyebrow">冯骥才 · 原著阅读</p>
+      <h2 id="readingTitle">四十八样</h2>
+      <div id="readingText" class="reading-text nr-original-text"></div>
+      <div class="reading-dialog__meta">
+        <span>原文来源</span>
+        <strong id="readingMeta">摘自冯骥才著《俗世奇人》原文片段</strong>
+      </div>
+      <div class="reading-dialog__footer">
+        <button class="secondary-button" id="readingDialogConfirm" type="button">返回故事</button>
+      </div>
+    </dialog>
+
+    <dialog
+      class="walk8-experience"
+      id="walk8Experience"
+      aria-labelledby="walk8Title"
+      aria-describedby="walk8Description"
+    >
+      <div class="walk8-shell">
+        <header class="walk8-header">
+          <div>
+            <p>第四章 · 走八字 · 路线引导</p>
+            <h2 id="walk8Title">一担两桶，走出一个“八”</h2>
+            <span id="walk8Description">
+              按住路线，带俞六绕过左右两个药糖桶；也可播放路线演示。
+            </span>
+          </div>
+          <button
+            class="walk8-close"
+            id="walk8Close"
+            type="button"
+            aria-label="关闭走八字场景"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="walk8-cinema">
+          <div
+            class="walk8-stage"
+            id="walk8Stage"
+            data-logical-width="1920"
+            data-logical-height="1080"
+            data-actor-x="960"
+            data-actor-y="540"
+            role="group"
+            aria-label="俞六走八字路线引导场景"
+          >
+            <div class="walk8-ground">
+              <span class="walk8-shop walk8-shop--north"></span>
+              <span class="walk8-shop walk8-shop--south"></span>
+              <span class="walk8-curb walk8-curb--north"></span>
+              <span class="walk8-curb walk8-curb--south"></span>
+              <span class="walk8-ground-mark">津门街口</span>
+            </div>
+
+            <svg
+              class="walk8-route"
+              viewBox="0 0 1920 1080"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                class="walk8-route__underlay"
+                d="M960 540 C815 635 600 735 420 710 C190 680 100 520 155 350 C220 150 500 150 675 275 C780 350 860 450 960 540 C1105 635 1320 735 1500 710 C1730 680 1820 520 1765 350 C1700 150 1420 150 1245 275 C1140 350 1060 450 960 540"
+              />
+              <path
+                class="walk8-route__line"
+                id="walk8RoutePath"
+                data-route-length="computed-at-runtime"
+                pathLength="1000"
+                d="M960 540 C815 635 600 735 420 710 C190 680 100 520 155 350 C220 150 500 150 675 275 C780 350 860 450 960 540 C1105 635 1320 735 1500 710 C1730 680 1820 520 1765 350 C1700 150 1420 150 1245 275 C1140 350 1060 450 960 540"
+              />
+              <path
+                class="walk8-route__progress"
+                id="walk8RouteProgress"
+                pathLength="1000"
+                d="M960 540 C815 635 600 735 420 710 C190 680 100 520 155 350 C220 150 500 150 675 275 C780 350 860 450 960 540 C1105 635 1320 735 1500 710 C1730 680 1820 520 1765 350 C1700 150 1420 150 1245 275 C1140 350 1060 450 960 540"
+              />
+              <circle
+                class="walk8-route__cue"
+                id="walk8RouteCue"
+                cx="960"
+                cy="540"
+                r="18"
+              />
+              <circle class="walk8-route__cross" cx="960" cy="540" r="10" />
+            </svg>
+
+            <div class="walk8-bucket-slot walk8-bucket-slot--left">
+              <img
+                class="walk8-bucket-art"
+                src="assets/walk8/bucket-left.png"
+                alt=""
+                draggable="false"
+              />
+            </div>
+
+            <div class="walk8-bucket-slot walk8-bucket-slot--right">
+              <img
+                class="walk8-bucket-art"
+                src="assets/walk8/bucket-right.png"
+                alt=""
+                draggable="false"
+              />
+            </div>
+
+            <figure class="walk8-yu-liu" data-pose="idle">
+              <span class="walk8-yu-liu__shadow"></span>
+              <span class="walk8-yu-liu__portrait">
+                <img
+                  id="walk8YuLiu"
+                  class="walk8-yu-liu__sprite is-active"
+                  data-pose="idle"
+                  src="assets/walk8/yu-liu-idle.png"
+                  alt=""
+                />
+                <img
+                  class="walk8-yu-liu__sprite"
+                  data-pose="left"
+                  src="assets/walk8/yu-liu-left.png"
+                  alt=""
+                />
+                <img
+                  class="walk8-yu-liu__sprite"
+                  data-pose="right"
+                  src="assets/walk8/yu-liu-right.png"
+                  alt=""
+                />
+                <img
+                  class="walk8-yu-liu__sprite"
+                  data-pose="switch"
+                  src="assets/walk8/yu-liu-switch.png"
+                  alt=""
+                />
+              </span>
+              <span class="walk8-copper-spoon" aria-hidden="true"></span>
+              <figcaption>俞六</figcaption>
+            </figure>
+
+            <span class="walk8-coordinate walk8-coordinate--start">起</span>
+            <span class="walk8-coordinate walk8-coordinate--cross">交</span>
+
+            <div
+              class="walk8-finale"
+              id="walk8Finale"
+              aria-hidden="true"
+              hidden
+            >
+              <div class="walk8-finale__street" aria-hidden="true"></div>
+              <div class="walk8-finale__light" aria-hidden="true"></div>
+              <div class="walk8-finale__sign" aria-hidden="true">
+                <span>天津街口 · 八字已成</span>
+                <strong>二龙戏珠，一步一颤</strong>
+              </div>
+              <div class="walk8-finale__crowd" aria-hidden="true">
+                <img
+                  src="assets/crowd.jpg"
+                  alt=""
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+              <div class="walk8-finale__carrier">
+                <span class="walk8-finale__shadow" aria-hidden="true"></span>
+                <figure class="walk8-finale__carry">
+                  <img
+                    src="assets/walk8/yu-liu-carry.png"
+                    alt="俞六挑着完整的二龙戏珠双桶药糖担"
+                    draggable="false"
+                  />
+                  <span
+                    class="walk8-finale__pompom walk8-finale__pompom--left"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="walk8-finale__pompom walk8-finale__pompom--right"
+                    aria-hidden="true"
+                  ></span>
+                </figure>
+              </div>
+              <div class="walk8-finale__cheer">
+                <strong>好！这才叫绝活！</strong>
+                <span>交互辅助反馈 · 非原著原文</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="walk8-scene-layer">
+            <div class="walk8-scene-label">
+              <span>俯看街口</span>
+              <strong>按住，沿八字走</strong>
+              <small>顺路线前进 · 松手会记住当前位置</small>
+            </div>
+
+            <div
+              class="walk8-switch-prompt"
+              id="walk8SwitchPrompt"
+              aria-hidden="true"
+              hidden
+            >
+              <span>中央节点</span>
+              <strong>换手</strong>
+            </div>
+
+            <div class="walk8-scene-actions">
+              <button
+                class="walk8-switch"
+                id="walk8SwitchButton"
+                type="button"
+                aria-describedby="walk8StageStatus"
+              >
+                完成换手
+              </button>
+              <button class="walk8-start" id="walk8Start" type="button">
+                <span class="walk8-start__label">开始引导</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <button
+                class="walk8-demo"
+                id="walk8Demo"
+                type="button"
+                aria-pressed="false"
+              >
+                演示路线
+              </button>
+              <button class="walk8-return" id="walk8Return" type="button">
+                返回原文
+              </button>
+            </div>
+
+            <p class="walk8-stage-status" id="walk8StageStatus" role="status">
+              点击“开始引导”，再按住中央的起始标记沿路线前进。
+            </p>
+          </div>
+        </div>
+
+        <aside
+          class="walk8-finale-panel"
+          id="walk8FinalePanel"
+          aria-labelledby="walk8FinalePanelTitle"
+          hidden
+        >
+          <div class="walk8-finale-panel__heading">
+            <span>完整表演结束</span>
+            <h3 id="walk8FinalePanelTitle">两只桶，走出一个真“八”</h3>
+          </div>
+          <div class="walk8-finale-panel__source">
+            <p>原著段落 · 走八字</p>
+            <blockquote id="walk8FinaleOriginal"></blockquote>
+          </div>
+          <p class="walk8-finale-panel__note">
+            阅读进度已保留；继续阅读将从这段之后开始。
+          </p>
+          <div class="walk8-finale-panel__actions">
+            <button id="walk8FinaleRestart" type="button">重新体验</button>
+            <button id="walk8FinaleContinue" type="button">
+              继续阅读 <span aria-hidden="true">→</span>
+            </button>
+            <button id="walk8FinaleBack" type="button">返回上一段</button>
+          </div>
+        </aside>
+
+        <footer class="walk8-footer">
+          <span>每次只沿正确方向前进；偏离路线只会暂停，不会重置。</span>
+          <button class="walk8-open-reading" id="walk8OpenReading" type="button">
+            查看对应原文
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <p class="live-message" id="liveMessage" role="status" aria-live="polite"></p>
+
+    <script src="../data/original-text.js"></script>
+    <script src="tianjin-lyrics-audio.js"></script>
+    <script src="script.js"></script>
+    <script src="../reading-note.js"></script>
+    <script src="chapter-shell.js"></script>
+    <script src="dragon-assembly.js"></script>
+    <script src="walk8-stage.js"></script>
+    <script src="../reading-navigation.js"></script>
+  </body>
+</html>
