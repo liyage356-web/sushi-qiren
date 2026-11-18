@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="《俗世奇人·狗不理》沉浸式数字交互阅读"
+    />
+    <meta name="theme-color" content="#4e5a50" />
+    <title>狗不理 · 奇境入巷</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css?v=20261109-1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#storyMain">跳到故事正文</a>
+
+    <header class="topbar">
+      <a class="back-link" href="../index.html#street">
+        <span aria-hidden="true">←</span>
+        返回老街
+      </a>
+
+      <div class="book-title">
+        <span>俗世奇人</span>
+        <strong>狗不理</strong>
+      </div>
+
+      <div class="toolbar">
+        <button id="skipButton" type="button">跳过互动</button>
+        <button id="originalButton" type="button">阅读原文</button>
+        <button
+          id="soundButton"
+          type="button"
+          aria-pressed="false"
+        >
+          街声：关
+        </button>
+      </div>
+    </header>
+
+    <nav class="chapter-nav" aria-label="狗不理章节导航">
+      <button
+        type="button"
+        data-scene-go="street"
+        aria-current="page"
+        aria-controls="sceneStreet"
+      >
+        <span>01</span>巷口闻香
+      </button>
+      <button type="button" data-scene-go="craft" aria-controls="sceneCraft">
+        <span>02</span>学做包子
+      </button>
+      <button type="button" data-scene-go="shop" aria-controls="sceneShop">
+        <span>03</span>忙碌狗子
+      </button>
+      <button type="button" data-scene-go="name" aria-controls="sceneName">
+        <span>04</span>名字反转
+      </button>
+      <button type="button" data-scene-go="fame" aria-controls="sceneFame">
+        <span>05</span>传遍天下
+      </button>
+      <button
+        type="button"
+        data-scene-go="reflection"
+        aria-controls="sceneReflection"
+      >
+        <span>笺</span>读后笺
+      </button>
+    </nav>
+
+    <div class="progress-track" aria-hidden="true">
+      <span id="progressFill"></span>
+    </div>
+
+    <main id="storyMain" class="story-main" tabindex="-1">
+      <!-- 第一幕：天津老街 -->
+      <section
+        id="sceneStreet"
+        class="scene-panel is-active"
+        data-scene="street"
+        aria-labelledby="streetTitle"
+      >
+        <header class="scene-heading">
+          <p class="kicker">环境探索 · 好奇</p>
+          <div class="heading-row">
+            <h1 id="streetTitle">巷口闻香</h1>
+            <span class="scene-count">第一幕 / 五幕</span>
+          </div>
+          <p class="lead">
+            天津老街起了一层白汽。顺着香味走近包子铺，点一点招牌、蒸笼、
+            正在忙碌的狗子和桌边的顾客，从四个方向认识这家小店。
+          </p>
+        </header>
+
+        <div class="street-layout">
+          <div class="street-stage">
+            <img
+              class="street-stage-art"
+              src="assets/bao-shop-busy.webp"
+              alt="水墨风格的包子铺内景：狗子正在拌馅，旁边摆着蒸笼、招牌与围坐的顾客"
+            />
+            <div class="street-stage-vignette" aria-hidden="true"></div>
+            <div class="street-stage-steam steam-a" aria-hidden="true"></div>
+            <div class="street-stage-steam steam-b" aria-hidden="true"></div>
+            <p class="street-stage-caption">
+              点一点画面里的四处细节
+            </p>
+
+            <button
+              class="street-hotspot street-hotspot-sign"
+              type="button"
+              data-street="sign"
+              aria-label="查看狗子包子铺招牌"
+            >
+              <span class="hotspot-mark" aria-hidden="true"></span>
+              <span class="hotspot-label">招牌</span>
+            </button>
+
+            <button
+              class="street-hotspot street-hotspot-steamer"
+              type="button"
+              data-street="steamer"
+              aria-label="揭开蒸笼闻一闻"
+            >
+              <span class="hotspot-mark" aria-hidden="true"></span>
+              <span class="hotspot-label">蒸笼</span>
+            </button>
+
+            <button
+              class="street-hotspot street-hotspot-person"
+              type="button"
+              data-street="person"
+              aria-label="看看正在忙碌的狗子"
+            >
+              <span class="hotspot-mark" aria-hidden="true"></span>
+              <span class="hotspot-label">狗子</span>
+            </button>
+
+            <button
+              class="street-hotspot street-hotspot-customer"
+              type="button"
+              data-street="customer"
+              aria-label="看看桌边顾客"
+            >
+              <span class="hotspot-mark" aria-hidden="true"></span>
+              <span class="hotspot-label">顾客</span>
+            </button>
+
+            <p class="asset-note">
+              插画素材：包子铺里的温暖忙碌时光
+            </p>
+          </div>
+
+          <aside id="streetPanel" class="story-note" aria-live="polite">
+            <p class="kicker">巷口提示</p>
+            <h2>蒸汽后面，是一位忙碌的手艺人</h2>
+            <p id="streetPanelCopy">
+              点击蒸笼、铺面招牌、狗子和桌边顾客，看看街坊怎样认识这家包子铺。
+            </p>
+            <div class="street-observation-status">
+              <span>观察札记</span>
+              <strong id="streetVisitCount">0 / 4</strong>
+            </div>
+          </aside>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            跳过互动，阅读原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="craft"
+          >
+            走进包子铺 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 第二幕：人物介绍与包子制作 -->
+      <section
+        id="sceneCraft"
+        class="scene-panel"
+        data-scene="craft"
+        aria-labelledby="craftTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p class="kicker">手艺互动 · 专注</p>
+          <div class="heading-row">
+            <h2 id="craftTitle">一圈十八褶</h2>
+            <span class="scene-count">第二幕 / 五幕</span>
+          </div>
+          <p class="lead">
+            狗子本名高贵友。他把日常饮食里的经验带进馅料，又用褶子让普通包子有了自己的样子。
+            跟着四个步骤，看看手艺怎样在细节里成形。
+          </p>
+        </header>
+
+        <div class="shop-intro">
+          <img src="assets/gou-bu-li.png" alt="狗子与包子篮的人物插画" />
+          <div>
+            <p class="kicker">人物小传</p>
+            <h3>狗子 · 高贵友</h3>
+            <p>
+              街坊更熟悉“狗子”这个小名。他在包子铺里手不停、话不多，
+              真正让顾客记住他的，是馅料的香气和包子外形的细致。
+            </p>
+          </div>
+        </div>
+
+        <div class="craft-layout">
+          <div class="craft-guide">
+            <div class="craft-tabs" aria-label="包子制作阶段">
+              <button type="button" data-craft-step="mix" aria-pressed="true">
+                <span>01</span>调馅
+              </button>
+              <button type="button" data-craft-step="wrap" aria-pressed="false">
+                <span>02</span>包制
+              </button>
+              <button
+                type="button"
+                data-craft-step="pleat"
+                aria-pressed="false"
+              >
+                <span>03</span>十八褶
+              </button>
+              <button
+                type="button"
+                data-craft-step="steam"
+                aria-pressed="false"
+              >
+                <span>04</span>揭笼
+              </button>
+            </div>
+
+            <article class="craft-copy" aria-live="polite">
+              <p id="craftKicker" class="kicker">第一步 · 调馅</p>
+              <h3 id="craftTitleSmall">让肉馅更香、更润</h3>
+              <p id="craftInstruction">
+                依次点击汤、猪油和肉馅，把普通馅料调配得更有香气。
+              </p>
+              <p id="craftProgress" class="progress-copy">已加入 0 / 3 样</p>
+            </article>
+
+            <button
+              id="craftSkip"
+              class="text-button"
+              type="button"
+              data-open-original
+            >
+              跳过小游戏，直接读原文
+            </button>
+          </div>
+
+          <div id="craftStage" class="craft-stage" data-step="mix">
+            <!-- 调馅阶段 -->
+            <div class="craft-view mix-view">
+              <div class="mixing-bowl" aria-hidden="true">
+                <span class="mix-meat"></span>
+                <span class="mix-glint"></span>
+              </div>
+              <button
+                class="ingredient-chip ingredient-soup"
+                type="button"
+                data-mix="soup"
+              >
+                鲜汤
+              </button>
+              <button
+                class="ingredient-chip ingredient-fat"
+                type="button"
+                data-mix="fat"
+              >
+                猪油
+              </button>
+              <button
+                class="ingredient-chip ingredient-meat"
+                type="button"
+                data-mix="meat"
+              >
+                肉馅
+              </button>
+              <p class="stage-hint">点击配料，让香味一层层进入馅中</p>
+            </div>
+
+            <!-- 包制阶段 -->
+            <div class="craft-view wrap-view">
+              <button id="wrapDough" class="wrap-dough" type="button">
+                <span class="wrap-filling"></span>
+                <span class="wrap-pinch">点击收拢面皮</span>
+              </button>
+              <p id="wrapHint" class="stage-hint">
+                点击面皮中央，依次放入馅料、收边、压实。
+              </p>
+            </div>
+
+            <!-- 十八褶阶段 -->
+            <div class="craft-view pleat-view">
+              <div class="pleat-bun" aria-label="点击十八道褶皱按钮">
+                <div id="pleatRing" class="pleat-ring"></div>
+                <span class="bun-heart">十八褶</span>
+              </div>
+              <p id="pleatCounter" class="stage-hint">
+                按顺序点击每一道褶：0 / 18
+              </p>
+            </div>
+
+            <!-- 蒸制阶段 -->
+            <div class="craft-view steam-view">
+              <div class="steamer-stack" aria-hidden="true">
+                <span class="steam wisp-one"></span>
+                <span class="steam wisp-two"></span>
+                <button
+                  id="steamerLid"
+                  class="steamer-lid"
+                  type="button"
+                  aria-label="揭开蒸笼盖"
+                >
+                  揭笼
+                </button>
+                <span class="steamer-body"></span>
+                <span class="finished-bun"></span>
+              </div>
+              <p id="steamHint" class="stage-hint">
+                点击笼盖，看看刚出笼的包子。
+              </p>
+            </div>
+
+            <p class="asset-note">包子制作画面为 CSS 插画占位</p>
+          </div>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-scene-go="street">
+            <span aria-hidden="true">←</span> 回到巷口
+          </button>
+          <button
+            id="toShopButton"
+            class="primary-button"
+            type="button"
+            data-scene-go="shop"
+          >
+            去看看狗子怎样卖包子 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 第三幕：忙碌经营 -->
+      <section
+        id="sceneShop"
+        class="scene-panel"
+        data-scene="shop"
+        aria-labelledby="shopTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p class="kicker">情节互动 · 趣味</p>
+          <div class="heading-row">
+            <h2 id="shopTitle">忙碌的狗子</h2>
+            <span class="scene-count">第三幕 / 五幕</span>
+          </div>
+          <p class="lead">
+            门前摆着大海碗和筷子。顾客自己取包子、自己留钱；狗子只顾做包子、收钱，很少开口招呼。
+          </p>
+        </header>
+
+        <div class="busy-layout">
+          <div class="busy-shop">
+            <div class="shop-counter" aria-hidden="true">
+              <span class="counter-line"></span>
+            </div>
+            <button
+              class="busy-object bowl-object"
+              type="button"
+              data-busy="bowl"
+              aria-label="观察大海碗并让顾客取包子"
+            >
+              <span class="blue-bowl" aria-hidden="true"></span>
+              <span class="object-label">大海碗</span>
+            </button>
+            <button
+              class="busy-object coin-object"
+              type="button"
+              data-busy="coin"
+              aria-label="把铜钱放进钱箱"
+            >
+              <span class="coin-box" aria-hidden="true"></span>
+              <span class="object-label">钱箱</span>
+            </button>
+            <button
+              class="busy-object dog-object"
+              type="button"
+              data-busy="dog"
+              aria-label="看狗子继续做包子"
+            >
+              <img src="assets/gou-bu-li.png" alt="" aria-hidden="true" />
+              <span class="object-label">狗子</span>
+            </button>
+            <p class="asset-note">经营场景为 CSS 占位</p>
+          </div>
+
+          <aside class="busy-note" aria-live="polite">
+            <p class="kicker">自助买卖</p>
+            <h3 id="busyTitle">三样东西，写出一家小店的忙</h3>
+            <p id="busyCopy">
+              点击海碗、钱箱和狗子，完成一次不靠吆喝的买卖。
+            </p>
+            <div class="busy-meters" aria-label="经营互动进度">
+              <span id="meterBowl">取包子 · 未完成</span>
+              <span id="meterCoin">投钱 · 未完成</span>
+              <span id="meterDog">忙碌 · 未完成</span>
+            </div>
+            <blockquote id="streetSaying" class="street-saying" hidden>
+              “狗子行呵，不理人啦！”
+            </blockquote>
+          </aside>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            跳过互动，阅读原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="name"
+          >
+            听听街坊怎么说 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 第四幕：名字反转 -->
+      <section
+        id="sceneName"
+        class="scene-panel"
+        data-scene="name"
+        aria-labelledby="nameTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p class="kicker">动态叙事 · 惊喜</p>
+          <div class="heading-row">
+            <h2 id="nameTitle">名字的反转</h2>
+            <span class="scene-count">第四幕 / 五幕</span>
+          </div>
+          <p class="lead">
+            一开始，“狗不理”只是街坊的一句闲话。包子好吃、名字好记，
+            又说出了狗子忙于做事的模样，这三个字才慢慢变成招牌。
+          </p>
+        </header>
+
+        <div class="name-layout">
+          <div class="gossip-side">
+            <button
+              class="gossip-card"
+              type="button"
+              data-gossip="neighbor"
+              aria-pressed="false"
+            >
+              <span>街坊甲</span>
+              <strong>“狗子行呵，不理人啦！”</strong>
+            </button>
+            <button
+              class="gossip-card"
+              type="button"
+              data-gossip="rival"
+              aria-pressed="false"
+            >
+              <span>同行</span>
+              <strong>这个名字带着一点嘲笑与不服。</strong>
+            </button>
+            <button
+              class="gossip-card"
+              type="button"
+              data-gossip="customer"
+              aria-pressed="false"
+            >
+              <span>买包子的人</span>
+              <strong>可那包子的味道，偏偏让人记住了。</strong>
+            </button>
+          </div>
+
+          <div class="sign-stage">
+            <p class="sign-caption">点击空白招牌</p>
+            <button
+              id="shopNameSign"
+              class="name-sign"
+              type="button"
+              aria-label="点击招牌，让狗不理三个字逐字显现"
+            >
+              <span class="sign-character">狗</span>
+              <span class="sign-character">不</span>
+              <span class="sign-character">理</span>
+            </button>
+            <p id="nameHint" class="stage-hint">
+              街坊的一句话，怎样变成一块招牌？
+            </p>
+          </div>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            跳过互动，阅读原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="fame"
+          >
+            看包子传向远方 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 第五幕：名声传播 -->
+      <section
+        id="sceneFame"
+        class="scene-panel"
+        data-scene="fame"
+        aria-labelledby="fameTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p class="kicker">沉浸式收束 · 回味</p>
+          <div class="heading-row">
+            <h2 id="fameTitle">一屉包子传天下</h2>
+            <span class="scene-count">第五幕 / 五幕</span>
+          </div>
+          <p class="lead">
+            故事里的包子走出天津街巷，通过进献与品尝进入更大的视野。
+            名声越传越远，最初那个不肯说话的忙碌身影，反而成了最鲜明的招牌。
+          </p>
+        </header>
+
+        <div class="fame-scene">
+          <button
+            id="fameSign"
+            class="fame-sign"
+            type="button"
+            aria-label="点击招牌，查看名声传播的三个阶段"
+          >
+            <span>狗不理</span>
+            <small>点击招牌 · 让名声传开</small>
+          </button>
+          <div class="fame-track" aria-live="polite">
+            <article class="fame-step" data-fame-step="0">
+              <span>津门</span>
+              <h3>香气先走过街巷</h3>
+              <p>顾客与街坊的口耳相传，让包子铺成为街头熟悉的一处所在。</p>
+            </article>
+            <article class="fame-step" data-fame-step="1">
+              <span>进献</span>
+              <h3>一屉包子离开原处</h3>
+              <p>故事中的进献情节让地方手艺进入更大的视野。</p>
+            </article>
+            <article class="fame-step" data-fame-step="2">
+              <span>传名</span>
+              <h3>名字随味道走得更远</h3>
+              <p>品尝与流传把“狗不理”从街坊称呼变成了众人熟知的名号。</p>
+            </article>
+          </div>
+          <p class="steam-progress" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </p>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            阅读原文摘引
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="reflection"
+          >
+            留下读后笺 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 读后笺 -->
+      <section
+        id="sceneReflection"
+        class="scene-panel"
+        data-scene="reflection"
+        aria-labelledby="reflectionTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p class="kicker">阅读之后</p>
+          <div class="heading-row">
+            <h2 id="reflectionTitle">你记住了什么</h2>
+            <span class="scene-count">读后笺</span>
+          </div>
+          <p class="lead">
+            可以从“狗子”的哪一种品质写起，也可以想想：一门手艺为什么能够让人记住。
+          </p>
+        </header>
+
+        <div class="reflection-sheet">
+          <div id="reflectionChips" class="reflection-chips"></div>
+          <label for="reflectionText">写几句留给自己的话</label>
+          <textarea
+            id="reflectionText"
+            maxlength="1200"
+            placeholder="例如：名字可以偶然得来，真正让它留下来的，是包子背后的认真。"
+          ></textarea>
+          <div class="reflection-actions">
+            <button id="saveReflection" class="primary-button" type="button">
+              保存读后笺
+            </button>
+            <button id="restartStory" class="text-button" type="button">
+              重新体验
+            </button>
+          </div>
+          <p
+            id="reflectionStatus"
+            class="reflection-status"
+            role="status"
+            aria-live="polite"
+          >
+            读后笺只保存在当前浏览器。
+          </p>
+        </div>
+
+        <div class="scene-actions final-actions">
+          <a class="text-button" href="../index.html#street">返回天津老街</a>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="street"
+          >
+            再逛一次老街
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 原文阅读始终从顶部工具栏开放 -->
+    <div id="originalModal" class="modal" hidden>
+      <div class="modal-backdrop" data-close-original></div>
+      <section
+        class="original-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="originalTitle"
+        tabindex="-1"
+      >
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="关闭原文阅读"
+          data-close-original
+        >
+          ×
+        </button>
+        <p class="kicker">原文与设计稿分栏</p>
+        <h2 id="originalTitle">狗不理 · 阅读入口</h2>
+        <div id="originalContent" class="original-content"></div>
+        <p class="source-note">
+          这份文档主要包含交互设计说明，不是完整原文。页面只把文档中明确出现的
+          “狗子行呵，不理人啦！”标作摘引；其余内容标明为情节概述。
+          获得授权并核对出版版本后，请在 `script.js` 的 `originalText` 数组中补入全文。
+        </p>
+      </section>
+    </div>
+
+    <p id="liveStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+    <script src="script.js?v=20261109-1"></script>
+  </body>
+</html>
