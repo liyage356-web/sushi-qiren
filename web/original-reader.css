@@ -1,0 +1,320 @@
+/* 《狗不理》《泥人张》《黑头》共用的原文阅读窗口 */
+
+.shared-original-reader {
+  width: min(980px, calc(100vw - 28px));
+  max-height: min(88svh, 900px);
+  margin: auto;
+  padding: 46px clamp(22px, 4vw, 54px);
+  overflow: auto;
+  border: 1px solid rgba(37, 37, 31, 0.74);
+  color: var(--ink, #24251f);
+  background:
+    radial-gradient(circle at 92% 2%, rgba(151, 58, 43, 0.07), transparent 13rem),
+    #ede6d6;
+  box-shadow: 0 30px 90px rgba(17, 23, 18, 0.38);
+  font-family: "Noto Serif SC", "Songti SC", STSong, SimSun, serif;
+}
+
+.shared-original-reader[open] {
+  animation: shared-original-reader-in 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.shared-original-reader::backdrop {
+  background: rgba(25, 31, 26, 0.76);
+  backdrop-filter: blur(7px);
+}
+
+.shared-original-reader__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 8;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  padding: 1px 6px;
+  border: 1px solid rgba(42, 41, 34, 0.42);
+  border-radius: 0;
+  color: #24251f;
+  background: rgba(244, 237, 222, 0.9);
+  cursor: pointer;
+  font: 27.2px/27.2px "Noto Serif SC", "Songti SC", STSong, SimSun, serif;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.shared-original-reader__close:hover,
+.shared-original-reader__close:focus-visible {
+  border-color: #963f2d;
+  color: #963f2d;
+  background: #faf4e8;
+  outline: none;
+}
+
+.shared-original-reader__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  color: var(--vermilion, #9d3f2d);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: normal;
+  letter-spacing: 0.18em;
+}
+
+.shared-original-reader__eyebrow::before {
+  width: 34px;
+  height: 1px;
+  flex: 0 0 auto;
+  content: "";
+  background: currentColor;
+}
+
+.shared-original-reader__title {
+  margin: 0;
+  padding-right: 30px;
+  color: var(--ink, #24251f);
+  font-family: var(--brush, "Ma Shan Zheng"), "KaiTi", "STKaiti", serif;
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+}
+
+.shared-original-reader__tools {
+  position: sticky;
+  top: -46px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin: 0 calc(clamp(22px, 4vw, 54px) * -1) 24px;
+  padding: 12px clamp(22px, 4vw, 54px);
+  border-block: 1px solid rgba(68, 65, 51, 0.16);
+  background: rgba(237, 230, 214, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+.shared-original-reader__tools button {
+  min-height: 34px;
+  padding: 5px 10px;
+  border: 1px solid rgba(68, 65, 51, 0.28);
+  border-radius: 0;
+  color: #4d5148;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.shared-original-reader__tools button:hover,
+.shared-original-reader__tools button:focus-visible {
+  border-color: #7e382b;
+  color: #7e382b;
+  outline: none;
+}
+
+.shared-original-reader__tools button:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.shared-original-reader__progress {
+  color: #5d5d52;
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.shared-original-reader__chapters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 760px;
+  margin: -8px auto 22px;
+}
+
+.shared-original-reader__chapters button {
+  min-height: 32px;
+  padding: 5px 9px;
+  border: 1px solid rgba(68, 65, 51, 0.24);
+  border-radius: 0;
+  color: #626357;
+  background: rgba(255, 253, 246, 0.42);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.68rem;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.shared-original-reader__chapters button:hover,
+.shared-original-reader__chapters button:focus-visible {
+  border-color: #85392b;
+  color: #85392b;
+  outline: none;
+}
+
+.shared-original-reader__chapters button[aria-current="page"] {
+  border-color: rgba(133, 57, 43, 0.52);
+  color: #733126;
+  background: rgba(250, 244, 230, 0.9);
+}
+
+.shared-original-reader__text {
+  max-width: 760px;
+  margin: 24px auto 0;
+  color: rgb(51, 58, 50);
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 0.94rem;
+  line-height: 2;
+  text-align: justify;
+}
+
+.shared-original-reader__text p {
+  margin: 0 0 1.25em;
+}
+
+.shared-original-reader__text p:last-child {
+  margin-bottom: 0;
+}
+
+.shared-original-reader__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 30px 0;
+  padding: 15px 0;
+  border-block: 1px solid rgba(48, 46, 38, 0.24);
+}
+
+.shared-original-reader__meta span {
+  color: #777467;
+  font-size: 0.7rem;
+}
+
+.shared-original-reader__meta strong {
+  color: #7a3025;
+  font-family: var(--brush, "Ma Shan Zheng"), "KaiTi", "STKaiti", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.shared-original-reader__footer {
+  display: flex;
+  justify-content: flex-end;
+  width: min(100%, 760px);
+  margin-inline: auto;
+}
+
+.shared-original-reader__return {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #55564c;
+  border-radius: 0;
+  color: var(--ink, #24251f);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--brush, "Ma Shan Zheng"), "KaiTi", "STKaiti", serif;
+  font-size: 1.12rem;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.shared-original-reader__return:hover,
+.shared-original-reader__return:focus-visible {
+  border-color: #7e382b;
+  color: #7e382b;
+  background: rgba(250, 244, 230, 0.7);
+  outline: none;
+}
+
+@keyframes shared-original-reader-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 620px) {
+  .shared-original-reader {
+    width: calc(100vw - 14px);
+    max-height: 91svh;
+    padding: 32px 18px;
+  }
+
+  .shared-original-reader__close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+
+  .shared-original-reader__title {
+    padding-right: 46px;
+    font-size: 2rem;
+  }
+
+  .shared-original-reader__tools {
+    top: -32px;
+    margin: 0 -18px 20px;
+    padding-inline: 18px;
+  }
+
+  .shared-original-reader__chapters {
+    justify-content: flex-start;
+  }
+
+  .shared-original-reader__text {
+    font-size: 0.94rem;
+    line-height: 2;
+  }
+
+  .shared-original-reader__meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .shared-original-reader__meta strong {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shared-original-reader[open] {
+    animation: none;
+  }
+
+  .shared-original-reader__close,
+  .shared-original-reader__tools button,
+  .shared-original-reader__chapters button,
+  .shared-original-reader__return {
+    transition: none;
+  }
+}

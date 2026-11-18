@@ -1,0 +1,391 @@
+/* 四篇共用的读后笺弹窗 */
+
+.reading-note-layer {
+  /* 与“人物细观 · 海张五”页面的 --hzw-paper 保持一致。 */
+  --reading-note-paper: #ede6d6;
+  --reading-note-ink: #3b382f;
+  --reading-note-muted: #71695c;
+  --reading-note-line: #b8a992;
+  --reading-note-accent: #8d3929;
+  position: fixed;
+  inset: 0;
+  z-index: 50000;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 4vh, 42px) 20px;
+  background: rgba(31, 27, 22, 0.56);
+  backdrop-filter: blur(3.5px) saturate(0.82);
+}
+
+.reading-note-layer[hidden],
+.reading-note-launcher[hidden] {
+  display: none;
+}
+
+.reading-note-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.reading-note-sheet {
+  position: relative;
+  width: min(720px, calc(100vw - 40px));
+  max-height: 90vh;
+  max-height: 90dvh;
+  padding: clamp(26px, 3vw, 34px) clamp(24px, 3.2vw, 38px) 30px;
+  overflow: auto;
+  border: 1px solid rgba(116, 101, 81, 0.46);
+  color: var(--reading-note-ink);
+  background: var(--reading-note-paper);
+  box-shadow:
+    0 26px 80px rgba(26, 22, 17, 0.37),
+    inset 0 0 95px rgba(119, 94, 63, 0.06);
+  scrollbar-gutter: stable;
+  animation: reading-note-enter 300ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+}
+
+.reading-note-sheet::before {
+  position: absolute;
+  inset: 9px;
+  content: "";
+  border: 1px solid rgba(124, 108, 86, 0.2);
+  pointer-events: none;
+}
+
+.reading-note-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.reading-note-eyebrow {
+  margin: 0;
+  color: #98513e;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.reading-note-close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(101, 91, 76, 0.35);
+  border-radius: 50%;
+  color: #655d50;
+  background: rgba(248, 242, 230, 0.54);
+  cursor: pointer;
+  font: 1.3rem/1 "Songti SC", "SimSun", serif;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.reading-note-close:hover,
+.reading-note-close:focus-visible {
+  color: #fff8e9;
+  border-color: var(--reading-note-accent);
+  outline: none;
+  background: var(--reading-note-accent);
+}
+
+.reading-note-title {
+  position: relative;
+  z-index: 1;
+  margin: 17px 0 12px;
+  color: #333129;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: clamp(2rem, 3.35vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: 0.035em;
+  text-wrap: balance;
+}
+
+.reading-note-guide {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--reading-note-muted);
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.86rem;
+  line-height: 1.78;
+  letter-spacing: 0.035em;
+}
+
+.reading-note-keywords {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 22px 0 22px;
+}
+
+.reading-note-keyword {
+  min-width: 54px;
+  min-height: 34px;
+  padding: 6px 14px;
+  border: 1px solid rgba(102, 94, 80, 0.4);
+  border-radius: 1px;
+  color: #5f594e;
+  background: rgba(249, 244, 234, 0.58);
+  cursor: pointer;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.reading-note-keyword:hover,
+.reading-note-keyword:focus-visible {
+  color: #643125;
+  border-color: #a05a45;
+  outline: none;
+}
+
+.reading-note-keyword[aria-pressed="true"] {
+  color: #fff8e9;
+  border-color: var(--reading-note-accent);
+  background: var(--reading-note-accent);
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 225, 0.13);
+}
+
+.reading-note-keyword:active {
+  transform: translateY(1px);
+}
+
+.reading-note-writing-label {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 7px;
+  color: #6e6659;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.reading-note-text {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 140px;
+  min-height: 140px;
+  padding: 13px 14px;
+  resize: vertical;
+  border: 1px solid rgba(104, 94, 78, 0.44);
+  border-radius: 0;
+  color: #444036;
+  background: rgba(250, 245, 235, 0.58);
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.88rem;
+  line-height: 1.72;
+  letter-spacing: 0.035em;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.reading-note-text::placeholder {
+  color: #908779;
+}
+
+.reading-note-text:focus {
+  border-color: rgba(136, 61, 43, 0.7);
+  background: rgba(253, 249, 240, 0.76);
+  box-shadow: 0 0 0 2px rgba(139, 61, 44, 0.08);
+}
+
+.reading-note-status {
+  position: relative;
+  z-index: 1;
+  min-height: 1.5em;
+  margin: 8px 0 18px;
+  color: #7e7160;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.035em;
+}
+
+.reading-note-actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(132px, auto) minmax(112px, auto) minmax(94px, auto);
+  justify-content: start;
+  gap: 9px;
+}
+
+.reading-note-button {
+  min-height: 43px;
+  padding: 8px 15px;
+  border: 1px solid rgba(96, 84, 68, 0.48);
+  border-radius: 1px;
+  color: #4d493f;
+  background: rgba(247, 241, 230, 0.64);
+  cursor: pointer;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.055em;
+  white-space: nowrap;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.reading-note-button:hover,
+.reading-note-button:focus-visible {
+  color: #6f2f22;
+  border-color: #92513f;
+  outline: none;
+}
+
+.reading-note-button.is-primary {
+  color: #fff8e9;
+  border-color: #8f3828;
+  background: #8f3828;
+  box-shadow: 0 5px 14px rgba(91, 45, 32, 0.12);
+}
+
+.reading-note-button.is-primary:hover,
+.reading-note-button.is-primary:focus-visible {
+  color: #fffdf5;
+  border-color: #72271b;
+  background: #72271b;
+}
+
+.reading-note-launcher {
+  position: fixed;
+  right: clamp(18px, 3vw, 42px);
+  bottom: clamp(18px, 3vw, 34px);
+  z-index: 49000;
+  min-height: 44px;
+  padding: 9px 17px;
+  border: 1px solid rgba(84, 69, 52, 0.52);
+  color: #4a4238;
+  background: rgba(242, 232, 214, 0.94);
+  box-shadow: 0 10px 28px rgba(43, 35, 26, 0.2);
+  cursor: pointer;
+  font-family: var(--kai, "KaiTi", "STKaiti", serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.reading-note-launcher:hover,
+.reading-note-launcher:focus-visible {
+  color: #fff8e9;
+  border-color: #8f3828;
+  outline: none;
+  background: #8f3828;
+}
+
+[data-reading-note-managed="true"] {
+  display: none !important;
+}
+
+body.reading-note-open {
+  overflow: hidden;
+}
+
+@keyframes reading-note-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .reading-note-layer {
+    align-items: start;
+    padding: 12px;
+  }
+
+  .reading-note-sheet {
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+    margin-block: auto;
+    padding: 23px 18px 20px;
+  }
+
+  .reading-note-sheet::before {
+    inset: 6px;
+  }
+
+  .reading-note-title {
+    margin-top: 14px;
+    font-size: clamp(1.68rem, 8.2vw, 2.15rem);
+    line-height: 1.2;
+  }
+
+  .reading-note-guide {
+    font-size: 0.8rem;
+  }
+
+  .reading-note-keywords {
+    gap: 7px;
+    margin: 18px 0;
+  }
+
+  .reading-note-keyword {
+    min-width: 50px;
+    min-height: 36px;
+    padding: 6px 11px;
+  }
+
+  .reading-note-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reading-note-button.is-primary {
+    grid-column: 1 / -1;
+  }
+
+  .reading-note-button {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 380px) {
+  .reading-note-sheet {
+    padding-inline: 15px;
+  }
+
+  .reading-note-eyebrow {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-note-sheet {
+    animation: none;
+  }
+
+  .reading-note-keyword,
+  .reading-note-button,
+  .reading-note-close {
+    transition: none;
+  }
+}

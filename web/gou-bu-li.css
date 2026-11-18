@@ -1,0 +1,3301 @@
+/* 《狗不理》七页交互阅读：序章、制作、经营、名字、远播与读后 */
+
+body.dog-story-open {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #3f473f;
+}
+
+.dog-experience {
+  --dog-toolbar-height: 76px;
+  --dog-nav-height: 62px;
+  --dog-content-top: calc(
+    var(--dog-toolbar-height) + var(--dog-nav-height) + 16px
+  );
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  color: var(--ink);
+  background: #687064;
+  isolation: isolate;
+}
+
+.dog-experience[hidden],
+.dog-page[hidden],
+.dog-original-modal[hidden] {
+  display: none !important;
+}
+
+.dog-toolbar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 75;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  height: var(--dog-toolbar-height);
+  padding: 0 clamp(14px, 3vw, 42px);
+  border-bottom: 1px solid rgba(54, 50, 40, 0.18);
+  background: rgba(239, 233, 221, 0.94);
+  box-shadow: 0 10px 30px rgba(30, 34, 29, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.dog-toolbar button,
+.dog-step-nav button,
+.dog-page button,
+.dog-original-modal button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dog-back-button,
+.dog-toolbar-actions button,
+.dog-text-button,
+.dog-primary-button {
+  min-height: 40px;
+  border: 1px solid rgba(54, 49, 39, 0.45);
+  border-radius: 0;
+  background: rgba(249, 244, 232, 0.82);
+  cursor: pointer;
+  font-family: var(--kai);
+  letter-spacing: 0.05em;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.dog-back-button:hover,
+.dog-back-button:focus-visible,
+.dog-toolbar-actions button:hover,
+.dog-toolbar-actions button:focus-visible,
+.dog-text-button:hover,
+.dog-text-button:focus-visible {
+  border-color: var(--vermilion);
+  color: var(--vermilion-deep);
+  background: #fffaf0;
+}
+
+.dog-back-button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+}
+
+.dog-toolbar-title {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  white-space: nowrap;
+}
+
+.dog-toolbar-title span {
+  color: #716a5d;
+  font-family: var(--kai);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+}
+
+.dog-toolbar-title strong {
+  font-family: var(--kai);
+  font-size: clamp(1.25rem, 2.2vw, 1.72rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.dog-toolbar-title strong:focus {
+  outline: 0;
+}
+
+.dog-toolbar-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dog-toolbar-actions button {
+  padding: 7px 11px;
+  font-size: 0.76rem;
+}
+
+.dog-audio-state {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 6px 9px;
+  border: 1px dashed rgba(65, 59, 47, 0.34);
+  color: #7a7262;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.dog-audio-state[aria-pressed="true"] {
+  border-style: solid;
+  border-color: #52675b;
+  color: #f7efe0;
+  background: #52675b;
+}
+
+.dog-audio-state[aria-pressed="true"]:hover,
+.dog-audio-state[aria-pressed="true"]:focus-visible {
+  border-color: #3f5549;
+  color: #fffaf0;
+  background: #3f5549;
+}
+
+.dog-audio-state:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dog-step-nav {
+  position: absolute;
+  top: var(--dog-toolbar-height);
+  left: 50%;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(70px, 1fr));
+  width: min(920px, calc(100% - 24px));
+  height: var(--dog-nav-height);
+  overflow: hidden;
+  background: rgba(235, 228, 214, 0.9);
+  box-shadow: 0 10px 28px rgba(32, 35, 30, 0.12);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+}
+
+.dog-step-nav button {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  place-content: center;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  border: 0;
+  border-right: 1px solid rgba(63, 58, 47, 0.11);
+  color: #696457;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--kai);
+}
+
+.dog-step-nav button::after {
+  position: absolute;
+  right: 12%;
+  bottom: 0;
+  left: 12%;
+  height: 2px;
+  content: "";
+  background: transparent;
+}
+
+.dog-step-nav button:hover,
+.dog-step-nav button:focus-visible,
+.dog-step-nav button[aria-current="page"] {
+  color: var(--ink);
+  background: rgba(255, 252, 243, 0.58);
+}
+
+.dog-step-nav button[aria-current="page"]::after {
+  background: var(--vermilion);
+}
+
+.dog-step-nav button.is-story-unlocked::after {
+  background: var(--jade, #52675b);
+}
+
+.dog-step-nav button.is-story-unlocked span {
+  color: #f4ead8;
+  border-color: var(--jade, #52675b);
+  background: var(--jade, #52675b);
+}
+
+.dog-step-nav span {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid rgba(73, 66, 53, 0.32);
+  border-radius: 50%;
+  color: #8d5a40;
+  font-family: Georgia, serif;
+  font-size: 0.66rem;
+}
+
+.dog-step-nav strong {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.dog-live-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dog-pages,
+.dog-page {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.dog-pages {
+  position: absolute;
+  inset: 0;
+}
+
+.dog-page {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.16), transparent 36%),
+    #e9e1d0;
+}
+
+.dog-page:focus,
+.dog-page:focus-visible {
+  outline: 0;
+}
+
+.dog-page-street {
+  overflow: hidden;
+}
+
+.dog-opening-spread {
+  position: absolute;
+  top: var(--dog-content-top);
+  bottom: 18px;
+  left: 50%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.58fr) minmax(360px, 0.72fr);
+  gap: clamp(14px, 2.2vw, 32px);
+  width: min(1580px, calc(100% - clamp(28px, 5vw, 76px)));
+  min-height: 0;
+  transform: translateX(-50%);
+}
+
+.dog-opening-visual,
+.dog-opening-reader {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid rgba(57, 50, 39, 0.38);
+  box-shadow: 0 20px 48px rgba(39, 32, 23, 0.2);
+}
+
+.dog-opening-visual {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 252, 242, 0.18), transparent 54%),
+    linear-gradient(145deg, #9a8b74, #5d574d);
+}
+
+.dog-opening-visual::before {
+  position: absolute;
+  inset: 9px;
+  z-index: 2;
+  border: 1px solid rgba(244, 231, 204, 0.28);
+  content: "";
+  pointer-events: none;
+}
+
+.dog-opening-image-frame {
+  display: grid;
+  min-height: 0;
+  padding: clamp(17px, 2.4vw, 36px);
+  place-items: center;
+}
+
+.dog-opening-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(0.95) contrast(0.99);
+}
+
+.dog-opening-visual figcaption {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 20px 13px;
+  border-top: 1px solid rgba(244, 231, 204, 0.25);
+  color: #f8eedb;
+  background: rgba(43, 41, 35, 0.7);
+  font-family: var(--kai);
+  letter-spacing: 0.08em;
+}
+
+.dog-opening-visual figcaption span {
+  font-size: 0.82rem;
+}
+
+.dog-opening-visual figcaption small {
+  color: rgba(250, 240, 220, 0.72);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+}
+
+.dog-opening-reader {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  padding: clamp(20px, 2.8vw, 52px);
+  overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.2), transparent 44%),
+    url("images/paper-fibers.png") center / cover,
+    #ede4d3;
+}
+
+.dog-opening-heading .dog-page-title {
+  font-size: clamp(2.1rem, 3.2vw, 4.2rem);
+}
+
+.dog-opening-heading > p:last-child {
+  margin: 12px 0 0;
+  color: #6d6557;
+  font-family: var(--kai);
+  font-size: 0.73rem;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+}
+
+.dog-opening-scroll {
+  min-height: 0;
+  margin: 17px 0 14px;
+  padding: 18px 22px 20px 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid rgba(79, 67, 51, 0.24);
+  border-bottom: 1px solid rgba(79, 67, 51, 0.24);
+  color: #3f3c34;
+  background:
+    linear-gradient(90deg, rgba(143, 59, 43, 0.05), transparent 20%),
+    rgba(252, 248, 238, 0.38);
+  scrollbar-color: rgba(131, 62, 44, 0.72) rgba(91, 75, 53, 0.1);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.dog-opening-scroll:focus-visible {
+  outline: 2px solid var(--vermilion);
+  outline-offset: -3px;
+}
+
+.dog-opening-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.dog-opening-scroll::-webkit-scrollbar-track {
+  background: rgba(91, 75, 53, 0.08);
+}
+
+.dog-opening-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(131, 62, 44, 0.62);
+}
+
+.dog-opening-scroll p {
+  margin: 0;
+  color: #3e3b33;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(0.92rem, 0.8vw + 0.38rem, 1.06rem);
+  line-height: 2.02;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.dog-opening-scroll p + p {
+  margin-top: 1.15em;
+}
+
+.dog-shop-intro-reader .dog-opening-scroll p {
+  font-size: clamp(0.98rem, 0.88vw + 0.5rem, 1.18rem);
+  line-height: 2.08;
+}
+
+.dog-opening-scroll .dog-opening-end {
+  margin-top: 1.35em;
+  padding: 15px 0 3px;
+  border-top: 1px solid rgba(124, 61, 44, 0.22);
+  color: rgba(95, 59, 46, 0.45);
+  font-family: var(--kai);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  transition: color 280ms ease;
+}
+
+.dog-page-street.is-complete .dog-opening-end {
+  color: var(--vermilion-deep);
+}
+
+.dog-opening-progress-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 2.5em;
+  align-items: center;
+  gap: 10px;
+  color: #6f6758;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}
+
+.dog-opening-progress-row strong {
+  color: var(--vermilion-deep);
+  font-family: Georgia, serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.dog-opening-progress {
+  height: 4px;
+  overflow: hidden;
+  background: rgba(77, 64, 48, 0.14);
+}
+
+.dog-opening-progress > span {
+  display: block;
+  width: var(--dog-opening-progress, 0%);
+  height: 100%;
+  background: linear-gradient(90deg, #8f3b2b, #bd7b57);
+  transition: width 120ms linear;
+}
+
+.dog-opening-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.dog-opening-footer p {
+  margin: 0;
+  color: #746b5c;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.dog-opening-footer .dog-text-button {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 6px 11px;
+  font-size: 0.72rem;
+}
+
+.dog-shop-intro[hidden],
+.dog-shop-main[hidden] {
+  display: none !important;
+}
+
+.dog-page-shop[data-dog-shop-stage="intro"] {
+  overflow: hidden;
+}
+
+.dog-page-street.is-leaving .dog-opening-visual {
+  animation: dog-opening-visual-out 820ms ease forwards;
+}
+
+.dog-page-street.is-leaving .dog-opening-reader {
+  animation: dog-opening-reader-out 820ms ease forwards;
+}
+
+.dog-page-shop.is-scene-entering .dog-page-layout {
+  animation: dog-next-scene-in 760ms ease both;
+}
+
+.dog-page-shop.is-scene-entering .dog-opening-spread {
+  animation: dog-shop-intro-in 760ms ease both;
+}
+
+.dog-shop-intro.is-leaving .dog-opening-visual {
+  animation: dog-opening-visual-out 760ms ease forwards;
+}
+
+.dog-shop-intro.is-leaving .dog-opening-reader {
+  animation: dog-opening-reader-out 760ms ease forwards;
+}
+
+.dog-shop-main.is-scene-entering {
+  animation: dog-next-scene-in 760ms ease both;
+}
+
+@keyframes dog-opening-visual-out {
+  to {
+    opacity: 0.45;
+    transform: translateX(-18px) scale(0.985);
+  }
+}
+
+@keyframes dog-opening-reader-out {
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes dog-next-scene-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dog-shop-intro-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dog-street-background,
+.dog-fame-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dog-street-background {
+  z-index: 0;
+  filter: saturate(0.88) contrast(0.98);
+}
+
+.dog-street-atmosphere,
+.dog-fame-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(248, 242, 228, 0.16), transparent 34%, transparent 72%, rgba(42, 35, 26, 0.12)),
+    linear-gradient(180deg, rgba(245, 237, 219, 0.1), transparent 45%, rgba(41, 34, 25, 0.46)),
+    radial-gradient(circle at 46% 54%, transparent 0 28%, rgba(53, 42, 29, 0.12) 100%);
+}
+
+.dog-steam {
+  position: absolute;
+  z-index: 2;
+  width: 190px;
+  height: 240px;
+  opacity: 0.38;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(255, 252, 240, 0.82), transparent 56%),
+    radial-gradient(ellipse at 35% 50%, rgba(255, 252, 241, 0.46), transparent 48%);
+  filter: blur(15px);
+  animation: dog-steam-rise 4.8s ease-in-out infinite alternate;
+}
+
+.dog-steam-one {
+  top: 27%;
+  left: 24%;
+}
+
+.dog-steam-two {
+  top: 17%;
+  left: 36%;
+  animation-delay: -2.3s;
+  transform: scale(0.78);
+}
+
+@keyframes dog-steam-rise {
+  from {
+    opacity: 0.2;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 0.48;
+    transform: translateY(-12px) scale(1.06);
+  }
+}
+
+.dog-scene-heading {
+  position: absolute;
+  top: var(--dog-content-top);
+  left: clamp(24px, 4vw, 62px);
+  z-index: 14;
+  width: min(430px, 34vw);
+  padding: 19px 21px;
+  border: 1px solid rgba(61, 54, 42, 0.34);
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.22), transparent 45%),
+    rgba(245, 237, 222, 0.9);
+  box-shadow: 0 14px 36px rgba(41, 34, 25, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.dog-eyebrow {
+  margin: 0 0 7px;
+  color: var(--vermilion-deep);
+  font-family: var(--kai);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+}
+
+.dog-page-title {
+  margin: 0;
+  font-family: var(--kai);
+  font-size: clamp(2rem, 3.8vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+}
+
+.dog-scene-heading p:last-child {
+  margin: 11px 0 0;
+  color: #59564b;
+  font-size: 0.82rem;
+  line-height: 1.72;
+}
+
+.dog-vertical-title {
+  position: absolute;
+  top: calc(var(--dog-content-top) + 6px);
+  right: 23px;
+  z-index: 2;
+  margin: 0;
+  color: rgba(54, 47, 36, 0.18);
+  font-family: var(--kai);
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  letter-spacing: 0.14em;
+  writing-mode: vertical-rl;
+}
+
+.dog-hotspot {
+  position: absolute;
+  z-index: 12;
+  min-width: 64px;
+  min-height: 64px;
+  padding: 0;
+  border: 1px solid rgba(252, 244, 226, 0.3);
+  border-radius: 50%;
+  background: rgba(246, 237, 219, 0.035);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.dog-hotspot:hover,
+.dog-hotspot:focus-visible {
+  border-color: rgba(255, 244, 220, 0.9);
+  background: rgba(164, 67, 45, 0.2);
+  box-shadow:
+    0 0 0 7px rgba(248, 238, 218, 0.12),
+    0 0 30px rgba(166, 69, 46, 0.24);
+}
+
+.dog-hotspot.is-visited {
+  border-color: rgba(143, 53, 36, 0.8);
+  background: rgba(165, 66, 46, 0.18);
+}
+
+.dog-hotspot-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #f7edda;
+  border-radius: 50%;
+  background: var(--vermilion);
+  box-shadow: 0 0 0 3px rgba(112, 43, 30, 0.22);
+}
+
+.dog-hotspot strong {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  padding: 4px 7px;
+  border-bottom: 2px solid var(--vermilion);
+  color: #2f2e28;
+  background: rgba(247, 240, 225, 0.92);
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.dog-hotspot-sign {
+  top: 31%;
+  left: 8%;
+  width: 18%;
+  height: 31%;
+  border-radius: 3px;
+}
+
+.dog-hotspot-steamer {
+  top: 54%;
+  left: 21%;
+  width: 20%;
+  height: 30%;
+}
+
+.dog-hotspot-person {
+  top: 34%;
+  left: 42%;
+  width: 28%;
+  height: 50%;
+}
+
+.dog-hotspot-customer {
+  top: 45%;
+  left: 78%;
+  width: 18%;
+  height: 34%;
+}
+
+.dog-observation-card {
+  position: absolute;
+  right: clamp(22px, 3.5vw, 52px);
+  bottom: 102px;
+  z-index: 18;
+  width: min(350px, 30vw);
+  padding: 17px 19px;
+  border: 1px solid rgba(59, 52, 41, 0.34);
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.25), transparent 45%),
+    rgba(244, 235, 216, 0.93);
+  box-shadow: 0 15px 36px rgba(36, 30, 22, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.dog-observation-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dog-observation-head p,
+.dog-observation-head span {
+  margin: 0;
+  color: #766d5c;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.dog-observation-head b {
+  color: var(--vermilion-deep);
+  font-weight: 500;
+}
+
+.dog-observation-card h3 {
+  margin: 9px 0 6px;
+  font-family: var(--kai);
+  font-size: 1.24rem;
+  font-weight: 500;
+}
+
+.dog-observation-card > p {
+  margin: 0;
+  color: #5e594c;
+  font-size: 0.78rem;
+  line-height: 1.72;
+}
+
+.dog-scene-footer {
+  position: absolute;
+  bottom: 26px;
+  left: clamp(22px, 3.5vw, 52px);
+  z-index: 18;
+  display: flex;
+  gap: 8px;
+}
+
+.dog-text-button,
+.dog-primary-button {
+  min-height: 42px;
+  padding: 8px 15px;
+  font-size: 0.82rem;
+}
+
+.dog-primary-button {
+  border-color: #733226;
+  color: #fff8e9;
+  background: #8f3b2b;
+}
+
+.dog-primary-button:hover,
+.dog-primary-button:focus-visible {
+  border-color: #5f291f;
+  color: #fffdf7;
+  background: #742f23;
+  transform: translateY(-1px);
+}
+
+.dog-asset-note {
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  margin: 0;
+  color: rgba(255, 249, 235, 0.64);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.03em;
+}
+
+/* 包子铺人物导读 */
+
+.dog-page-shop,
+.dog-page-craft,
+.dog-page-market,
+.dog-page-name,
+.dog-page-fame,
+.dog-page-reflection {
+  padding-top: var(--dog-content-top);
+  overflow-y: auto;
+}
+
+.dog-page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(390px, 0.9fr);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.dog-visual-stage {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(55, 49, 39, 0.34);
+  background: #d4c6ac;
+}
+
+.dog-visual-stage > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 43% center;
+  filter: saturate(0.86) contrast(0.98);
+}
+
+.dog-visual-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 45%, rgba(239, 230, 212, 0.38)),
+    linear-gradient(180deg, rgba(245, 238, 222, 0.03), transparent 55%, rgba(45, 37, 27, 0.4));
+}
+
+.dog-portrait-card {
+  position: absolute;
+  right: 7%;
+  bottom: 3%;
+  width: clamp(180px, 23vw, 340px);
+  margin: 0;
+  padding: 10px 10px 8px;
+  border: 1px solid rgba(54, 48, 37, 0.4);
+  background: rgba(239, 231, 214, 0.88);
+  box-shadow: 0 18px 38px rgba(41, 33, 23, 0.27);
+  backdrop-filter: blur(5px);
+}
+
+.dog-portrait-card img {
+  display: block;
+  width: 100%;
+  max-height: min(48vh, 430px);
+  object-fit: contain;
+}
+
+.dog-portrait-card figcaption {
+  margin-top: 4px;
+  color: #5d5546;
+  font-family: var(--kai);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.dog-copy-panel {
+  min-width: 0;
+  overflow-y: auto;
+  padding: clamp(26px, 4vw, 58px);
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    url("images/paper-fibers.png") center / cover,
+    #eee6d6;
+}
+
+.dog-lead {
+  margin: 17px 0 0;
+  color: #555247;
+  font-size: 0.88rem;
+  line-height: 1.86;
+}
+
+.dog-copy-panel blockquote {
+  position: relative;
+  margin: 24px 0;
+  padding: 18px 20px 18px 24px;
+  border-left: 3px solid var(--vermilion);
+  color: #47453c;
+  background: rgba(249, 244, 232, 0.58);
+}
+
+.dog-copy-panel blockquote span {
+  color: var(--vermilion-deep);
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.dog-copy-panel blockquote p {
+  margin: 6px 0 0;
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
+
+.dog-source-note {
+  padding: 13px 15px;
+  border: 1px dashed rgba(76, 66, 51, 0.32);
+  color: #6c6455;
+  background: rgba(250, 246, 235, 0.4);
+}
+
+.dog-source-note strong {
+  color: #544d40;
+  font-family: var(--kai);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.dog-source-note p {
+  margin: 5px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.72;
+}
+
+.dog-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 23px;
+}
+
+/* 制作与经营静态预览 */
+
+.dog-page-craft,
+.dog-page-market {
+  padding-right: clamp(18px, 4vw, 56px);
+  padding-bottom: 24px;
+  padding-left: clamp(18px, 4vw, 56px);
+  background:
+    linear-gradient(90deg, rgba(102, 72, 43, 0.04), transparent 28%, transparent 72%, rgba(102, 72, 43, 0.04)),
+    url("images/paper-fibers.png") center / cover,
+    #e9e1d0;
+}
+
+.dog-center-heading {
+  width: min(760px, 100%);
+  margin: clamp(12px, 2.5vh, 28px) auto clamp(24px, 4vh, 42px);
+  text-align: center;
+}
+
+.dog-center-heading .dog-page-title {
+  font-size: clamp(2.7rem, 5vw, 4.8rem);
+}
+
+.dog-center-heading > p:last-child {
+  max-width: 48em;
+  margin: 14px auto 0;
+  color: #5d584b;
+  font-size: 0.87rem;
+  line-height: 1.78;
+}
+
+.dog-center-heading.compact {
+  margin-bottom: 20px;
+}
+
+.dog-craft-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.dog-craft-card {
+  position: relative;
+  min-height: 265px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(55, 49, 39, 0.35);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 44%),
+    rgba(245, 238, 225, 0.8);
+  box-shadow: 0 13px 28px rgba(51, 42, 30, 0.1);
+}
+
+.dog-step-number {
+  color: rgba(128, 65, 44, 0.52);
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.dog-card-kicker {
+  margin: 12px 0 5px;
+  color: var(--vermilion-deep);
+  font-family: var(--kai);
+  font-size: 0.73rem;
+  letter-spacing: 0.12em;
+}
+
+.dog-craft-card h3 {
+  margin: 0;
+  font-family: var(--kai);
+  font-size: 1.22rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.dog-craft-card > p:last-child {
+  margin: 10px 0 0;
+  color: #615b4f;
+  font-size: 0.78rem;
+  line-height: 1.72;
+}
+
+.dog-craft-icon {
+  display: block;
+  width: 100%;
+  height: 126px;
+  margin: 9px auto 0;
+  border: 1px solid rgba(81, 68, 51, 0.18);
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(49, 38, 24, 0.12);
+}
+
+.dog-craft-bowl::before {
+  position: absolute;
+  right: 4px;
+  bottom: 9px;
+  left: 4px;
+  height: 53px;
+  border: 2px solid #545249;
+  border-radius: 9px 9px 54px 54px;
+  content: "";
+  background:
+    repeating-linear-gradient(115deg, transparent 0 16px, rgba(65, 75, 69, 0.16) 17px 20px),
+    #e3d9c6;
+}
+
+.dog-craft-bowl::after {
+  position: absolute;
+  top: 19px;
+  left: 31px;
+  width: 56px;
+  height: 18px;
+  border-radius: 50%;
+  content: "";
+  background: #7a624d;
+  box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.18);
+}
+
+.dog-craft-wrap::before {
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  width: 74px;
+  height: 54px;
+  border: 2px solid #59564c;
+  border-radius: 50% 50% 44% 44%;
+  content: "";
+  background: #eadfc9;
+  transform: rotate(-5deg);
+}
+
+.dog-craft-wrap::after {
+  position: absolute;
+  top: 28px;
+  left: 44px;
+  width: 30px;
+  height: 34px;
+  border-radius: 50% 50% 40% 40%;
+  content: "";
+  background: #a67b62;
+  box-shadow: 20px 15px 0 -11px #755846;
+  transform: rotate(-9deg);
+}
+
+.dog-craft-pleat::before {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 82px;
+  height: 60px;
+  border: 2px solid #58554b;
+  border-radius: 50%;
+  content: "";
+  background:
+    conic-gradient(from 2deg, transparent 0 7%, rgba(95, 86, 72, 0.48) 8% 9%, transparent 10% 16%),
+    #e9dfcb;
+}
+
+.dog-craft-pleat::after {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  width: 12px;
+  height: 18px;
+  border: 2px solid #5c584d;
+  border-radius: 50%;
+  content: "";
+  background: #ddd2bc;
+  transform: translateX(-50%);
+}
+
+.dog-craft-steam::before {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  left: 10px;
+  height: 44px;
+  border: 2px solid #5b5548;
+  border-radius: 5px;
+  content: "";
+  background:
+    repeating-linear-gradient(0deg, rgba(86, 66, 42, 0.18) 0 2px, transparent 3px 13px),
+    #c7a87a;
+}
+
+.dog-craft-steam::after {
+  position: absolute;
+  top: 2px;
+  left: 39px;
+  width: 25px;
+  height: 48px;
+  border-radius: 50%;
+  content: "";
+  background: rgba(255, 252, 242, 0.82);
+  box-shadow:
+    -28px 10px 14px rgba(255, 253, 244, 0.44),
+    29px 8px 15px rgba(255, 253, 244, 0.5);
+  filter: blur(5px);
+}
+
+.dog-page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 18px auto 0;
+}
+
+.dog-craft-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.dog-phase-note,
+.dog-stage-note {
+  color: #79715f;
+  font-family: var(--kai);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.dog-market-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(55, 49, 39, 0.34);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 245, 0.18), transparent 36%),
+    url("images/paper-fibers.png") center / cover,
+    #d5c7af;
+  box-shadow: 0 16px 35px rgba(41, 34, 25, 0.12);
+}
+
+.dog-market-steam {
+  position: absolute;
+  top: -30px;
+  left: 12%;
+  width: 220px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 252, 243, 0.5);
+  filter: blur(26px);
+}
+
+.dog-market-object {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 200px;
+  padding: 19px;
+  border: 1px solid rgba(62, 54, 42, 0.3);
+  background: rgba(247, 240, 226, 0.78);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.dog-market-object:hover,
+.dog-market-object:focus-visible,
+.dog-market-object[aria-pressed="true"] {
+  border-color: rgba(126, 54, 40, 0.7);
+  background: rgba(255, 249, 236, 0.92);
+  box-shadow: 0 10px 24px rgba(61, 42, 27, 0.14);
+  transform: translateY(-2px);
+}
+
+.dog-market-object[aria-pressed="true"]::after {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid rgba(123, 51, 37, 0.5);
+  border-radius: 50%;
+  color: var(--vermilion-deep);
+  content: "见";
+  font-family: var(--kai);
+  font-size: 0.65rem;
+}
+
+.dog-market-object-title {
+  display: block;
+  margin: 6px 0 5px;
+  font-family: var(--kai);
+  font-size: 1.32rem;
+  font-weight: 500;
+}
+
+.dog-market-object-copy {
+  display: block;
+  margin: 0;
+  color: #615a4e;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.dog-object-illustration {
+  position: relative;
+  display: grid;
+  height: 90px;
+  place-items: center;
+}
+
+.dog-market-object.bowl .dog-object-illustration::before {
+  width: 153px;
+  height: 60px;
+  border: 2px solid #4e5048;
+  border-radius: 8px 8px 55px 55px;
+  content: "";
+  background:
+    repeating-linear-gradient(120deg, transparent 0 15px, rgba(57, 76, 67, 0.18) 16px 19px),
+    #e7dfcf;
+}
+
+.dog-bun {
+  position: absolute;
+  top: 22px;
+  width: 44px;
+  height: 30px;
+  border: 1px solid #5e594d;
+  border-radius: 50% 50% 42% 42%;
+  background: #f1e5cf;
+}
+
+.dog-bun::before {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 9px;
+  height: 8px;
+  border-radius: 50%;
+  content: "";
+  background: #cfc0a6;
+  transform: translateX(-50%);
+}
+
+.bun-a {
+  left: calc(50% - 61px);
+}
+
+.bun-b {
+  left: calc(50% - 20px);
+}
+
+.bun-c {
+  left: calc(50% + 22px);
+}
+
+.dog-coin {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border: 3px double #705c3f;
+  border-radius: 50%;
+  color: #59482e;
+  background: #c8ae7f;
+  font-family: var(--kai);
+  font-size: 1.35rem;
+  box-shadow: 7px 8px 0 rgba(70, 57, 39, 0.12);
+}
+
+.dog-market-object.coin .dog-object-illustration::after {
+  position: absolute;
+  bottom: 4px;
+  width: 112px;
+  height: 27px;
+  border: 2px solid #5b4a35;
+  content: "";
+  background: #9a764d;
+}
+
+.dog-busy-mark {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border: 2px solid rgba(124, 53, 38, 0.68);
+  border-radius: 50%;
+  color: var(--vermilion-deep);
+  font-family: var(--kai);
+  font-size: 2.1rem;
+  transform: rotate(-7deg);
+}
+
+.dog-market-saying {
+  position: absolute;
+  right: 25px;
+  bottom: 12px;
+  z-index: 3;
+  margin: 0;
+  color: rgba(70, 59, 44, 0.54);
+  font-family: var(--kai);
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    color 260ms ease,
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
+.dog-market-stage.is-complete .dog-market-saying {
+  color: var(--vermilion-deep);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dog-market-response {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 1px;
+  padding: 13px 15px 18px;
+  border-top: 1px dashed rgba(80, 66, 48, 0.28);
+  color: #655d4f;
+  font-family: var(--kai);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.dog-market-response strong {
+  flex: 0 0 auto;
+  color: var(--vermilion-deep);
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+/* 名字反转与名声远播 */
+
+.dog-name-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(22px, 4vw, 62px);
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 20px 0 12px;
+}
+
+.dog-name-layout > header > p:last-child {
+  margin: 15px 0 0;
+  color: #5b564a;
+  font-size: 0.86rem;
+  line-height: 1.82;
+}
+
+.dog-name-preview {
+  display: grid;
+  grid-template-columns: 175px minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.dog-hanging-sign {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  min-height: 260px;
+  border: 2px solid #7d674b;
+  color: rgba(58, 50, 39, 0.28);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent 50%),
+    #d8c39d;
+  box-shadow: 8px 11px 22px rgba(53, 42, 29, 0.16);
+  font-family: var(--kai);
+  font-size: 2.7rem;
+}
+
+.dog-hanging-sign span {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(-10px) rotate(-4deg);
+  transition:
+    color 360ms ease,
+    opacity 360ms ease,
+    transform 480ms cubic-bezier(0.2, 0.9, 0.2, 1.2);
+}
+
+.dog-hanging-sign:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.dog-hanging-sign:not(:disabled) {
+  cursor: pointer;
+}
+
+.dog-hanging-sign:not(:disabled):hover,
+.dog-hanging-sign:not(:disabled):focus-visible {
+  border-color: var(--vermilion-deep);
+  box-shadow:
+    8px 11px 22px rgba(53, 42, 29, 0.16),
+    0 0 0 3px rgba(143, 59, 43, 0.12);
+}
+
+.dog-hanging-sign span.is-revealed {
+  color: var(--vermilion-deep);
+  opacity: 1;
+  transform: translateY(0) rotate(-2deg);
+}
+
+.dog-hanging-sign.is-complete {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.32), transparent 50%),
+    #d8c39d;
+}
+
+.dog-town-talk {
+  display: grid;
+  gap: 9px;
+}
+
+.dog-talk-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 12px;
+  width: 100%;
+  padding: 13px 15px;
+  border-left: 2px solid rgba(142, 59, 42, 0.7);
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  background: rgba(248, 242, 229, 0.62);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.dog-talk-card:hover,
+.dog-talk-card:focus-visible,
+.dog-talk-card[aria-pressed="true"] {
+  border-left-color: var(--vermilion);
+  background: rgba(255, 250, 239, 0.92);
+  transform: translateX(3px);
+}
+
+.dog-town-talk b {
+  color: var(--vermilion-deep);
+  font-family: var(--kai);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.dog-town-talk span {
+  grid-column: 1;
+  margin-top: 3px;
+  color: #565247;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.dog-town-talk small {
+  grid-row: 1;
+  grid-column: 2;
+  color: #8a7c67;
+  font-family: var(--kai);
+  font-size: 0.63rem;
+  letter-spacing: 0.06em;
+}
+
+.dog-talk-card[aria-pressed="true"] small {
+  color: var(--vermilion-deep);
+}
+
+.dog-stage-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 13px;
+  border-top: 1px dashed rgba(76, 65, 49, 0.28);
+}
+
+.dog-page-fame {
+  overflow: hidden;
+}
+
+.dog-fame-background {
+  z-index: 0;
+  object-position: 50% 42%;
+  filter: saturate(0.76) brightness(0.88) contrast(1.03);
+}
+
+.dog-fame-wash {
+  background:
+    linear-gradient(90deg, rgba(31, 35, 30, 0.75), rgba(31, 35, 30, 0.2) 58%, transparent),
+    linear-gradient(180deg, rgba(36, 37, 31, 0.22), transparent 38%, rgba(35, 33, 27, 0.25));
+}
+
+.dog-fame-copy {
+  position: absolute;
+  top: var(--dog-content-top);
+  bottom: 35px;
+  left: clamp(24px, 5vw, 78px);
+  z-index: 3;
+  display: flex;
+  width: min(520px, 46vw);
+  flex-direction: column;
+  justify-content: center;
+  color: #f4ecdc;
+}
+
+.dog-fame-copy .dog-eyebrow {
+  color: #dbc3a1;
+}
+
+.dog-fame-copy .dog-page-title {
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  text-shadow: 0 4px 22px rgba(25, 22, 17, 0.42);
+}
+
+.dog-fame-copy > p:not(.dog-eyebrow) {
+  max-width: 35em;
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.dog-fame-route {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 25px;
+  font-family: var(--kai);
+  font-size: 0.72rem;
+}
+
+.dog-fame-route button {
+  min-height: 31px;
+  padding: 5px 8px;
+  border: 1px solid rgba(239, 227, 203, 0.45);
+  color: #f4ecdc;
+  background: rgba(39, 40, 33, 0.22);
+  cursor: pointer;
+  font-family: var(--kai);
+  font-size: inherit;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.dog-fame-route button:hover,
+.dog-fame-route button:focus-visible {
+  border-color: rgba(247, 235, 211, 0.9);
+  background: rgba(84, 61, 42, 0.6);
+}
+
+.dog-fame-route button.is-active {
+  border-color: #dbc3a1;
+  color: #302f28;
+  background: #dbc3a1;
+}
+
+.dog-fame-route i {
+  width: 26px;
+  height: 1px;
+  background: rgba(239, 227, 203, 0.58);
+}
+
+.dog-fame-copy .dog-text-button {
+  border-color: rgba(245, 235, 216, 0.55);
+  color: #f7eedf;
+  background: rgba(42, 43, 36, 0.26);
+}
+
+.dog-fame-story {
+  max-width: 37em;
+  margin-top: 22px;
+  padding: 15px 17px 14px;
+  border: 1px solid rgba(240, 227, 201, 0.32);
+  background: rgba(36, 36, 30, 0.48);
+  backdrop-filter: blur(5px);
+}
+
+.dog-fame-story > p:first-child {
+  margin: 0;
+  color: #dbc3a1;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.dog-fame-story blockquote {
+  margin: 9px 0 0;
+  color: #fff6e7;
+  font-family: var(--kai);
+  font-size: 1.03rem;
+  line-height: 1.72;
+}
+
+.dog-fame-story > p:not(:first-child) {
+  margin: 8px 0 0;
+  color: rgba(246, 235, 216, 0.74);
+  font-size: 0.75rem;
+  line-height: 1.65;
+}
+
+.dog-fame-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.dog-fame-controls .dog-text-button {
+  min-height: 36px;
+  padding: 6px 11px;
+  font-size: 0.73rem;
+}
+
+.dog-fame-controls .dog-text-button:disabled {
+  cursor: default;
+  opacity: 0.58;
+}
+
+.dog-fame-controls > span {
+  color: rgba(248, 237, 217, 0.72);
+  font-family: Georgia, serif;
+  font-size: 0.68rem;
+}
+
+.dog-page-reflection {
+  display: grid;
+  place-items: center;
+  padding-right: 20px;
+  padding-bottom: 24px;
+  padding-left: 20px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 252, 240, 0.38), transparent 28%),
+    url("images/paper-fibers.png") center / cover,
+    #e8dfcd;
+}
+
+.dog-reflection-sheet {
+  width: min(720px, 100%);
+  padding: clamp(24px, 4vw, 50px);
+  border: 1px solid rgba(59, 52, 41, 0.38);
+  background: rgba(248, 242, 230, 0.78);
+  box-shadow: 0 24px 60px rgba(39, 32, 24, 0.15);
+}
+
+.dog-reflection-sheet > p:not(.dog-eyebrow) {
+  margin: 16px 0 0;
+  color: #5f594d;
+  font-size: 0.86rem;
+  line-height: 1.82;
+}
+
+.dog-reflection-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.dog-reflection-prompts button {
+  padding: 6px 12px;
+  border: 1px solid rgba(84, 73, 56, 0.32);
+  color: #5c5649;
+  background: rgba(255, 251, 242, 0.45);
+  cursor: pointer;
+  font-family: var(--kai);
+  font-size: 0.76rem;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.dog-reflection-prompts button:hover,
+.dog-reflection-prompts button:focus-visible,
+.dog-reflection-prompts button[aria-pressed="true"] {
+  border-color: rgba(120, 50, 37, 0.72);
+  color: #fffaf0;
+  background: #8f3b2b;
+}
+
+.dog-reflection-label {
+  display: block;
+  margin-top: 22px;
+  color: #5c5446;
+  font-family: var(--kai);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
+.dog-reflection-text {
+  display: block;
+  width: 100%;
+  min-height: 124px;
+  margin-top: 7px;
+  padding: 12px 13px;
+  resize: vertical;
+  border: 1px solid rgba(78, 67, 51, 0.34);
+  border-radius: 0;
+  color: #3f3c34;
+  background: rgba(255, 252, 244, 0.56);
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 0.85rem;
+  line-height: 1.75;
+}
+
+.dog-reflection-text:focus {
+  border-color: var(--vermilion);
+  outline: 2px solid rgba(143, 59, 43, 0.18);
+  outline-offset: 1px;
+}
+
+.dog-reflection-status {
+  margin: 8px 0 0;
+  color: #746b5c;
+  font-family: var(--kai);
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+/* 原文入口 */
+
+.dog-original-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+}
+
+.dog-original-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(28, 31, 27, 0.72);
+  cursor: pointer;
+  backdrop-filter: blur(7px);
+}
+
+.dog-original-sheet {
+  position: relative;
+  z-index: 2;
+  width: min(620px, 100%);
+  max-height: calc(100svh - 44px);
+  overflow-y: auto;
+  padding: clamp(28px, 5vw, 54px);
+  border: 1px solid rgba(61, 53, 41, 0.42);
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.26), transparent 44%),
+    url("images/paper-fibers.png") center / cover,
+    #efe7d7;
+  box-shadow: 0 30px 90px rgba(16, 18, 15, 0.38);
+}
+
+.dog-original-sheet:focus {
+  outline: 0;
+}
+
+.dog-original-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  min-height: 34px;
+  padding: 5px 10px;
+  border: 1px solid rgba(67, 59, 46, 0.34);
+  background: rgba(250, 246, 235, 0.56);
+  cursor: pointer;
+  font-family: var(--kai);
+  font-size: 0.72rem;
+}
+
+.dog-original-sheet > p:not(.dog-eyebrow, .dog-original-note) {
+  margin: 17px 0 0;
+  color: #5c564a;
+  font-size: 0.86rem;
+  line-height: 1.82;
+}
+
+.dog-original-text {
+  margin-top: 22px;
+  color: #37342e;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 0.94rem;
+  line-height: 2;
+  text-align: justify;
+}
+
+.dog-original-text p {
+  margin: 0 0 1.25em;
+}
+
+.dog-original-text p:last-child {
+  margin-bottom: 0;
+}
+
+.dog-original-quote {
+  margin: 22px 0;
+  padding: 19px 22px;
+  border-top: 1px solid rgba(77, 65, 48, 0.22);
+  border-bottom: 1px solid rgba(77, 65, 48, 0.22);
+  color: #4e4539;
+  font-family: var(--kai);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  line-height: 1.7;
+}
+
+.dog-original-note {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border-left: 2px solid var(--vermilion);
+  color: #746b5b;
+  background: rgba(250, 245, 233, 0.56);
+  font-size: 0.78rem;
+  line-height: 1.72;
+}
+
+@media (max-width: 1100px) {
+  .dog-toolbar {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .dog-toolbar-actions {
+    gap: 4px;
+  }
+
+  .dog-toolbar-actions button {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .dog-scene-heading {
+    width: min(380px, 36vw);
+  }
+
+  .dog-observation-card {
+    width: 300px;
+  }
+
+  .dog-craft-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .dog-experience {
+    --dog-toolbar-height: 116px;
+    --dog-nav-height: 58px;
+    --dog-content-top: calc(
+      var(--dog-toolbar-height) + var(--dog-nav-height) + 10px
+    );
+  }
+
+  .dog-toolbar {
+    grid-template-areas:
+      "back title"
+      "actions actions";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 50px 52px;
+    align-content: center;
+    gap: 3px 12px;
+    padding: 4px 10px 7px;
+  }
+
+  .dog-back-button {
+    grid-area: back;
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .dog-toolbar-title {
+    grid-area: title;
+    justify-items: end;
+  }
+
+  .dog-toolbar-title span {
+    display: none;
+  }
+
+  .dog-toolbar-actions {
+    grid-area: actions;
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .dog-toolbar-actions button {
+    min-height: 36px;
+    padding: 5px 4px;
+    font-size: 0.68rem;
+  }
+
+  .dog-step-nav {
+    top: var(--dog-toolbar-height);
+    display: flex;
+    justify-content: flex-start;
+    width: calc(100% - 12px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .dog-step-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dog-step-nav button {
+    flex: 0 0 82px;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    padding: 5px 3px;
+  }
+
+  .dog-step-nav span {
+    width: 21px;
+    height: 21px;
+    margin: 0 auto;
+    font-size: 0.61rem;
+  }
+
+  .dog-step-nav strong {
+    font-size: 0.68rem;
+  }
+
+  .dog-page-street {
+    min-height: 100%;
+  }
+
+  .dog-opening-spread {
+    top: var(--dog-content-top);
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(180px, 28svh) minmax(0, 1fr);
+    gap: 8px;
+    width: auto;
+    transform: none;
+  }
+
+  .dog-opening-visual {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .dog-opening-visual::before {
+    inset: 5px;
+  }
+
+  .dog-opening-image-frame {
+    padding: 9px;
+  }
+
+  .dog-opening-visual figcaption {
+    padding: 7px 11px 8px;
+  }
+
+  .dog-opening-visual figcaption span {
+    font-size: 0.7rem;
+  }
+
+  .dog-opening-visual figcaption small {
+    font-size: 0.6rem;
+  }
+
+  .dog-opening-reader {
+    padding: 13px 14px 11px;
+  }
+
+  .dog-opening-heading .dog-page-title {
+    font-size: clamp(1.72rem, 8.5vw, 2.35rem);
+  }
+
+  .dog-opening-heading .dog-eyebrow {
+    margin-bottom: 4px;
+    font-size: 0.64rem;
+  }
+
+  .dog-opening-heading > p:last-child {
+    margin-top: 6px;
+    font-size: 0.65rem;
+    line-height: 1.45;
+  }
+
+  .dog-opening-scroll {
+    margin: 8px 0 7px;
+    padding: 11px 15px 12px 11px;
+  }
+
+  .dog-opening-scroll p {
+    font-size: 0.79rem;
+    line-height: 1.82;
+    text-align: left;
+  }
+
+  .dog-shop-intro-reader .dog-opening-scroll p {
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .dog-opening-scroll .dog-opening-end {
+    margin-top: 0.9em;
+    padding-top: 10px;
+    font-size: 0.68rem;
+  }
+
+  .dog-opening-progress-row {
+    gap: 7px;
+    font-size: 0.62rem;
+  }
+
+  .dog-opening-progress-row strong {
+    font-size: 0.62rem;
+  }
+
+  .dog-opening-footer {
+    gap: 7px;
+    margin-top: 7px;
+  }
+
+  .dog-opening-footer p {
+    font-size: 0.61rem;
+  }
+
+  .dog-opening-footer .dog-text-button {
+    min-height: 32px;
+    padding: 5px 8px;
+    font-size: 0.65rem;
+  }
+
+  .dog-street-background {
+    object-position: 52% center;
+  }
+
+  .dog-steam {
+    width: 120px;
+    height: 160px;
+  }
+
+  .dog-scene-heading {
+    top: var(--dog-content-top);
+    right: 10px;
+    left: 10px;
+    width: auto;
+    padding: 14px 15px;
+  }
+
+  .dog-scene-heading .dog-page-title {
+    font-size: clamp(1.8rem, 8.2vw, 2.55rem);
+  }
+
+  .dog-scene-heading p:last-child {
+    margin-top: 7px;
+    font-size: 0.72rem;
+    line-height: 1.58;
+  }
+
+  .dog-vertical-title {
+    display: none;
+  }
+
+  .dog-hotspot-sign {
+    top: 36%;
+    left: 3%;
+    width: 24%;
+    height: 26%;
+  }
+
+  .dog-hotspot-steamer {
+    top: 58%;
+    left: 14%;
+    width: 30%;
+    height: 22%;
+  }
+
+  .dog-hotspot-person {
+    top: 44%;
+    left: 39%;
+    width: 38%;
+    height: 37%;
+  }
+
+  .dog-hotspot-customer {
+    top: 50%;
+    left: 79%;
+    width: 19%;
+    height: 24%;
+  }
+
+  .dog-hotspot strong {
+    font-size: 0.63rem;
+  }
+
+  .dog-observation-card {
+    right: 10px;
+    bottom: 91px;
+    left: 10px;
+    width: auto;
+    padding: 13px 15px;
+  }
+
+  .dog-observation-card h3 {
+    font-size: 1.08rem;
+  }
+
+  .dog-observation-card > p {
+    font-size: 0.72rem;
+    line-height: 1.58;
+  }
+
+  .dog-scene-footer {
+    right: 10px;
+    bottom: 13px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .dog-scene-footer button {
+    min-height: 48px;
+    padding: 7px 9px;
+    font-size: 0.75rem;
+  }
+
+  .dog-asset-note {
+    display: none;
+  }
+
+  .dog-page-shop,
+  .dog-page-craft,
+  .dog-page-market,
+  .dog-page-name,
+  .dog-page-fame,
+  .dog-page-reflection {
+    display: block;
+    padding-top: var(--dog-content-top);
+  }
+
+  .dog-page-layout {
+    display: block;
+    height: auto;
+  }
+
+  .dog-visual-stage {
+    height: min(42svh, 380px);
+    border-right: 0;
+    border-bottom: 1px solid rgba(55, 49, 39, 0.34);
+  }
+
+  .dog-portrait-card {
+    right: 15px;
+    width: min(38vw, 190px);
+  }
+
+  .dog-copy-panel {
+    overflow: visible;
+    padding: 21px 20px 28px;
+  }
+
+  .dog-page-title {
+    font-size: clamp(2.15rem, 10vw, 3.2rem);
+  }
+
+  .dog-lead,
+  .dog-copy-panel blockquote p {
+    font-size: 0.82rem;
+  }
+
+  .dog-center-heading {
+    margin-top: 12px;
+    margin-bottom: 18px;
+  }
+
+  .dog-center-heading .dog-page-title {
+    font-size: clamp(2.4rem, 12vw, 3.5rem);
+  }
+
+  .dog-center-heading > p:last-child {
+    font-size: 0.8rem;
+    line-height: 1.68;
+  }
+
+  .dog-craft-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dog-craft-card {
+    min-height: 210px;
+  }
+
+  .dog-page-footer {
+    display: grid;
+    gap: 9px;
+  }
+
+  .dog-page-footer .dog-primary-button {
+    width: 100%;
+  }
+
+  .dog-craft-footer-actions {
+    display: grid;
+    width: 100%;
+  }
+
+  .dog-craft-footer-actions .dog-text-button,
+  .dog-craft-footer-actions .dog-primary-button {
+    width: 100%;
+  }
+
+  .dog-market-stage {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .dog-market-response {
+    grid-column: 1;
+    display: grid;
+    gap: 5px;
+  }
+
+  .dog-market-object {
+    min-height: 155px;
+  }
+
+  .dog-market-saying {
+    position: static;
+    padding: 8px 4px 0;
+    text-align: center;
+  }
+
+  .dog-name-layout {
+    display: block;
+    width: calc(100% - 32px);
+  }
+
+  .dog-name-preview {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+
+  .dog-hanging-sign {
+    min-height: 150px;
+  }
+
+  .dog-hanging-sign span {
+    height: auto;
+  }
+
+  .dog-page-name > .dog-page-footer {
+    padding: 18px 16px 28px;
+  }
+
+  .dog-page-fame {
+    overflow-y: auto;
+  }
+
+  .dog-fame-background {
+    object-position: 54% center;
+  }
+
+  .dog-fame-wash {
+    background:
+      linear-gradient(180deg, rgba(32, 35, 29, 0.58), rgba(32, 35, 29, 0.16) 45%, rgba(31, 31, 26, 0.82)),
+      linear-gradient(90deg, rgba(32, 35, 29, 0.3), transparent);
+  }
+
+  .dog-fame-copy {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    width: auto;
+    min-height: calc(100svh - var(--dog-content-top));
+    padding: calc(18px + 5svh) 20px 28px;
+    justify-content: flex-start;
+  }
+
+  .dog-fame-copy .dog-page-title {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+  }
+
+  .dog-fame-route {
+    flex-wrap: wrap;
+  }
+
+  .dog-fame-story {
+    margin-top: 18px;
+  }
+
+  .dog-fame-route i {
+    width: 14px;
+  }
+
+  .dog-page-reflection {
+    min-height: 100%;
+  }
+
+  .dog-reflection-sheet {
+    padding: 22px 19px;
+  }
+
+  .dog-reflection-sheet .dog-page-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .dog-original-modal {
+    padding: 10px;
+  }
+
+  .dog-original-sheet {
+    max-height: calc(100svh - 20px);
+    padding: 28px 20px 22px;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 761px) {
+  .dog-hotspot-sign {
+    top: 34%;
+    height: 27%;
+  }
+
+  .dog-hotspot-steamer {
+    top: 57%;
+    height: 25%;
+  }
+
+  .dog-observation-card {
+    bottom: 83px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dog-steam {
+    animation: none;
+  }
+
+  .dog-experience *,
+  .dog-experience *::before,
+  .dog-experience *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* 全屏图文融合阅读层 */
+
+.dog-experience {
+  --dog-toolbar-height: 64px;
+  --dog-nav-height: 54px;
+  --dog-content-top: calc(
+    var(--dog-toolbar-height) + var(--dog-nav-height) + 8px
+  );
+}
+
+.dog-toolbar {
+  border-bottom-color: rgba(54, 50, 40, 0.12);
+  background: rgba(239, 233, 221, 0.84);
+  box-shadow: 0 8px 28px rgba(30, 34, 29, 0.1);
+  backdrop-filter: blur(18px) saturate(0.86);
+}
+
+.dog-step-nav {
+  background: rgba(235, 228, 214, 0.78);
+  box-shadow: 0 8px 24px rgba(32, 35, 30, 0.09);
+  backdrop-filter: blur(15px) saturate(0.82);
+}
+
+.dog-page {
+  isolation: isolate;
+  background-color: #d8cab3;
+}
+
+.dog-page-craft,
+.dog-page-market,
+.dog-page-name,
+.dog-page-reflection {
+  background-color: #d8cab3;
+  background-image:
+    var(--dog-scene-wash),
+    var(--dog-scene-image);
+  background-position:
+    center,
+    var(--dog-scene-position);
+  background-size: cover, cover;
+  background-repeat: no-repeat;
+}
+
+.dog-page-street {
+  overflow: hidden;
+  background: #d8cab3;
+}
+
+.dog-opening-spread {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  transform: none;
+}
+
+.dog-opening-visual {
+  position: absolute;
+  inset: 0;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  background: #8f8778;
+  box-shadow: none;
+}
+
+.dog-opening-visual::before {
+  display: none;
+}
+
+.dog-opening-visual::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+  background: var(--dog-scene-wash);
+}
+
+.dog-opening-image-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+}
+
+.dog-opening-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--dog-scene-position);
+  filter: saturate(0.94) contrast(0.99);
+}
+
+.dog-opening-visual figcaption,
+.dog-portrait-card {
+  display: none;
+}
+
+.dog-scene-text {
+  position: absolute;
+  z-index: 4;
+  left: var(--dog-text-left);
+  right: var(--dog-text-right);
+  top: var(--dog-text-top);
+  bottom: var(--dog-text-bottom);
+  width: var(--dog-text-width);
+  height: var(--dog-text-height);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--dog-text-color);
+  text-align: var(--dog-text-align);
+  transform: var(--dog-text-transform);
+  transform-origin: center;
+  isolation: isolate;
+}
+
+.dog-scene-text::before {
+  position: absolute;
+  inset: -18px -28px -22px -22px;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  background: var(--dog-text-overlay);
+  filter: blur(13px);
+}
+
+.dog-opening-reader {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dog-opening-reader .dog-opening-heading {
+  padding: 0 5px 0 0;
+}
+
+.dog-opening-heading .dog-page-title {
+  max-width: 11em;
+  color: var(--dog-text-color);
+  font-size: clamp(2.35rem, 3.55vw, 4.15rem);
+  line-height: 1.04;
+  text-shadow: 0 1px 0 rgba(255, 250, 239, 0.55);
+}
+
+.dog-opening-heading > p:last-child {
+  max-width: 34em;
+  color: color-mix(in srgb, var(--dog-text-color) 72%, transparent);
+  font-size: 0.72rem;
+  text-shadow: 0 1px 0 rgba(255, 250, 239, 0.5);
+}
+
+.dog-opening-scroll {
+  margin: 12px 0 9px;
+  padding: 8px 12px 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--dog-text-color);
+  scrollbar-color: rgba(72, 58, 43, 0.62) transparent;
+  scrollbar-gutter: stable;
+  text-shadow: 0 1px 0 rgba(255, 251, 241, 0.58);
+}
+
+.dog-opening-scroll:focus-visible {
+  outline: 1px solid rgba(99, 52, 39, 0.75);
+  outline-offset: 3px;
+}
+
+.dog-opening-scroll p {
+  color: var(--dog-text-color);
+  font-size: clamp(1.18rem, 0.28vw + 0.95rem, 1.32rem);
+  line-height: 1.92;
+  letter-spacing: 0.015em;
+  text-shadow: 0 1px 0 rgba(255, 251, 241, 0.62);
+}
+
+.dog-opening-scroll .dog-opening-end {
+  border-top-color: rgba(74, 61, 45, 0.24);
+  color: color-mix(in srgb, var(--dog-text-color) 58%, transparent);
+}
+
+.dog-opening-progress-row {
+  color: color-mix(in srgb, var(--dog-text-color) 68%, transparent);
+  text-shadow: 0 1px 0 rgba(255, 251, 241, 0.48);
+}
+
+.dog-opening-progress {
+  background: rgba(54, 47, 37, 0.2);
+}
+
+.dog-opening-footer {
+  padding: 0 4px 0 0;
+}
+
+.dog-opening-footer p {
+  color: color-mix(in srgb, var(--dog-text-color) 70%, transparent);
+  text-shadow: 0 1px 0 rgba(255, 251, 241, 0.5);
+}
+
+.dog-opening-footer .dog-text-button {
+  border-color: rgba(67, 57, 44, 0.35);
+  background: rgba(250, 244, 231, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.dog-shop-main {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.dog-shop-main .dog-visual-stage {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  overflow: hidden;
+  border: 0;
+}
+
+.dog-shop-main .dog-visual-stage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--dog-scene-position);
+  filter: saturate(0.92) contrast(0.99);
+}
+
+.dog-shop-main .dog-visual-wash {
+  background: var(--dog-scene-wash);
+}
+
+.dog-shop-main .dog-copy-panel {
+  z-index: 4;
+  overflow-y: auto;
+  padding: 0 16px 18px 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--dog-text-color);
+  text-shadow: 0 1px 0 rgba(255, 251, 241, 0.58);
+  scrollbar-color: rgba(72, 58, 43, 0.58) transparent;
+}
+
+.dog-shop-main .dog-copy-panel::before {
+  inset: -18px -28px -22px -22px;
+}
+
+.dog-shop-main .dog-copy-panel .dog-page-title {
+  color: var(--dog-text-color);
+  font-size: clamp(2.15rem, 3vw, 3.45rem);
+}
+
+.dog-shop-main .dog-copy-panel .dog-lead {
+  color: var(--dog-text-color);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.dog-shop-main .dog-copy-panel blockquote {
+  margin: 18px 0;
+  padding: 10px 0 10px 16px;
+  border-left-color: rgba(105, 50, 36, 0.62);
+  background: transparent;
+}
+
+.dog-shop-main .dog-copy-panel blockquote p {
+  color: var(--dog-text-color);
+}
+
+.dog-shop-main .dog-source-note {
+  border: 0;
+  background: rgba(250, 244, 231, 0.26);
+  backdrop-filter: blur(4px);
+}
+
+.dog-page-craft {
+  padding-right: clamp(18px, 4vw, 56px);
+  padding-bottom: 24px;
+  padding-left: clamp(18px, 4vw, 56px);
+}
+
+.dog-center-heading,
+.dog-name-layout > header {
+  background: var(--dog-text-overlay);
+}
+
+.dog-center-heading {
+  padding: 22px clamp(18px, 4vw, 48px);
+}
+
+.dog-craft-card,
+.dog-market-object {
+  background-color: rgba(248, 241, 227, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.dog-market-stage {
+  border-color: rgba(62, 54, 42, 0.2);
+  background: rgba(246, 239, 225, 0.68);
+  box-shadow: 0 18px 44px rgba(42, 33, 24, 0.14);
+  backdrop-filter: blur(6px);
+}
+
+.dog-name-layout {
+  position: relative;
+  z-index: 2;
+}
+
+.dog-name-layout > header {
+  padding: 20px 22px;
+}
+
+.dog-town-talk article,
+.dog-talk-card {
+  background: rgba(249, 243, 231, 0.68);
+  backdrop-filter: blur(5px);
+}
+
+.dog-page-reflection {
+  padding-top: var(--dog-content-top);
+}
+
+.dog-reflection-sheet {
+  border: 0;
+  background: rgba(248, 242, 230, 0.76);
+  box-shadow: 0 25px 60px rgba(35, 28, 20, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.dog-page-fame .dog-fame-background {
+  object-position: var(--dog-scene-position);
+}
+
+.dog-page.is-story-entering {
+  animation: dog-scene-page-in 680ms ease both;
+}
+
+.dog-page.is-story-entering .dog-opening-image-frame img,
+.dog-page.is-story-entering .dog-shop-main .dog-visual-stage > img,
+.dog-page.is-story-entering .dog-fame-background {
+  animation: dog-scene-image-in 680ms ease both;
+}
+
+.dog-page.is-story-entering .dog-scene-text {
+  animation: dog-scene-text-in 620ms 120ms ease both;
+}
+
+@keyframes dog-scene-page-in {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dog-scene-image-in {
+  from {
+    opacity: 0.55;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dog-scene-text-in {
+  from {
+    opacity: 0;
+    transform: var(--dog-text-transform) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: var(--dog-text-transform);
+  }
+}
+
+@media (max-width: 760px) {
+  .dog-experience {
+    --dog-toolbar-height: 108px;
+    --dog-nav-height: 54px;
+    --dog-content-top: calc(
+      var(--dog-toolbar-height) + var(--dog-nav-height) + 7px
+    );
+  }
+
+  .dog-toolbar {
+    background: rgba(239, 233, 221, 0.9);
+  }
+
+  .dog-step-nav {
+    background: rgba(235, 228, 214, 0.86);
+  }
+
+  .dog-page-craft,
+  .dog-page-market,
+  .dog-page-name,
+  .dog-page-reflection {
+    background-image:
+      var(--dog-scene-mobile-wash),
+      var(--dog-scene-image);
+    background-position:
+      center,
+      var(--dog-scene-mobile-position);
+  }
+
+  .dog-opening-image-frame img,
+  .dog-shop-main .dog-visual-stage > img,
+  .dog-page-fame .dog-fame-background {
+    object-position: var(--dog-scene-mobile-position);
+  }
+
+  .dog-scene-text {
+    left: var(--dog-mobile-text-left);
+    right: var(--dog-mobile-text-right);
+    top: var(--dog-mobile-text-top);
+    bottom: var(--dog-mobile-text-bottom);
+    width: var(--dog-mobile-text-width);
+    height: var(--dog-mobile-text-height);
+    color: var(--dog-mobile-text-color);
+    text-align: var(--dog-mobile-text-align);
+    transform: var(--dog-mobile-text-transform);
+  }
+
+  .dog-scene-text::before {
+    inset: -12px -8px -9px;
+    background: var(--dog-mobile-text-overlay);
+    filter: blur(9px);
+  }
+
+  .dog-opening-reader {
+    padding: 9px 9px 5px;
+    overflow: hidden;
+  }
+
+  .dog-opening-heading .dog-page-title {
+    max-width: 13em;
+    font-size: clamp(1.85rem, 8.5vw, 2.7rem);
+  }
+
+  .dog-opening-heading > p:last-child {
+    margin-top: 5px;
+    font-size: 0.64rem;
+    line-height: 1.45;
+  }
+
+  .dog-opening-scroll {
+    margin: 8px 0 7px;
+    padding: 4px 9px 5px 0;
+  }
+
+  .dog-opening-scroll p {
+    font-size: 0.96rem;
+    line-height: 1.82;
+    text-align: left;
+  }
+
+  .dog-opening-scroll .dog-opening-end {
+    font-size: 0.66rem;
+  }
+
+  .dog-opening-progress-row {
+    font-size: 0.62rem;
+  }
+
+  .dog-opening-footer {
+    gap: 7px;
+    margin-top: 6px;
+  }
+
+  .dog-opening-footer p {
+    font-size: 0.62rem;
+  }
+
+  .dog-opening-footer .dog-text-button {
+    min-height: 31px;
+    padding: 4px 8px;
+    font-size: 0.64rem;
+  }
+
+  .dog-shop-main .dog-copy-panel {
+    padding: 10px 12px 7px;
+    overflow-y: auto;
+  }
+
+  .dog-shop-main .dog-copy-panel .dog-page-title {
+    font-size: clamp(1.88rem, 9vw, 2.7rem);
+  }
+
+  .dog-shop-main .dog-copy-panel .dog-lead {
+    font-size: 0.87rem;
+    line-height: 1.78;
+  }
+
+  .dog-center-heading,
+  .dog-name-layout > header {
+    padding: 15px 14px;
+  }
+
+  .dog-center-heading {
+    margin-top: 10px;
+  }
+
+  .dog-craft-grid,
+  .dog-market-stage {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .dog-name-layout {
+    width: calc(100% - 22px);
+    padding: 10px 0 12px;
+  }
+
+  .dog-reflection-sheet {
+    width: calc(100% - 20px);
+    background: rgba(248, 242, 230, 0.84);
+  }
+}
+
+/* 连续纵向阅读：背景固定，场景和正文由同一个滚动容器驱动。 */
+.dog-narrative-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #d8cab3;
+  pointer-events: none;
+}
+
+.dog-narrative-stage[hidden] {
+  display: none;
+}
+
+.dog-narrative-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.dog-narrative-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--dog-narrative-position, 50% 50%);
+  filter: saturate(0.94) contrast(0.99);
+}
+
+.dog-narrative-wash {
+  position: absolute;
+  inset: 0;
+  background: var(--dog-narrative-wash, transparent);
+  pointer-events: none;
+}
+
+.dog-pages.is-narrative {
+  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  background: transparent;
+  scrollbar-color: rgba(63, 52, 39, 0.34) transparent;
+  scrollbar-width: thin;
+}
+
+.dog-pages.is-narrative::-webkit-scrollbar {
+  width: 7px;
+}
+
+.dog-pages.is-narrative::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dog-pages.is-narrative::-webkit-scrollbar-thumb {
+  background: rgba(63, 52, 39, 0.3);
+}
+
+.dog-pages.is-narrative .dog-page-street,
+.dog-pages.is-narrative .dog-page-shop {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.dog-pages.is-narrative .dog-opening-spread {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  padding:
+    calc(var(--dog-content-top) + 1.4vh)
+    0
+    0;
+  transform: none;
+}
+
+.dog-pages.is-narrative .dog-opening-visual,
+.dog-pages.is-narrative .dog-shop-main .dog-visual-stage {
+  display: none;
+}
+
+.dog-pages.is-narrative .dog-opening-reader,
+.dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: var(--dog-text-width);
+  height: auto;
+  min-height: 0;
+  margin: 0 0 0 var(--dog-text-left);
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: opacity;
+}
+
+.dog-pages.is-narrative .dog-opening-scroll,
+.dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.dog-pages.is-narrative .dog-opening-scroll {
+  max-height: none;
+  margin: 17px 0 14px;
+  padding: 18px 13px 20px 0;
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
+  scrollbar-width: none;
+}
+
+.dog-pages.is-narrative .dog-opening-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.dog-pages.is-narrative .dog-opening-scroll p {
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.dog-pages.is-narrative .dog-opening-heading .dog-page-title {
+  max-width: 100%;
+  font-size: clamp(2rem, 2.5vw, 3.1rem);
+  line-height: 1.12;
+  letter-spacing: 0.015em;
+}
+
+.dog-pages.is-narrative .dog-opening-heading > p:last-child {
+  max-width: 30em;
+}
+
+.dog-pages.is-narrative .dog-opening-footer {
+  margin-bottom: clamp(56px, 10vh, 112px);
+}
+
+.dog-pages.is-narrative .dog-shop-main {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding:
+    calc(var(--dog-content-top) + 1.4vh)
+    0
+    clamp(90px, 16vh, 170px);
+}
+
+.dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+  padding: 0 13px 0 0;
+  color: var(--dog-text-color);
+}
+
+.dog-pages.is-narrative .dog-shop-main .dog-copy-panel .dog-page-title {
+  max-width: 100%;
+  font-size: clamp(2rem, 2.5vw, 3.1rem);
+  line-height: 1.12;
+}
+
+.dog-pages.is-narrative .dog-shop-main .dog-lead {
+  font-size: clamp(1.02rem, 1.28vw, 1.2rem);
+  line-height: 1.9;
+}
+
+.dog-pages.is-narrative .dog-shop-main .dog-copy-panel blockquote {
+  margin: 20px 0;
+  padding: 11px 0 11px 15px;
+  border-left: 2px solid rgba(105, 50, 36, 0.56);
+  background: transparent;
+}
+
+.dog-pages.is-narrative .dog-shop-main .dog-source-note {
+  margin-top: 20px;
+  border: 0;
+  background: rgba(250, 244, 231, 0.26);
+}
+
+.dog-narrative-transition {
+  position: relative;
+  display: grid;
+  height: 24svh;
+  min-height: 120px;
+  place-items: center;
+  pointer-events: none;
+}
+
+.dog-narrative-transition span {
+  color: rgba(52, 45, 35, 0.52);
+  font-family: var(--kai);
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  text-shadow: 0 1px 0 rgba(255, 249, 236, 0.72);
+  transform: translateY(-6px);
+}
+
+.dog-pages.is-narrative .dog-page.is-story-entering,
+.dog-pages.is-narrative .dog-page.is-scene-entering,
+.dog-pages.is-narrative .dog-page-layout.is-scene-entering {
+  animation: none;
+}
+
+@media (max-width: 760px) {
+  .dog-pages.is-narrative .dog-opening-spread,
+  .dog-pages.is-narrative .dog-shop-main {
+    padding-top: calc(var(--dog-content-top) + 8px);
+  }
+
+  .dog-pages.is-narrative .dog-opening-reader,
+  .dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+    width: auto;
+    margin-right: 9px;
+    margin-left: 9px;
+  }
+
+  .dog-pages.is-narrative .dog-opening-heading .dog-page-title,
+  .dog-pages.is-narrative .dog-shop-main .dog-copy-panel .dog-page-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.7rem);
+  }
+
+  .dog-pages.is-narrative .dog-opening-scroll {
+    margin-top: 10px;
+    padding: 10px 7px 14px 0;
+  }
+
+  .dog-pages.is-narrative .dog-opening-scroll p {
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+    padding: 0 7px;
+  }
+
+  .dog-narrative-transition {
+    height: 18svh;
+    min-height: 104px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dog-narrative-background,
+  .dog-pages.is-narrative .dog-opening-reader,
+  .dog-pages.is-narrative .dog-shop-main .dog-copy-panel {
+    will-change: auto;
+  }
+
+  .dog-pages.is-narrative {
+    scroll-behavior: auto;
+  }
+}

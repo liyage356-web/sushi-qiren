@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="《俗世奇人·泥人张》沉浸式数字交互阅读"
+    />
+    <meta name="theme-color" content="#536056" />
+    <title>泥人张 · 奇境入巷</title>
+    <link rel="stylesheet" href="mi-ren-zhang.css?v=20261104-1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#storyMain">跳到故事正文</a>
+
+    <header class="story-topbar">
+      <a class="back-link" href="index.html#street" aria-label="返回天津老街">
+        <span aria-hidden="true">←</span>
+        返回老街
+      </a>
+
+      <div class="story-identity">
+        <span>俗世奇人</span>
+        <strong>泥人张</strong>
+      </div>
+
+      <div class="story-tools">
+        <button id="originalButton" class="tool-button" type="button">
+          原文阅读
+        </button>
+        <button
+          id="soundButton"
+          class="tool-button"
+          type="button"
+          aria-pressed="false"
+        >
+          雨声：关
+        </button>
+      </div>
+    </header>
+
+    <nav class="chapter-nav" aria-label="泥人张章节导航">
+      <button type="button" data-scene-go="restaurant" aria-current="page">
+        <span>01</span>天庆馆
+      </button>
+      <button type="button" data-scene-go="observe"><span>02</span>识人</button>
+      <button type="button" data-scene-go="craft"><span>03</span>捏泥</button>
+      <button type="button" data-scene-go="reveal"><span>04</span>亮相</button>
+      <button type="button" data-scene-go="market"><span>05</span>估衣街</button>
+      <button type="button" data-scene-go="ending"><span>06</span>结局</button>
+      <button type="button" data-scene-go="reflection">
+        <span>07</span>读后笺
+      </button>
+    </nav>
+
+    <div class="progress-track" aria-hidden="true">
+      <span id="progressFill"></span>
+    </div>
+
+    <main id="storyMain" class="story-main" tabindex="-1">
+      <section
+        class="scene-panel is-active"
+        data-scene="restaurant"
+        aria-labelledby="restaurantTitle"
+      >
+        <header class="scene-heading">
+          <p id="restaurantEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h1 id="restaurantTitle">雨落天庆馆</h1>
+            <span class="scene-count">第一幕 / 七幕</span>
+          </div>
+          <p id="restaurantLead" class="scene-lead"></p>
+        </header>
+
+        <div class="restaurant-layout">
+          <div class="restaurant-scene" aria-label="雨中的天庆馆探索场景">
+            <div class="rain" aria-hidden="true"></div>
+            <button
+              class="door-spot"
+              type="button"
+              data-observation="door"
+              aria-label="观察饭馆入口与海张五"
+            >
+              <span class="door-sign">天 庆 馆</span>
+              <span class="sea-silhouette" aria-hidden="true"></span>
+              <span class="spot-label">门口 · 海张五</span>
+            </button>
+
+            <div class="table-shape" aria-hidden="true">
+              <span class="dish dish-a"></span>
+              <span class="dish dish-b"></span>
+              <span class="cup-handle"></span>
+            </div>
+
+            <button
+              class="table-spot cup-spot"
+              type="button"
+              data-observation="cup"
+              aria-label="观察桌上的酒杯"
+            >
+              <span class="spot-label">酒杯</span>
+            </button>
+
+            <button
+              class="table-spot diners-spot"
+              type="button"
+              data-observation="diners"
+              aria-label="观察邻桌吃客"
+            >
+              <span class="diners-mark" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+              <span class="spot-label">邻桌吃客</span>
+            </button>
+
+            <button
+              class="mudman-figure"
+              type="button"
+              data-observation="mudman"
+              aria-label="观察泥人张"
+            >
+              <img
+                src="images/characters/ni-ren-zhang-cutout.png"
+                alt="泥人张坐在木椅上的水墨人物插画"
+              />
+              <span class="spot-label">泥人张</span>
+            </button>
+
+            <p class="asset-note">场景占位 · 可替换为天庆馆插画</p>
+          </div>
+
+          <aside
+            id="observationPanel"
+            class="observation-panel"
+            aria-live="polite"
+          >
+            <p id="observationTone" class="panel-kicker">观察提示</p>
+            <h2 id="observationTitle">先看桌上，再看人</h2>
+            <p id="observationCopy">
+              点击场景中的酒杯、门口、吃客或泥人张，发现不同角色正在做什么。
+            </p>
+          </aside>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            对照原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="observe"
+          >
+            观察人物 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="observe"
+        aria-labelledby="observeTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="observeEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="observeTitle">谁在看戏，谁在看人</h2>
+            <span class="scene-count">第二幕 / 七幕</span>
+          </div>
+          <p id="observeLead" class="scene-lead"></p>
+        </header>
+
+        <div class="observe-layout">
+          <button
+            class="portrait-card is-selected"
+            type="button"
+            data-compare="mudman"
+            aria-pressed="true"
+          >
+            <span class="portrait-number">甲</span>
+            <img
+              src="images/characters/ni-ren-zhang-cutout.png"
+              alt="泥人张坐在木椅上的插画"
+            />
+            <span class="portrait-name">泥人张</span>
+            <span class="portrait-note">手在桌下</span>
+          </button>
+
+          <button
+            class="portrait-card sea-card"
+            type="button"
+            data-compare="sea"
+            aria-pressed="false"
+          >
+            <span class="portrait-number">乙</span>
+            <span class="sea-portrait" aria-hidden="true">
+              <i class="sea-head"></i>
+              <i class="sea-body"></i>
+              <i class="sea-arm"></i>
+            </span>
+            <span class="portrait-name">海张五</span>
+            <span class="portrait-note">人物占位</span>
+          </button>
+
+          <article class="comparison-note" aria-live="polite">
+            <p id="comparePose" class="panel-kicker">姿态 · 坐着，手在桌下</p>
+            <h3 id="compareTitle">泥人张</h3>
+            <p id="compareCopy"></p>
+            <p id="compareFocus" class="compare-focus"></p>
+          </article>
+        </div>
+
+        <div class="scene-actions">
+          <button
+            class="text-button"
+            type="button"
+            data-scene-go="restaurant"
+          >
+            <span aria-hidden="true">←</span> 回到饭馆
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="craft"
+          >
+            开始捏泥 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="craft"
+        aria-labelledby="craftTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="craftEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="craftTitle">袖中捏泥</h2>
+            <span class="scene-count">第三幕 / 七幕</span>
+          </div>
+          <p id="craftLead" class="scene-lead"></p>
+        </header>
+
+        <div class="craft-layout">
+          <div class="craft-copy">
+            <div class="craft-step-buttons" aria-label="捏泥阶段">
+              <button type="button" data-craft-step="1" aria-pressed="true">
+                <span>01</span>揉泥
+              </button>
+              <button type="button" data-craft-step="2" aria-pressed="false">
+                <span>02</span>塑形
+              </button>
+              <button type="button" data-craft-step="3" aria-pressed="false">
+                <span>03</span>完成
+              </button>
+            </div>
+
+            <article class="craft-instruction" aria-live="polite">
+              <p id="craftStepNumber" class="panel-kicker">第一步 · 揉泥</p>
+              <h3 id="craftStepTitle">把手里的泥团揉圆</h3>
+              <p id="craftStepNote"></p>
+            </article>
+
+            <p class="asset-note">
+              泥团与泥像为 CSS 交互占位，可替换为三张实物步骤图。
+            </p>
+          </div>
+
+          <div class="craft-workbench" data-step="1">
+            <img
+              class="craft-mudman"
+              src="images/characters/ni-ren-zhang-cutout.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="table-edge" aria-hidden="true"></div>
+
+            <button
+              id="clayLump"
+              class="clay-lump"
+              type="button"
+              aria-label="揉圆泥团"
+            >
+              <span>点击揉泥</span>
+            </button>
+
+            <div class="clay-head" aria-label="点击面部特征塑形">
+              <button
+                type="button"
+                class="clay-feature feature-head"
+                data-feature="head"
+                aria-label="塑出大头"
+              >
+                头
+              </button>
+              <button
+                type="button"
+                class="clay-feature feature-eyes"
+                data-feature="eyes"
+                aria-label="塑出眼睛"
+              >
+                眼
+              </button>
+              <button
+                type="button"
+                class="clay-feature feature-mouth"
+                data-feature="mouth"
+                aria-label="塑出嘴巴"
+              >
+                口
+              </button>
+            </div>
+
+            <figure class="finished-clay">
+              <img
+                src="images/characters/hai-zhang-wu-clay.png"
+                alt="泥人张手中完成的核桃大小人物泥像"
+              />
+              <figcaption>泥像已成形</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-craft-reset>
+            重新捏一次
+          </button>
+          <button
+            id="craftNextButton"
+            class="primary-button"
+            type="button"
+            data-scene-go="reveal"
+            disabled
+          >
+            泥像亮相 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="reveal"
+        aria-labelledby="revealTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="revealEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="revealTitle">泥像亮相</h2>
+            <span class="scene-count">第四幕 / 七幕</span>
+          </div>
+          <p id="revealLead" class="scene-lead"></p>
+        </header>
+
+        <div class="reveal-layout">
+          <div class="clay-showcase">
+            <span class="showcase-ring" aria-hidden="true"></span>
+            <img
+              src="images/characters/hai-zhang-wu-clay.png"
+              alt="泥人张手中捏成的小人物泥像"
+            />
+            <button
+              type="button"
+              class="reveal-spot reveal-head"
+              data-reveal="head"
+              aria-label="观察泥像的头部"
+            >
+              头
+            </button>
+            <button
+              type="button"
+              class="reveal-spot reveal-eyes"
+              data-reveal="eyes"
+              aria-label="观察泥像的眼睛"
+            >
+              眼
+            </button>
+            <button
+              type="button"
+              class="reveal-spot reveal-whole"
+              data-reveal="whole"
+              aria-label="观察整个泥像"
+            >
+              全
+            </button>
+            <span class="asset-note">泥像局部 · 来自现有插画裁切</span>
+          </div>
+
+          <aside class="reveal-copy" aria-live="polite">
+            <p id="revealDetailLabel" class="panel-kicker">点击泥像查看细节</p>
+            <h3 id="revealDetailTitle">小小一件，没说一句话</h3>
+            <p id="revealDetailCopy">
+              泥像在桌上出现后，真正的变化发生在周围人的表情里。
+            </p>
+            <button id="reactionButton" class="text-button" type="button">
+              看看众人的反应
+            </button>
+            <p id="reactionCopy" class="reaction-copy" hidden></p>
+          </aside>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            阅读相关原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="market"
+          >
+            前往估衣街 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="market"
+        aria-labelledby="marketTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="marketEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="marketTitle">一排泥像</h2>
+            <span class="scene-count">第五幕 / 七幕</span>
+          </div>
+          <p id="marketLead" class="scene-lead"></p>
+        </header>
+
+        <div class="market-shell">
+          <button
+            class="market-arrow is-left"
+            type="button"
+            data-market-direction="-1"
+            aria-label="向左浏览摊位"
+          >
+            ←
+          </button>
+          <div id="marketViewport" class="market-viewport">
+            <div id="marketTrack" class="market-track">
+              <button
+                class="market-stall"
+                type="button"
+                data-stall="0"
+                aria-pressed="false"
+              >
+                <span class="stall-awning">杂货</span>
+                <span class="stall-table"></span>
+                <span class="stall-label">杂货摊</span>
+              </button>
+              <button
+                class="market-stall"
+                type="button"
+                data-stall="1"
+                aria-pressed="false"
+              >
+                <span class="stall-awning">泥货</span>
+                <span class="stall-table"></span>
+                <span class="market-clay clay-one" aria-hidden="true"></span>
+                <span class="stall-label">第一只泥像</span>
+              </button>
+              <button
+                class="market-stall"
+                type="button"
+                data-stall="2"
+                aria-pressed="false"
+              >
+                <span class="stall-awning">泥货</span>
+                <span class="stall-table"></span>
+                <span class="market-clay clay-one" aria-hidden="true"></span>
+                <span class="market-clay clay-two" aria-hidden="true"></span>
+                <span class="stall-label">第二只泥像</span>
+              </button>
+              <button
+                class="market-stall ticket-stall"
+                type="button"
+                data-stall="3"
+                aria-pressed="false"
+              >
+                <span class="stall-awning">泥货</span>
+                <span class="stall-table"></span>
+                <span class="market-clay clay-one" aria-hidden="true"></span>
+                <span class="market-clay clay-two" aria-hidden="true"></span>
+                <span class="market-ticket">贱卖海张五</span>
+                <span class="stall-label">摊上纸条</span>
+              </button>
+            </div>
+          </div>
+          <button
+            class="market-arrow is-right"
+            type="button"
+            data-market-direction="1"
+            aria-label="向右浏览摊位"
+          >
+            →
+          </button>
+        </div>
+
+        <div class="market-note" aria-live="polite">
+          <p id="marketStallLabel" class="panel-kicker">沿街浏览</p>
+          <h3 id="marketStallTitle">向左或向右移动视野</h3>
+          <p id="marketStallCopy">
+            每个摊位都能点击。留意泥像数量的变化，也留意那张纸条。
+          </p>
+        </div>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            阅读相关原文
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="ending"
+          >
+            走到故事结尾 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="ending"
+        aria-labelledby="endingTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="endingEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="endingTitle">不吵，也有回声</h2>
+            <span class="scene-count">第六幕 / 七幕</span>
+          </div>
+          <p id="endingLead" class="scene-lead"></p>
+        </header>
+
+        <article class="ending-sheet">
+          <p class="ending-mark">泥</p>
+          <blockquote id="endingQuote"></blockquote>
+          <p id="endingSummary"></p>
+          <div class="ending-rule" aria-hidden="true"></div>
+          <p class="source-note">
+            当前只展示你提供的设计文档中明确出现的摘引和场景转述。
+            完整原著正文需在取得授权并核对版本后加入故事数据文件。
+          </p>
+        </article>
+
+        <div class="scene-actions">
+          <button class="text-button" type="button" data-open-original>
+            阅读原文摘引
+          </button>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="reflection"
+          >
+            写下读后笺 <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="scene-panel"
+        data-scene="reflection"
+        aria-labelledby="reflectionTitle"
+        hidden
+      >
+        <header class="scene-heading">
+          <p id="reflectionEyebrow" class="scene-kicker"></p>
+          <div class="scene-heading-row">
+            <h2 id="reflectionTitle">你看见了什么</h2>
+            <span class="scene-count">第七幕 / 七幕</span>
+          </div>
+          <p id="reflectionLead" class="scene-lead"></p>
+        </header>
+
+        <div class="reflection-sheet">
+          <div id="reflectionChips" class="reflection-chips"></div>
+          <label for="reflectionText">写几句留给自己的话</label>
+          <textarea
+            id="reflectionText"
+            maxlength="1200"
+            placeholder="可以从一个动作、一件泥像，或人群态度的一次变化写起。"
+          ></textarea>
+          <div class="reflection-actions">
+            <button id="reflectionSave" class="primary-button" type="button">
+              保存读后笺
+            </button>
+            <button
+              id="restartStory"
+              class="text-button"
+              type="button"
+            >
+              重新体验
+            </button>
+          </div>
+          <p
+            id="reflectionStatus"
+            class="reflection-status"
+            role="status"
+            aria-live="polite"
+          >
+            内容仅保存在当前浏览器。
+          </p>
+        </div>
+
+        <div class="scene-actions start-actions">
+          <a class="text-button" href="index.html#street">返回天津老街</a>
+          <button
+            class="primary-button"
+            type="button"
+            data-scene-go="restaurant"
+          >
+            再从入馆开始
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div id="originalModal" class="story-modal" hidden>
+      <div class="story-modal-backdrop" data-close-original></div>
+      <section
+        class="original-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="originalTitle"
+        tabindex="-1"
+      >
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="关闭原文阅读"
+          data-close-original
+        >
+          ×
+        </button>
+        <p class="panel-kicker">原文与来源核对</p>
+        <h2 id="originalTitle">泥人张 · 阅读摘引</h2>
+        <div id="originalList" class="original-list"></div>
+        <p class="source-note">
+          标注为“场景转述”的内容不是原文。完整原文入口将保留在故事数据文件中，
+          供你在获得授权并核对出版版本后替换。
+        </p>
+      </section>
+    </div>
+
+    <p id="liveStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+    <script src="mi-ren-zhang-story.js?v=20261104-1"></script>
+    <script src="mi-ren-zhang.js?v=20261104-1"></script>
+  </body>
+</html>
